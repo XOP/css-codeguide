@@ -173,6 +173,26 @@ So-called *"Relational rules"* can be combined regardless usual order.
 	}
 ```
 
+## Vendor prefixes
+It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.  
+Anyhow, here is recommended style:  
+```css
+.class {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	}
+	
+.class {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+    
+	-webkit-animation-name: myAnimation;
+	animation-name: myAnimation;
+	}
+```
+
 ## Mandatory commenting
 It's just a set of rules, that does worth commenting.  
 You might want to come up with your own list, but this is the nice starting point.
@@ -184,6 +204,7 @@ You might want to come up with your own list, but this is the nice starting poin
     overflow: hidden; /* reason for overflow */
 	}
 ```
+
 ## Selectors and selectors
 ```css
 /* Elem
