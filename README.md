@@ -107,7 +107,12 @@ Seems redundant, but you've got the idea.
 /*
     todo: Griffin - check extra padding
 */
+
+/*
+    todo: cleanup with the feature "PhotoMarks"
+*/
 ```
+One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
 ## Selectors and rules
 Excessive example of writing CSS rules in order.  
@@ -120,17 +125,14 @@ The point here is visual and logic separation of rules.
 	z-index: 77;
 
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	width:100%;
 	height: 100%;
 	overflow: hidden;
 	margin: 0;
 	padding: 4px 5px 5px;
-	*padding: 2px 5px;
 
 	border: #ccc solid 1px;
-	border-top: #999 solid 1px;
+	border-top-color: #999;
 	background: #fff;
 	background-image: url(/images/icon.png);
 
@@ -204,6 +206,7 @@ You might want to come up with your own list, but this is the nice starting poin
     overflow: hidden; /* reason for overflow */
 	}
 ```
+As a rule - *do not* rely on your memory or memory of your colleages, just comment suspicious values.
 
 ## Selectors and selectors
 ```css
@@ -272,21 +275,21 @@ You might want to come up with your own list, but this is the nice starting poin
 ## Exceptions
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
 ```css
-.mb-5 {margin-bottom: 5px;}
-.mb-10 {margin-bottom: 10px;}
-.mb-15 {margin-bottom: 15px;}
-.mb-20 {margin-bottom: 20px;}
+.mb-x {margin-bottom: 4px;}
+.mb-2x {margin-bottom: 8px;}
+.mb-3x {margin-bottom: 12px;}
+.mb-4x {margin-bottom: 16px;}
 
 a.white:hover,
 .white_hover:hover {color:#eee;}
 
-.stub-img__32,
-.stub-img__40,
-.stub-img__50,
-.stub-img__128,
-.stub-img__150,
-.stub-img__180,
-.stub-img__190
+.card__xxs,
+.card__xs,
+.card__s,
+.card__m,
+.card__l,
+.card__xl,
+.card__xxl
 	{
 	background-repeat: no-repeat;
 	}
@@ -316,6 +319,75 @@ Take a look at live example:
 */
 ```
 It's pretty easy to start and hard to resist hereafter.
+
+## Abbreviations glossary
+This is highly recommended practice to indulge in your work.  
+The idea of glossary stems from common naming convention and widely used by project contributors.
+
+Here is more or less full list of abbreviations, used by our team:
+
+```
+a - link (as an anchor)
+ac - action (most used for clickable elements [wrapper])
+add - additional
+au - author
+aux - auxiliary
+
+b - body
+btn - button
+
+c - center
+cat - category
+cnt - contents
+col - column
+count - counter
+
+dec - decorate
+del - delete
+descr - description
+delim - delimiter
+
+err - error
+ext - external
+
+h - header
+hld - holder (wrapper analog, depends on layout logic)
+
+i - item
+ic - icon | input checkbox
+img - image
+ir - input radio
+isl - input select
+it - input text
+itx - textarea
+
+l - left | label
+lk - link (like source link)
+lst - list
+
+n - name
+ntf - notification
+num - number
+
+opt - options
+ovr - overlay
+
+ph - placeholder | photo
+
+r - right
+
+scr - screen | scroll
+sm - small
+
+t - title
+tx - text
+
+w - wrapper
+```
+
+## States and modifications glossary
+>> coming up!
+
 
 ## Preprocessors (SCSS, as an example)
 All stuff above is valid for the CSS preprocessor code organizing with some peculiarities worth seeing.
@@ -376,27 +448,20 @@ All stuff above is valid for the CSS preprocessor code organizing with some pecu
 // Links
 // ---------------------------------------------------------------------
 
-// basic
+$a-main: '#eb722e';
+$a-main__h: '#b84819';
 
-$al: '#eb722e';
-$al_h: '#b84819';
+$a-aux: '#449f14';
+$a-aux__h: '#32710d'
 
-// aux
-
-$o: '#449f14';
-$o_h: '#32710d'
 
 // Colors
 // ---------------------------------------------------------------------
 
-// basic
+$c-main: '#333';
+$c-aux: '#666';
+$c-brand: '#f00';
 
-$cBlack: '#333';
-$cDark: '#666';
-
-// aux
-
-$cRed: '#f00';
 
 // Shadows
 // ---------------------------------------------------------------------
