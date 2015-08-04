@@ -1,9 +1,14 @@
 CSS Codeguide
 =============
 
-> Documentation for coding and maintaining the most transparent CSS 
+> Documentation for coding and maintaining the most transparent CSS
 
-## Structural comments
+> TODO: Key principles goes here.
+
+## Structure of css/styl file
+
+### Structural comments
+
 ```css
 /* Level 1
 ---------------------------------------------------------------------------------- */
@@ -22,7 +27,8 @@ CSS Codeguide
 
 	}
 
-/* /Level 2 */
+/* /Level 2
+-------------------------------------------------- */
 
 /* Level 3 */
 
@@ -38,7 +44,8 @@ CSS Codeguide
 	}
 ```
 
-Example of this approach:
+Use breaks inside and outside of levels as shown above and in the example of this approach below.
+
 ```css
 /* Module 1
 ---------------------------------------------------------------------------------- */
@@ -80,9 +87,10 @@ Example of this approach:
 ---------------------------------------------------------------------------------- */
 ```
 
-## Document author
+### Document author
 Please have this snippet located at the beginning of your stylesheet, bless you!
 You don't code anonymously, right?
+
 ```css
 /**
 * author:       S Griffin | IM : contactme69 | e-mail : wdybih@gmail.com
@@ -94,9 +102,11 @@ You don't code anonymously, right?
 * @project colors:	#123123
 **/
 ```
+
 Seems redundant, but you've got the idea.
 
-## TODO-s
+### TODO-s
+
 ```css
 /*
     TODO: check if scroll needed >> refactor layer positioning
@@ -112,11 +122,83 @@ Seems redundant, but you've got the idea.
     todo: cleanup with the feature "PhotoMarks"
 */
 ```
+
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
-## Selectors and rules
-Excessive example of writing CSS rules in order.  
+### Mandatory commenting
+Always comment magic numbers and tricky approaches. If you are using **z-index: 14;** or **margin: 31px 27px;** and you totally understand it today - try to figure it out through the month.
+I guess everyone was in situation like this, so the such type of comments are very important in your code.
+It's just a set of rules, that does worth commenting.  
+You might want to come up with your own list, but this is the nice starting point.
+
+```css
+.project-class {
+    z-index: 31; /* reason for z-index */
+    margin-left: -616px; /* reason for negative margin */
+    -webkit-backface-visibility: hidden; /* reason for hack */
+    overflow: hidden; /* reason for overflow */
+	}
+```
+
+As a rule - *do not* rely on your memory or memory of your colleages, just comment suspicious values.
+
+### CSSG
+The project [CSSG](https://github.com/XOP/css-o-gram), that I've started not so long time ago is intended to improve readability and bring more transparency to your CSS.  
+
+Take a look at live example:
+
+```css
+/*
+
+	pform_map		                            $__active $__search $__map
+		pform_tags
+			<tico>
+
+		pform_map_search
+			<input>
+			suggest . __active
+				pform_map_img
+					<object>
+
+				pform_map_ac . lp
+				<sugggest-list>
+				pform_map_ac . lp . __active
+
+*/
+```
+
+It's pretty easy to start and hard to resist hereafter.
+
+
+## Syntax & formatting
+
+### Basic formatting
+Going from easy-to-difficult let's define how the simple selector must look:
+* four spaces indents, no tabs;
+* closing brace align with properties
+* each declaration on the new line
+* whitespaces for logical separation of CSS rules if needed
+* shorthand properties if possible
+
+```css
+.class {
+    display: block;
+    margin: 12px;
+    background: #dedede url('path/to/img.png') 0 0 no-repeat;
+    color: #333;
+    }
+```
+
+### Grouping of properties
+Excessive example of writing CSS rules in order.
 The point here is visual and logic separation of rules.
+One of the way how to organize declarations:
+1. Positioning selectors
+2. Box model/size
+3. Borders/backgrounds
+4. All other stuff
+5. Animations
+
 ```css
 .class {
 	position: relative;
@@ -142,7 +224,8 @@ The point here is visual and logic separation of rules.
 	}
 ```
 
-So-called *"Relational rules"* can be combined regardless usual order.  
+So-called *"Relational rules"* can be combined regardless usual order.
+
 ```css
 .class {
     display: inline-block;
@@ -175,9 +258,10 @@ So-called *"Relational rules"* can be combined regardless usual order.
 	}
 ```
 
-## Vendor prefixes
+### Vendor prefixes
 It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.  
-Anyhow, here is recommended style:  
+Anyhow, here is recommended style:
+
 ```css
 .class {
 	-webkit-user-select: none;
@@ -195,25 +279,20 @@ Anyhow, here is recommended style:
 	}
 ```
 
-## Mandatory commenting
-It's just a set of rules, that does worth commenting.  
-You might want to come up with your own list, but this is the nice starting point.
-```css
-.project-class {
-    z-index: 31; /* reason for z-index */
-    margin-left: -616px; /* reason for negative margin */
-    -webkit-backface-visibility: hidden; /* reason for hack */
-    overflow: hidden; /* reason for overflow */
-	}
-```
-As a rule - *do not* rely on your memory or memory of your colleages, just comment suspicious values.
+### Combining of selectors
 
-## Selectors and selectors
+Here you can find the way how to organize selectors in real life. Typically we separate different types of selectors:
+* pseudo elements and states
+* child selectors
+* modificators
+* siblings/other entity
+There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js). See example below to see how all of selectors live together. 
+
 ```css
 /* Elem
 -------------------------------------------------- */
 
-.elem{
+.elem {
 	display: block;
 	}
 	.elem:hover {
@@ -265,15 +344,17 @@ As a rule - *do not* rely on your memory or memory of your colleages, just comme
 	color: red;
 	}
 
-.elem-elem-bar {
+.elem-elem-goo {
 	position: static;
 	}
 
-/* /Elem */
+/* /Elem
+-------------------------------------------------- */
 ```
 
 ## Exceptions
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
+
 ```css
 .mb-x {margin-bottom: 4px;}
 .mb-2x {margin-bottom: 8px;}
@@ -281,7 +362,7 @@ Reason for exceptional code-styling should be transparency and visual grace, not
 .mb-4x {margin-bottom: 16px;}
 
 a.white:hover,
-.white_hover:hover {color:#eee;}
+.white_hover:hover {color: #eee;}
 
 .card__xxs,
 .card__xs,
@@ -295,30 +376,13 @@ a.white:hover,
 	}
 ```
 
-## CSSG
-The project [CSSG](https://github.com/XOP/css-o-gram), that I've started not so long time ago is intended to improve readability and bring more transparency to your CSS.  
+## Syntax using preprocessors
 
-Take a look at live example:
-```css
-/*
+### Common rules
 
-	pform_map		                            $__active $__search $__map
-		pform_tags
-			<tico>
+### Nesting
 
-		pform_map_search
-			<input>
-			suggest . __active
-				pform_map_img
-					<object>
 
-				pform_map_ac . lp
-				<sugggest-list>
-				pform_map_ac . lp . __active
-
-*/
-```
-It's pretty easy to start and hard to resist hereafter.
 
 ## Abbreviations glossary
 This is highly recommended practice to indulge in your work.  
