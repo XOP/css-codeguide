@@ -44,7 +44,7 @@ CSS Codeguide
 	}
 ```
 
-Use breaks inside and outside of levels as shown above and in the example of this approach below.
+Use whitespaces inside and outside of levels as shown above and in the example of this approach below.
 
 ```css
 /* Module 1
@@ -175,7 +175,7 @@ It's pretty easy to start and hard to resist hereafter.
 ### Basic formatting
 Going from easy-to-difficult let's define how the simple selector must look:
 * four spaces indents, no tabs;
-* closing brace align with properties
+* closing brace align with properties (yeap, just try it :)
 * each declaration on the new line
 * whitespaces for logical separation of CSS rules if needed
 * shorthand properties if possible
@@ -193,6 +193,7 @@ Going from easy-to-difficult let's define how the simple selector must look:
 Excessive example of writing CSS rules in order.
 The point here is visual and logic separation of rules.
 One of the way how to organize declarations:
+
 1. Positioning selectors
 2. Box model/size
 3. Borders/backgrounds
@@ -286,6 +287,7 @@ Here you can find the way how to organize selectors in real life. Typically we s
 * child selectors
 * modificators
 * siblings/other entity
+
 There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js). See example below to see how all of selectors live together. 
 
 ```css
@@ -382,6 +384,9 @@ a.white:hover,
 
 ### Nesting
 
+### Variables
+
+### Mixins
 
 
 ## Abbreviations glossary
