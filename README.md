@@ -1,13 +1,46 @@
 CSS Codeguide
 =============
 
-> Documentation for coding and maintaining the most transparent CSS
+> Documentation for coding and maintaining the most transparent CSS.
+> This style guide was born at the [ok](http://ok.ru) front-end team.
 
-> TODO: Key principles goes here.
+Current style guide is designed for advanced users, but still might be very useful for the beginners.
+We don't cover how to write pure css or selector performance here. If you need this information we advise to look at [css guide lines](http://cssguidelin.es/) and then back to compare different approaches to decide which one works better for you.
+The point of this guide is to show how to live with more than 250 style files and feel comfortable with that.
+We gonna try to be not too boring, so be ready to surf through examples and best practices.
+Well, here we are!
+
+
+[Structure of css/styl file](#structure-of-cssstyl-file)
+&nbsp;&nbsp;&nbsp;&nbsp;[Structural comments](#structural-comments)
+&nbsp;&nbsp;&nbsp;&nbsp;[Document author](#document-author)
+&nbsp;&nbsp;&nbsp;&nbsp;[TODO-s](#todo-s)
+&nbsp;&nbsp;&nbsp;&nbsp;[Mandatory commenting](#mandatory-commenting)
+&nbsp;&nbsp;&nbsp;&nbsp;[CSSG](#cssg)
+&nbsp;&nbsp;&nbsp;&nbsp;[Files structure](#files-structure)
+&nbsp;&nbsp;&nbsp;&nbsp;[Methodology](#methodology)
+[Syntax & formatting](#syntax--formatting)
+&nbsp;&nbsp;&nbsp;&nbsp;[Basic formatting](#basic-formatting)
+&nbsp;&nbsp;&nbsp;&nbsp;[Grouping of properties](#grouping-of-properties)
+&nbsp;&nbsp;&nbsp;&nbsp;[Vendor prefixes](#vendor-prefixes)
+&nbsp;&nbsp;&nbsp;&nbsp;[Combining of selectors](#combining-of-selectors)
+[Exceptions](#exceptions)
+[Syntax using preprocessors](#syntax-using-preprocessors)
+&nbsp;&nbsp;&nbsp;&nbsp;[Common rules](#common-rules)
+&nbsp;&nbsp;&nbsp;&nbsp;[Nesting](#nesting)
+&nbsp;&nbsp;&nbsp;&nbsp;[Variables](#variables)
+&nbsp;&nbsp;&nbsp;&nbsp;[Mixins](#mixins)
+[Abbreviations glossary](#abbreviations-glossary)
+[States and modifications glossary](#states-and-modifications-glossary)
+[Extras](#extras)
+
 
 ## Structure of css/styl file
+The first thing that you should think about is a structure of you styles. No matter how does this structure look like.
+The main idea here is to have this structure. In this chapter we'll show the structure that we are using in our project.
 
 ### Structural comments
+Separate different levels of your code into the blocks.
 
 ```css
 /* Level 1
@@ -44,7 +77,8 @@ CSS Codeguide
 	}
 ```
 
-Use whitespaces inside and outside of levels as shown above and in the example of this approach below.
+Use 2 whitespaces between level 1 blocks and 1 whitespace between another.
+*Note that it looks much better with real data. Check it out at sample.styl.*
 
 ```css
 /* Module 1
@@ -60,8 +94,16 @@ Use whitespaces inside and outside of levels as shown above and in the example o
 .part1 {
 
 	}
+	
+/* Modifications */
 
-/* /Module 1 - Part 1 */
+.part1.__mod1 {}
+.part1.__mod2 {}
+
+/* /Modifications */
+
+/* /Module 1 - Part 1
+-------------------------------------------------- */
 
 /* Module 1 - Part 2
 -------------------------------------------------- */
@@ -70,7 +112,8 @@ Use whitespaces inside and outside of levels as shown above and in the example o
 
 	}
 
-/* /Module 1 - Part 2 */
+/*/ Module 1 - Part 2
+-------------------------------------------------- */
 
 /* /Module 1
 ---------------------------------------------------------------------------------- */
@@ -169,14 +212,36 @@ Take a look at live example:
 
 It's pretty easy to start and hard to resist hereafter.
 
+### Files structure
+Keep your styles in small atomic files. You can use either imports or concatenate your files with gulp/grunt.
+The idea here is to have each file for a single responsibility. Examples of atomic files:
+* modal.styl
+* menu.styl
+* toolbar.styl
+
+### Methodology
+Methodology we are using called [Multilayer CSS](http://operatino.github.io/MCSS/en/) (MCSS).
+Core methodology principles are based on [BEM](https://en.bem.info/). It consists of two important things:
+
+1. Philosophy for structure of style files
+2. Naming convention (see example below)
+
+```css
+.module-name {}
+.module-name_child {}
+.module-name_child_child-of-child {}
+.module-name_child__modifier {}
+```
 
 ## Syntax & formatting
+Nobody uses pure css in big projects, right? If you still use - check out for "css preprocessors".
+No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
 
 ### Basic formatting
 Going from easy-to-difficult let's define how the simple selector must look:
 * four spaces indents, no tabs;
 * closing brace align with properties (yeap, just try it :)
-* each declaration on the new line
+* each declaration on a new line
 * whitespaces for logical separation of CSS rules if needed
 * shorthand properties if possible
 
@@ -222,40 +287,6 @@ One of the way how to organize declarations:
 	color: #333;
 	line-height: 15px;
 	font: 12px Arial, Helvetica, sans-serif;
-	}
-```
-
-So-called *"Relational rules"* can be combined regardless usual order.
-
-```css
-.class {
-    display: inline-block;
-    vertical-align: middle;
-	}
-
-.class {
-    position: absolute;
-    left: 0; top: 0; right: 0; bottom: 0;
-	}
-
-.class {
-    position: absolute;
-    z-index: 1000; /* reason for z-index */
-	}
-
-.class {
-    width: 200px;
-    left: 50%; margin-left: -100px;
-	}
-
-.class {
-    height: 100px;
-    top: 50%; margin-top: -50px;
-	}
-
-.class {
-    height: 18px;
-    line-height: 18px;
 	}
 ```
 
