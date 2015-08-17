@@ -8,6 +8,7 @@ Current style guide is designed for advanced users, but still might be very usef
 We don't cover how to write pure css or selector performance here. If you need this information we advise to look at [css guide lines](http://cssguidelin.es/) and then back to compare different approaches to decide which one works better for you.
 The point of this guide is to show how to live with more than 250 style files and feel comfortable with that.
 We gonna try to be not too boring, so be ready to surf through examples and best practices.
+
 Well, here we are!
 
 
@@ -30,6 +31,9 @@ Well, here we are!
 	* [Nesting](#nesting)
 	* [Variables](#variables)
 	* [Mixins](#mixins)
+	* [Extends](#extends)
+	* [Media queries](#media-queries)
+* [Sprites](#sprites)
 * [Abbreviations glossary](#abbreviations-glossary)
 * [States and modifications glossary](#states-and-modifications-glossary)
 * [Extras](#extras)
@@ -595,6 +599,164 @@ $heightBig = 32px;
 ```
 
 ### Mixins
+When you use mixins - write them first in a ruleset.
+```css
+/* bad */
+.selector {
+    key: value;
+    
+    mixin();
+    mixin2();
+    }
+
+/* good */
+.selector {
+    mixin();
+    mixin2();
+    
+    key: value;
+    }
+```
+
+Here are some useful set of mixins that we are using:
+
+```css
+/* Utilities
+-------------------------------------------------- */
+
+//
+// clearfix - modern way
+clearfix() {
+	&:before,
+	&:after {
+		content: '';
+		display: table;
+		}
+
+	&:after {
+		clear: both;
+		}
+	}
+
+//
+// vertical aligning using pseudo-elements
+// 2 mixins - va() && va_rarget()
+// @height - implicitly set container height
+va($height = 100%){
+    &:after {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        min-height: 100%;
+        height: $height;
+        }
+    }
+
+//
+// ellip / ellip-i
+// @inline - inline element
+// @boxSizing - apply if used with paddings
+ellip($inline = false, $boxSizing = false){
+
+    if $inline {
+        display: inline-block;
+        }
+
+    if $boxSizing {
+        box-sizing: border-box;
+        }
+
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    }
+    
+/* /Utilities
+-------------------------------------------------- */
+
+/* Special
+-------------------------------------------------- */
+
+//
+// render in separate layer
+// hack to balance CPU/GPU load
+// example: gpuRender(chrome, mac-chrome)
+gpuRender($browsers){
+    $i = 0;
+    $comma = ",";
+    $rule = "";
+
+    for $b in arguments {
+        $i += 1;
+        if ($i == length(arguments)){
+            $comma = "";
+            }
+
+        $rule += unquote(".") + $b + unquote(" &") + unquote($comma);
+        }
+
+    {$rule} {
+        backface-visibility: hidden;
+        }
+    }
+
+/* /Special
+-------------------------------------------------- */
+
+/* Animation
+-------------------------------------------------- */
+
+animFadeIn($on){
+	if $on {
+		transition: $animDuration opacity, visibility 0s $animDuration;
+		}
+    }
+
+animFadeInCallback($on){
+    if $on {
+        transition-delay: 0s;
+        }
+    }
+
+animColor($on){
+	if $on {
+		transition: $animDuration color;
+		}
+    }
+
+animBackgroundColor($on){
+	if $on {
+		transition: $animDuration background-color;
+		}
+    }
+
+animBorderColor($on){
+    if $on {
+        transition: $animDuration border-color;
+        }
+    }
+
+/* /Animation
+-------------------------------------------------- */
+```
+
+### Extends
+> Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
+> Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
+For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+
+### Media queries
+Nothing special here, just use the snippet showing below:
+```css
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
+	.selector {
+	    ...
+	    }
+	}
+```
+
+## Sprites
 
 
 ## Abbreviations glossary
