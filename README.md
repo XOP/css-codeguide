@@ -24,7 +24,7 @@ Well, here we are!
 	* [Grouping of properties](#grouping-of-properties)
 	* [Vendor prefixes](#vendor-prefixes)
 	* [Combining of selectors](#combining-of-selectors)
-* [Exceptions](#exceptions)
+	* [Exceptions](#exceptions)
 * [Syntax using preprocessors](#syntax-using-preprocessors)
 	* [Common rules](#common-rules)
 	* [Nesting](#nesting)
@@ -224,7 +224,7 @@ Methodology we are using called [Multilayer CSS](http://operatino.github.io/MCSS
 Core methodology principles are based on [BEM](https://en.bem.info/). It consists of two important things:
 
 1. Philosophy for structure of style files
-2. Naming convention (see example below)
+2. Naming convention for selectors (see example below)
 
 ```css
 .module-name {}
@@ -233,14 +233,13 @@ Core methodology principles are based on [BEM](https://en.bem.info/). It consist
 .module-name_child__modifier {}
 ```
 
+
 ## Syntax & formatting
-Nobody uses pure css in big projects, right? If you still use - check out for "css preprocessors".
-No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
 
 ### Basic formatting
 Going from easy-to-difficult let's define how the simple selector must look:
 * four spaces indents, no tabs;
-* closing brace align with properties (yeap, just try it :)
+* closing brace align with properties (weird, but just try it :)
 * each declaration on a new line
 * whitespaces for logical separation of CSS rules if needed
 * shorthand properties if possible
@@ -385,7 +384,7 @@ There are some node modules to make it easier, like [CSScomb](https://github.com
 -------------------------------------------------- */
 ```
 
-## Exceptions
+### Exceptions
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
 
 ```css
@@ -410,12 +409,185 @@ a.white:hover,
 ```
 
 ## Syntax using preprocessors
+Nobody uses pure css in big projects, right? If you still use - check out for "css preprocessors".
+No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
+Here is the list what features of preprocessors we are using:
+
+* Nesting (with limitations)
+* Variables
+* Mixins/extends
+* Loops
 
 ### Common rules
+Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
+Separate nesting rules with a whitespace.
+
+```css
+/* bad */
+.class
+    display block
+    color red
+    &:hover {
+        color: #000;
+        }
+    
+/* good */
+.class {
+    display: block;
+    color: red;
+    
+    &:hover {
+        color: #000;
+        }
+    }
+```
+
+The rule here is to write your code as pure css.
 
 ### Nesting
+Avoid to use unnecessary nesting and nesting deeply than 3 levels. We use nesting only for:
+
+* Pseudo elements
+* Context classes
+* Refactoring/redesign issues
+
+All other cases rely on MCSS. One more thing we want to mention is never use composite class names using nesting.
+It makes impossible to find classes in your project.
+
+```css
+/* awful */
+.module {
+    ...
+    
+    &_block {}
+}
+
+/* bad */
+.module {
+    ...
+    
+    .module_block {}
+    }
+    
+.module:after {
+    ...
+    }
+    
+.module_block:hover {
+    ...
+    }
+    
+/* good */
+.module {
+    ...
+    
+    &:after {
+        ...
+        }
+    }
+    
+    .module_block {
+        &:hover {
+            ...
+            }
+        }
+```
+
+Do not use `&` as a child in nesting except context classes.
+
+```css
+/* bad */
+.block {
+    .module & {
+        ...
+        }
+    }
+    
+/* good */
+.block {
+    .ie9 & {
+        ...
+        }
+    }
+```
 
 ### Variables
+All variables should start with `$` and written in camel case. We split variables into 3 categories:
+
+* Global
+* Module
+* Local
+
+Global variables have `$global` namespace and it can be used in each files.
+We use grunt to make files ending with `.global.styl` visible for a whole project.
+
+```css
+$global = {
+    colors: {
+        default: #333,
+        inverted: #ccc,
+        ...
+    },
+
+    backgrounds: {
+        basic: #fff,
+        light: #f0f0f0,
+        ...
+    },
+    
+    ...
+}
+```
+
+Later in this file you can set up aliases for a short declaration, like this:
+
+```css
+/* global.styl */
+...
+
+$bg = $global.backgrounds;
+
+/* anywhere else */
+.class {
+    background: $bg.basic;
+    }
+```
+
+Module vars is a special case of global vars and only used inside certain module. It can also be placed in separate *global* file.
+
+```css
+$toolbar {
+    height {
+        wide: 40px,
+        thin: 20px
+    },
+    
+    colors: {
+        item: #333,
+        hover: #eb722e,
+        selected: #b84819
+    },
+    
+    ...
+}
+```
+
+Local variables is used in local module file and located in *vars* section:
+
+```css
+/* Vars
+-------------------------------------------------- */
+
+$radius = 3px;
+
+$ff = arial, helvetica, sans-serif;
+
+$heightSmall = 24px;
+$heightBig = 32px;
+
+/* /Vars
+-------------------------------------------------- */
+```
 
 ### Mixins
 
