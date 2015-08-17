@@ -77,7 +77,8 @@ Separate different levels of your code into the blocks.
 	}
 ```
 
-Use 2 whitespaces between level 1 blocks and 1 whitespace between another.
+Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+
 *Note that it looks much better with real data. Check it out at sample.styl.*
 
 ```css
@@ -169,7 +170,8 @@ Seems redundant, but you've got the idea.
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
 ### Mandatory commenting
-Always comment magic numbers and tricky approaches. If you are using **z-index: 14;** or **margin: 31px 27px;** and you totally understand it today - try to figure it out through the month.
+Always comment magic numbers and tricky approaches.
+If you are using `z-index: 14;` or `margin: 31px 27px;` and you totally understand it today - try to figure it out through the month.
 I guess everyone was in situation like this, so the such type of comments are very important in your code.
 It's just a set of rules, that does worth commenting.  
 You might want to come up with your own list, but this is the nice starting point.
@@ -521,7 +523,9 @@ All variables should start with `$` and written in camel case. We split variable
 Global variables have `$global` namespace and it can be used in each files.
 We use grunt to make files ending with `.global.styl` visible for a whole project.
 
-```css
+*Note, that alignment and styling of this files is the same with javascript.*
+
+```js
 $global = {
     colors: {
         default: #333,
@@ -547,6 +551,7 @@ Later in this file you can set up aliases for a short declaration, like this:
 
 $bg = $global.backgrounds;
 
+
 /* anywhere else */
 .class {
     background: $bg.basic;
@@ -557,7 +562,7 @@ Module vars is a special case of global vars and only used inside certain module
 
 ```css
 $toolbar {
-    height {
+    height: {
         wide: 40px,
         thin: 20px
     },
