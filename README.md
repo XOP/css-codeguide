@@ -44,6 +44,7 @@ Well, here we are!
 	* [Retina images](#retina-images)
 	* [Styles for retina](#styles-for-retina)
 * [Extras](#extras)
+
 <!--mdMenu-->
 
 ## Intro

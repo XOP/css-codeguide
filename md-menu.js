@@ -81,9 +81,9 @@ fs.readFile(config.source, function(err, data) {
         .join('\r\n');
 
     if (config.menuTitle) {
-        menu = config.placeholder + br + config.menuTitle + br + menu + br + config.placeholder;
+        menu = config.placeholder + br + config.menuTitle + br + menu + br + br + config.placeholder;
     } else {
-        menu = config.placeholder + br + menu + br + config.placeholder;
+        menu = config.placeholder + br + menu + br + br + config.placeholder;
     }
 
     // If no placeholders - paste in the beginning of document
