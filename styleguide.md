@@ -12,38 +12,6 @@ We gonna try to be not too boring, so be ready to surf through examples and best
 Well, here we are!
 
 <!--mdMenu-->
-## Table of Contents
-* [Intro](#intro)
-* [Methodology](#methodology)
-* [Structure of css/styl file](#structure-of-cssstyl-file)
-	* [Files structure](#files-structure)
-	* [Structural comments](#structural-comments)
-	* [Document author](#document-author)
-	* [CSSG](#cssg)
-* [Comments](#comments)
-	* [Mandatory commenting](#mandatory-commenting)
-	* [TODO-s](#todo-s)
-	* [Context comments](#context-comments)
-	* [Modifications comments](#modifications-comments)
-* [Syntax & formatting](#syntax--formatting)
-	* [Basic formatting](#basic-formatting)
-	* [Grouping of properties](#grouping-of-properties)
-	* [Vendor prefixes](#vendor-prefixes)
-	* [Combining of selectors](#combining-of-selectors)
-	* [Exceptions](#exceptions)
-	* [Returning of cascade](#returning-of-cascade)
-* [Syntax using preprocessors](#syntax-using-preprocessors)
-	* [Common rules](#common-rules)
-	* [Nesting](#nesting)
-	* [Variables](#variables)
-	* [Mixins](#mixins)
-	* [Extends](#extends)
-	* [Media queries](#media-queries)
-* [Images](#images)
-	* [Sprites](#sprites)
-	* [Retina images](#retina-images)
-	* [Styles for retina](#styles-for-retina)
-* [Extras](#extras)
 <!--mdMenu-->
 
 ## Intro
