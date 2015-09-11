@@ -1,1 +1,11 @@
+# env
 .idea
+*.iml
+
+# dev
+node_modules
+bower_components
+
+# build
+_README.md
+public

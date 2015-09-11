@@ -43,11 +43,11 @@ Well, here we are!
 	* [Sprites](#sprites)
 	* [Retina images](#retina-images)
 	* [Styles for retina](#styles-for-retina)
-* [Extras](#extras)
 
 <!--mdMenu-->
 
 ## Intro
+
 To make it more transparent a couple words about the style guide.
 
 1. No matter if you are using css preprocessors or not. I mean it is much better if you are, but all information below might be apply to pure css also.
@@ -56,8 +56,8 @@ We are using stylus and all examples here is wrote down with stylus syntax.
 3. Feel free to fork it, make edits and use it inside your project.
 4. If you have any questions, comments or suggestions, please open an issue.
 
-
 ## Methodology
+
 Methodology we are using is called [Multilayer CSS](http://operatino.github.io/MCSS/en/) (MCSS).
 Core methodology principles are based on [BEM](https://en.bem.info/). It consists of two important things:
 
@@ -74,12 +74,13 @@ Core methodology principles are based on [BEM](https://en.bem.info/). It consist
 Module interaction scheme
 ![Module interaction scheme](http://operatino.github.io/MCSS/images/layers.jpg)
 
-
 ## Structure of css/styl file
+
 The first thing that you should think about is a structure of you styles. No matter how does this structure look like.
 The main idea here is to have this structure. In this chapter we'll show the structure that we are using in our project.
 
 ### Files structure
+
 Keep your styles in small atomic files. You can use either imports or concatenate your files with gulp/grunt.
 The idea here is to have each file for a single responsibility. Examples of atomic files:
 * modal.styl
@@ -87,6 +88,7 @@ The idea here is to have each file for a single responsibility. Examples of atom
 * toolbar.styl
 
 ### Structural comments
+
 Separate different levels of your code into the blocks.
 
 ```stylus
@@ -130,7 +132,7 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 .part1 {
 
 	}
-	
+
 /* Modifications */
 
 .part1.__mod1 {}
@@ -170,6 +172,7 @@ You can use source-auxiliary.xml live templates from [SourceJS Live templates re
 For example, for the first level comment just type `ch1 + tab`.
 
 ### Document author
+
 Please have this snippet located at the beginning of your stylesheet, bless you!
 You don't code anonymously, right?
 
@@ -188,7 +191,8 @@ You don't code anonymously, right?
 Seems redundant, but you've got the idea.
 
 ### CSSG
-The project [CSSG](https://github.com/XOP/css-o-gram), that I've started not so long time ago is intended to improve readability and bring more transparency to your CSS.  
+
+The project [CSSG](https://github.com/XOP/css-o-gram), that I've started not so long time ago is intended to improve readability and bring more transparency to your CSS.
 
 Take a look at live example:
 
@@ -214,16 +218,17 @@ Take a look at live example:
 
 It's pretty easy to start and hard to resist hereafter.
 
-
 ## Comments
+
 Comments are very important. Comment all code, that potentially might has questions later.
 Comments should be short and capacious. At the same time beware of unnecessary commenting and keep your comments up to date.
 
 ### Mandatory commenting
+
 Always comment magic numbers and tricky approaches.
 If you are using `z-index: 14;` or `margin: 31px 27px;` and you totally understand it today - try to figure it out through the month.
 I guess everyone was in situation like this, so the such type of comments are the most important in your code.
-It's just a set of rules, that does worth commenting.  
+It's just a set of rules, that does worth commenting.
 You might want to come up with your own list, but this is the nice starting point.
 
 ```stylus
@@ -238,6 +243,7 @@ You might want to come up with your own list, but this is the nice starting poin
 As a rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
 
 ### TODO-s
+
 One good point at todo-s comments is to write your name there or the name of the responsible person for that code.
 Also sometimes it is useful to keep the date you plan to realize your todo.
 
@@ -260,6 +266,7 @@ Also sometimes it is useful to keep the date you plan to realize your todo.
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
 ### Context comments
+
 Use these comments when to show context:
 ```stylus
 //
@@ -267,7 +274,7 @@ Use these comments when to show context:
 .block_ic {
     ...
     }
-    
+
 //
 // img
 .block_img {
@@ -276,23 +283,24 @@ Use these comments when to show context:
 ```
 
 ### Modifications comments
+
 Use these comments when to describe modificators:
 ```stylus
 // small button
 .btn.__small {
     ...
     }
-    
+
 // full-width button
 .btn.__wide {
     ...
     }
 ```
 
-
 ## Syntax & formatting
 
 ### Basic formatting
+
 Going from easy-to-difficult let's define how the simple selector must look:
 * four spaces indents, no tabs;
 * closing brace align with properties (weird, but just try it :)
@@ -310,6 +318,7 @@ Going from easy-to-difficult let's define how the simple selector must look:
 ```
 
 ### Grouping of properties
+
 Excessive example of writing CSS rules in order.
 The point here is visual and logic separation of rules.
 One of the way how to organize declarations:
@@ -346,7 +355,8 @@ One of the way how to organize declarations:
 ```
 
 ### Vendor prefixes
-It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.  
+
+It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.
 Anyhow, here is recommended style:
 
 ```stylus
@@ -356,11 +366,11 @@ Anyhow, here is recommended style:
 	-ms-user-select: none;
 	user-select: none;
 	}
-	
+
 .class {
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
-    
+
 	-webkit-animation-name: myAnimation;
 	animation-name: myAnimation;
 	}
@@ -375,7 +385,7 @@ Here you can find the way how to organize selectors in real life. Typically we s
 * siblings/other entity
 
 There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js).
-See example below to see how all of selectors live together. 
+See example below to see how all of selectors live together.
 
 ```stylus
 /* Elem
@@ -442,6 +452,7 @@ See example below to see how all of selectors live together.
 ```
 
 ### Exceptions
+
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
 
 ```stylus
@@ -466,18 +477,19 @@ a.white:hover,
 ```
 
 ### Returning of cascade
+
 Sometimes you have really deep nesting elements:
 
 ```stylus
 .elem {
     }
-    
+
     .elem-child {
         }
-        
+
         .elem-child-child {
             }
-            
+
             //...
 ```
 
@@ -486,20 +498,22 @@ What you can make here is to return cascade back when it is logically possible.
 ```stylus
 .elem {
     }
-    
+
     .elem-child {
         }
-        
+
 .elem-child-child {
     }
-    
+
     .elem-child-child-child {
         }
-            
+
         //...
 ```
 
+
 ## Syntax using preprocessors
+
 No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
 Here is the list what features of preprocessors we are using:
 
@@ -509,6 +523,7 @@ Here is the list what features of preprocessors we are using:
 * Loops
 
 ### Common rules
+
 Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
 Separate nesting rules with a whitespace.
 
@@ -520,12 +535,12 @@ Separate nesting rules with a whitespace.
     &:hover {
         color: #000;
         }
-    
+
 /* good */
 .class {
     display: block;
     color: red;
-    
+
     &:hover {
         color: #000;
         }
@@ -535,6 +550,7 @@ Separate nesting rules with a whitespace.
 The rule here is to write your code as pure css.
 
 ### Nesting
+
 Avoid to use unnecessary nesting and nesting deeply than 3 levels. We use nesting only for:
 
 * Pseudo elements
@@ -548,34 +564,34 @@ It makes impossible to find classes in your project.
 /* awful */
 .module {
     ...
-    
+
     &_block {}
 }
 
 /* bad */
 .module {
     ...
-    
+
     .module_block {}
     }
-    
+
 .module:after {
     ...
     }
-    
+
 .module_block:hover {
     ...
     }
-    
+
 /* good */
 .module {
     ...
-    
+
     &:after {
         ...
         }
     }
-    
+
     .module_block {
         &:hover {
             ...
@@ -592,7 +608,7 @@ Do not use `&` as a child in nesting except context classes.
         ...
         }
     }
-    
+
 /* good */
 .block {
     .ie9 & {
@@ -611,23 +627,23 @@ Just choose your own way and follow it everywhere.
 .block.__v2 {
     // ...
     // very long code, we don't see parent on the screen
-    
+
     .module {
         ...
         }
-        
+
     // ...
     }
-    
+
 /* good */
 .block.__v2 {
     // ...
     // very long code, we don't see parent on the screen
-    
+
     & .module {
         ...
         }
-        
+
     // ...
     }
 ```
@@ -645,22 +661,23 @@ Do not use structural comments inside nesting. If you want to do that - check ou
     /* /Module
     -------------------------------------------------- */
     }
-    
+
 /* good */
 /* Module
 -------------------------------------------------- */
 .block {
-   
+
     .module {
         ...
         }
-     
+
     }
 /* /Module
 -------------------------------------------------- */
 ```
 
 ### Variables
+
 All variables should start with `$` and written in camel case. We split variables into 3 categories:
 
 * Global
@@ -685,7 +702,7 @@ $global = {
         light: #f0f0f0,
         ...
     },
-    
+
     ...
 }
 ```
@@ -713,13 +730,13 @@ $toolbar {
         wide: 40px,
         thin: 20px
     },
-    
+
     colors: {
         item: #333,
         hover: #eb722e,
         selected: #b84819
     },
-    
+
     ...
 }
 ```
@@ -742,12 +759,13 @@ $heightBig = 32px;
 ```
 
 ### Mixins
+
 When you use mixins - write them first in a ruleset.
 ```stylus
 /* bad */
 .selector {
     key: value;
-    
+
     mixin();
     mixin2();
     }
@@ -756,7 +774,7 @@ When you use mixins - write them first in a ruleset.
 .selector {
     mixin();
     mixin2();
-    
+
     key: value;
     }
 ```
@@ -814,7 +832,7 @@ ellip($inline = false, $boxSizing = false){
     white-space: nowrap;
     text-overflow: ellipsis;
     }
-    
+
 /* /Utilities
 -------------------------------------------------- */
 
@@ -885,11 +903,13 @@ animBorderColor($on){
 ```
 
 ### Extends
+
 > Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
 > Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
 For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
 ### Media queries
+
 Nothing special here, just use the snippet showing below:
 ```stylus
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
@@ -900,11 +920,13 @@ Nothing special here, just use the snippet showing below:
 ```
 
 ## Images
+
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
 We are using some plugins, written in our team.
 There are several plugins: for generating sprites, for generating x1 size images from x2 and for generating styles for retina.
 
 ### Sprites
+
 We use [css-sprites-generator](https://github.com/cheshirsky/css-sprites-generator).
 It is a tiny css sprites generator based on inline sprites definition and references.
 
@@ -939,19 +961,19 @@ sprite($url, $name, $params = ""){
 ```
 
 ### Retina images
+
 We use [grunt-retina-img plugin](https://github.com/odnoklassniki/grunt-retina-img).
 It is a small Grunt task for generating background-images from x2 size to x1.
 
 ### Styles for retina
+
 We use [grunt-retina-css plugin](https://github.com/odnoklassniki/grunt-retina-css).
 It is a Grunt task for generating CSS with 2x background-images.
 
 
-## Extras
-Take a look at some suggestions on [JS codeguide](js.md) provided as well. 
-
 -----
 
-Feel free to ask questions via [email](mailto:wdybih@gmail.com).  
-All content is available for free distribution.  
+
+Feel free to ask questions via [email](mailto:stewiekillsloiss@gmail.com).
+All content is available for free distribution.
 [Link to source](https://github.com/XOP/css-codeguide) is mandatory when copying materials.
