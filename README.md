@@ -5,9 +5,14 @@ CSS Codeguide
 > This style guide was born at the [ok](http://ok.ru) front-end team.
 
 Current style guide is designed for advanced users, but still might be very useful for the beginners.
-We don't cover how to write pure css or selector performance here. If you need this information we advise to look at [css guide lines](http://cssguidelin.es/) and then back to compare different approaches to decide which one works better for you.
-The point of this guide is to show how to live with more than 250 style files and feel comfortable with that.
+
+We don't cover topics on writing css or selector performance here. If you need this information we advise to look at [css guide lines](http://cssguidelin.es/) and then back to compare different approaches to decide which one works better for you.
+
+The point of this guide is to show how to live with more than 250 style files and feel comfortable about that.
+
 We gonna try to be not too boring, so be ready to surf through examples and best practices.
+
+> Check out __samples__ folder for real-life examples and deeper syntax understanding.
 
 Well, here we are!
 
@@ -115,8 +120,6 @@ Separate different levels of your code into the blocks.
 ```
 
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
-
-*Note that it looks much better with real data. Check it out at sample.styl.*
 
 ```stylus
 /* Module 1

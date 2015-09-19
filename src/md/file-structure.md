@@ -40,8 +40,6 @@ Separate different levels of your code into the blocks.
 
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
-*Note that it looks much better with real data. Check it out at sample.styl.*
-
 ```stylus
 /* Module 1
 ---------------------------------------------------------------------------------- */
