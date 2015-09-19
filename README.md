@@ -2,19 +2,20 @@ CSS Codeguide
 =============
 
 > Documentation for coding and maintaining the most transparent CSS.
-> This style guide was born at the [ok](http://ok.ru) front-end team.
+> This code guide was found at the [ok](http://ok.ru) front-end team.
 
-Current style guide is designed for advanced users, but still might be very useful for the beginners.
+Current code guide is designed for experienced developers in the first place, but hopefully could be a great source of knowledge for the beginners.
 
-We don't cover topics on writing css or selector performance here. If you need this information we advise to look at [css guide lines](http://cssguidelin.es/) and then back to compare different approaches to decide which one works better for you.
+It doesn't cover topics on CSS fundamentals, selector performance or methodologies. It is basically how to work in team with 250+ style files and feel comfortable about that.
 
-The point of this guide is to show how to live with more than 250 style files and feel comfortable about that.
+In case you are new to CSS, please check following links, getting yourself prepared.
 
-We gonna try to be not too boring, so be ready to surf through examples and best practices.
+**todo: links**
 
 > Check out __samples__ folder for real-life examples and deeper syntax understanding.
 
-Well, here we are!
+Let's get started!
+
 
 <!--mdMenu-->
 ## Table of Contents
@@ -51,14 +52,18 @@ Well, here we are!
 
 <!--mdMenu-->
 
+
 ## Intro
 
-To make it more transparent a couple words about the style guide.
+Couple welcome words about code guide specifics to take the most from using it:
 
-1. No matter if you are using css preprocessors or not. I mean it is much better if you are, but all information below might be apply to pure css also.
-We are using stylus and all examples here is wrote down with stylus syntax.
-2. This style guide is the result of our experience and was built under our eco system. However we provide a lot of links here to learn deeper different stuff.
-3. Feel free to fork it, make edits and use it inside your project.
+1. Documentation provided is written with regards on using CSS preprocessor, [Stylus](https://learnboost.github.io/stylus/) in our case. However, common information is valid for vanilla CSS syntax.
+If you are not into preprocessors yet, check out the following popular tools you will most certainly find useful: [SASS/SCSS](http://sass-lang.com/), [LESS](http://lesscss.org/), [Stylus](https://learnboost.github.io/stylus/), [PostCSS](https://github.com/postcss/postcss).
+
+2. Current code guide is the result of the front-end team experience, so it might have project-specific and environment assumptions. To make it more friendly we provide useful links to cover blank spots and perhaps introduce useful tips on some topics.
+
+3. Feel free to fork it, edit and use inside your project. We will be happy to get feedback and know how it resolves your team issues, please do not hesitate to contact us!
+
 4. If you have any questions, comments or suggestions, please open an issue.
 
 ## Methodology
