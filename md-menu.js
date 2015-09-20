@@ -14,7 +14,7 @@ var config = {
     placeholder: '<!--mdMenu-->'
 };
 
-module.exports = function(){
+module.exports = function(cb){
     fs.readFile(config.source, function(err, data) {
         if (err) throw err;
 
@@ -79,6 +79,8 @@ module.exports = function(){
             if (err) throw err;
 
             console.log('Menu was built.');
+
+            cb(null);
         });
     });
 };

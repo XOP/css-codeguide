@@ -51,18 +51,84 @@ gulp.task('menu', function(cb){
 
 //
 // cleanup
-gulp.task('clean', function(cb){
+gulp.task('clean:md', function(cb){
     return del([
         '*.md'
     ], cb);
 });
 
+gulp.task('clean:html', function(cb){
+    return del([
+        'preview/*'
+    ], cb);
+});
 
 //
-// all in all
-gulp.task('default', ['clean'], function(){
+// development
+// check out https://github.com/XOP/markdown-preview for clean example
+gulp.task('sync', function(){
+    return browserSync.init({
+        server: {
+            baseDir: "./preview"
+        },
+        files: ["preview/**/*.*"],
+        startPath: "README.html",
+        port: 4000,
+        logLevel: 'debug',
+        online: false,
+        snippetOptions: {
+            // place socket connector into placeholder
+            rule: {
+                match: /<div placeholder><\/div>/i,
+                fn: function (snippet, match) {
+                    return snippet;
+                }
+            }
+        }
+    });
+});
+
+gulp.task('preview', ['clean:html'], function(){
+    return gulp.src('README.md')
+        .pipe($.markdown())
+        .pipe($.wrapper({
+            header :
+                '<!doctype html>' +
+                    '<html>' +
+                    '<head>' +
+                    '<meta charset="utf-8">' +
+                    '<meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes">' +
+                    '<style>' +
+                        'html{font: normal 16px/1.4 Tahoma, sans-serif;} body{padding: 2rem;} pre{padding: 1rem; background: #f7f7f7; border: 1px solid #eee;} a{color: #11e;}' +
+                    '</style>' +
+                    '</head>' +
+                    '<body><main>'
+            ,
+            footer :
+                    '</main>' +
+                    '<div placeholder></div>' +
+                '</body></html>'
+        }))
+        .pipe(gulp.dest('preview/'))
+});
+
+gulp.task('dev', ['build'], function(){
+    return runSequence(
+        'sync',
+        function(){
+            gulp.watch('./src/**/*.*', ['build']);
+        }
+    );
+});
+
+
+//
+// build
+gulp.task('build', ['clean:md'], function(cb){
     return runSequence(
         'content',
-        'menu'
+        'menu',
+        'preview',
+        cb
     );
 });
