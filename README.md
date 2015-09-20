@@ -176,7 +176,7 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 ---------------------------------------------------------------------------------- */
 ```
 
-You can use source-auxiliary.xml live templates from [SourceJS Live templates repo](https://github.com/sourcejs/sourcejs-live-templates).
+You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
 For example, for the first level comment just type `ch1 + tab`.
 
 ### Document author
@@ -200,7 +200,8 @@ Seems redundant, but you've got the idea.
 
 ### CSSG
 
-The project [CSSG](https://github.com/XOP/css-o-gram), that I've started not so long time ago is intended to improve readability and bring more transparency to your CSS.
+The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
+In a nutshell, it's a meta-language that uses CSS comments for module documenting.
 
 Take a look at live example:
 
