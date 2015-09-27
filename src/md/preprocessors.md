@@ -3,10 +3,11 @@
 No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
 Here is the list what features of preprocessors we are using:
 
-* Nesting (with limitations)
 * Variables
-* Mixins/extends
-* Loops
+* Nesting (with limitations)
+* Mixins
+* Code blocks
+* Loops (with restrictions)
 
 ### Common rules
 
@@ -33,11 +34,11 @@ Separate nesting rules with a whitespace.
     }
 ```
 
-The rule here is to write your code as pure css.
+The rule here is to write your code as plain css.
 
 ### Nesting
 
-Avoid to use unnecessary nesting and nesting deeply than 3 levels. We use nesting only for:
+Avoid using unnecessary nesting and deeper than **3** levels. We use nesting only for:
 
 * Pseudo elements
 * Context classes

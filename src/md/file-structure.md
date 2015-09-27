@@ -1,4 +1,4 @@
-## Structure of css/styl file
+## Structure of css/preprocessor file
 
 The first thing that you should think about is a structure of you styles. No matter how does this structure look like.
 The main idea here is to have this structure. In this chapter we'll show the structure that we are using in our project.
@@ -25,7 +25,7 @@ Separate different levels of your code into the blocks.
 
 /* Level 2
 -------------------------------------------------- */
-//
+
 /* /Level 2
 -------------------------------------------------- */
 
@@ -41,52 +41,52 @@ Separate different levels of your code into the blocks.
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
 ```stylus
-/* Module 1
+/* Module
 ---------------------------------------------------------------------------------- */
 
-.somecode1 {
+.module {
 
 	}
 
-/* Module 1 - Part 1
+/* Module - Part 1
 -------------------------------------------------- */
 
-.part1 {
+/* Core */
+
+.part-1 {
 
 	}
+
+/* /Core */
+
 
 /* Modifications */
 
-.part1.__mod1 {}
-.part1.__mod2 {}
+.part-1.__mod-1 {
+
+	}
+	
+.part-1.__mod-2 {
+	
+	}
 
 /* /Modifications */
 
-/* /Module 1 - Part 1
+/* /Module - Part 1
 -------------------------------------------------- */
+
 
 /* Module 1 - Part 2
 -------------------------------------------------- */
 
-.part2 {
+.part-2 {
 
 	}
 
-/*/ Module 1 - Part 2
+/*/ Module - Part 2
 -------------------------------------------------- */
 
-/* /Module 1
----------------------------------------------------------------------------------- */
-
-
-/* Module 2
----------------------------------------------------------------------------------- */
-
-.somecode2 {
-
-	}
-
-/* /Module 2
+/* /Module
 ---------------------------------------------------------------------------------- */
 ```
 
@@ -106,7 +106,7 @@ You don't code anonymously, right?
 *
 * comments:		It's a nice example of CSS styleguide
 * @project class:	.somecode
-* @project colors:	#123123
+* @project colors:	#f0f0f0, #ffe1e1
 **/
 ```
 

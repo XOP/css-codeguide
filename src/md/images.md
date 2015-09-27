@@ -16,7 +16,7 @@ Example:
 
 .my-main-page-icon {
     background-image: url('path/to/image.png'); /** sprite-ref: main-sprt; */
-}
+	}
 ```
 
 Also we use mixin to handle sprites:

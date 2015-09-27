@@ -13,10 +13,10 @@ You might want to come up with your own list, but this is the nice starting poin
 
 ```stylus
 .project-class {
-    z-index: 31; /* reason for z-index */
-    margin-left: -616px; /* reason for negative margin */
-    -webkit-backface-visibility: hidden; /* reason for hack */
-    overflow: hidden; /* reason for overflow */
+    z-index: 31; // reason for z-index value
+    margin-left: -616px; // reason for negative margin
+    -webkit-backface-visibility: hidden; // reason for hack
+    overflow: hidden; // reason for overflow 
 	}
 ```
 
