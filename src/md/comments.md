@@ -29,7 +29,7 @@ Generally it's not a good idea to combine variables with regular units.
 Please avoid situations like this:
 
 ```stylus
-$offset: 10px;
+$offset = 10px;
 
 .project-class {
     padding: $offset ($offset + 3px); // by design
