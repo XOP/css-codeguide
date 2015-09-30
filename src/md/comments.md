@@ -1,26 +1,42 @@
 ## Comments
 
-Comments are very important. Comment all code, that potentially might has questions later.
-Comments should be short and capacious. At the same time beware of unnecessary commenting and keep your comments up to date.
+Comments are important.
+Comments are very !important.
+Comment all code, that potentially might raise questions later.
+Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
 
 ### Mandatory commenting
 
-Always comment magic numbers and tricky approaches.
-If you are using `z-index: 14;` or `margin: 31px 27px;` and you totally understand it today - try to figure it out through the month.
-I guess everyone was in situation like this, so the such type of comments are the most important in your code.
-It's just a set of rules, that does worth commenting.
+Always comment "magic numbers" and tricky approaches.
+Not mentioning typical hacks, some rules deserve being noticed.
+If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month.
+
+There is pretty brief list of rules that *do worth* commenting.
 You might want to come up with your own list, but this is the nice starting point.
 
 ```stylus
 .project-class {
-    z-index: 31; // reason for z-index value
+    z-index: 31; // reason for z-index
     margin-left: -616px; // reason for negative margin
     -webkit-backface-visibility: hidden; // reason for hack
-    overflow: hidden; // reason for overflow 
+    overflow: hidden; // reason for overflow
 	}
 ```
 
-As a rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
+When using variables it is important to pay attention to values that just *do not fit*.
+Generally it's not a good idea to combine variables with regular units.
+
+Please avoid situations like this:
+
+```stylus
+$offset: 10px;
+
+.project-class {
+    padding: $offset ($offset + 3px); // by design
+	}
+```
+
+As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
 
 ### TODO-s
 
