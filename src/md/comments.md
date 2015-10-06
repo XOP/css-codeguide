@@ -96,8 +96,9 @@ Consider the following:
 */
 ```
 
-*Due date* - it us pretty useful to understand the point of no return to this code.
+*Due date* - it us pretty useful to understand the urgency or/and point of no return for this current code.
 ```stylus
+    FIXME: 07/08/2015
 ```
 
 Of course these things colud be easily combined:
