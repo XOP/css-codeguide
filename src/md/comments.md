@@ -38,30 +38,8 @@ $offset = 10px;
 
 As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
 
-### TODO-s
 
-One good point at todo-s comments is to write your name there or the name of the responsible person for that code.
-Also sometimes it is useful to keep the date you plan to realize your todo.
-
-```stylus
-/*
-    TODO: check if scroll needed >> refactor layer positioning
-    ? new mod __position
-    layers : media / video / [photo]
-*/
-
-/*
-    todo: Griffin - check extra padding
-*/
-
-/*
-    todo: cleanup with the feature "PhotoMarks"
-*/
-```
-
-One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
-
-### Context comments
+### Code comments
 
 Use these comments when to show context:
 ```stylus
@@ -78,8 +56,6 @@ Use these comments when to show context:
     }
 ```
 
-### Modifications comments
-
 Use these comments when to describe modificators:
 ```stylus
 // small button
@@ -92,3 +68,44 @@ Use these comments when to describe modificators:
     ...
     }
 ```
+
+
+### Helpers: TODO / FIXME
+
+Many IDEs obtain nice feature providing support for TODO or FIXME comment keyword.
+
+Current code guide suggests providing additional info along with the directives.  
+Consider the following:  
+
+*Author name* - allows to easily detect responsible person, even having Git annotate.
+
+```stylus
+/*
+    TODO: stewie.griffin@acmecorp.com
+*/
+```
+
+*Crux of the matter* - allows get the whole picture with ease.
+```stylus
+/*
+    TODO: replace with variables
+*/
+
+/*
+    FIXME: this value does not belong here
+*/
+```
+
+*Due date* - it us pretty useful to understand the point of no return to this code.
+```stylus
+```
+
+Of course these things colud be easily combined:
+```stylus
+/*
+    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 05/09/2015
+    check and fix dependent components
+*/
+```
+
+One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
