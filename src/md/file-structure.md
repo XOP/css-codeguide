@@ -1,41 +1,106 @@
 ## Structure of css/preprocessor file
 
-The first thing that you should think about is a structure of you styles. No matter how does this structure look like.
-The main idea here is to have this structure. In this chapter we'll show the structure that we are using in our project.
+CSS structure provides maintainability, scalability and any other -ability for the CSS code you wish for.  
+Different methodologies propose different ways of organizing CSS files.  
+Pros and cons of these approaches lay beyond the topic, so let's focus on structure of single CSS file. 
 
-### Files structure
+Principles described below can be succesfully adopted and integrated into existing system.
 
-Keep your styles in small atomic files. You can use either imports or concatenate your files with gulp/grunt.
-The idea here is to have each file for a single responsibility. Examples of atomic files:
-* modal.styl
-* menu.styl
-* toolbar.styl
+
+### Files organizing
+
+Consider file a CSS module.  
+Modules form the system:
+```
+css/
+    navigation.css
+    header.css
+    layout.css
+    ...
+```
+
+Large modules may consist of multiple parts for the sake of readability:
+```
+css/
+    header/
+        header-layout.css
+        header-logo.css
+        header-navigation.css
+        ...
+    ...
+```
+
+It can also be convenient to separate core modules - "atoms" and "molecules" - modules, that consist of other modules *or* unique and used just once:
+```
+css/
+    base/
+        icon.css
+        logo.css
+        navigation.css
+        ...
+    project/
+        shopping-cart.css
+        article-section.css
+        ...
+    ...
+```
+
+Pure CSS modules rely on full incapsulation on all levels:
+```
+css/
+   header/
+       header.css
+       [header.js]
+   article/
+       article.css
+       [article.js]
+```
+
 
 ### Structural comments
 
-Separate different levels of your code into the blocks.
+These comments help to keep your CSS organized and improve understanding of HTML structure.  
+Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
 
-```stylus
+```css
 /* Level 1
 ---------------------------------------------------------------------------------- */
 
+.level-1 {
+    ...
+    }
+
 /* /Level 1
 ---------------------------------------------------------------------------------- */
+```
 
-
+```css
 /* Level 2
 -------------------------------------------------- */
 
+.level-2 {
+    ...
+    }
+
 /* /Level 2
 -------------------------------------------------- */
+```
 
-
+```css
 /* Level 3 */
 
+.level-3 {
+    ...
+    }
+
 /* /Level 3 */
+```
 
-
+```css
 /* Level 4 */
+.level-4 {
+    ...
+    }
 ```
 
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
@@ -93,6 +158,7 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
 For example, for the first level comment just type `ch1 + tab`.
 
+
 ### Document author
 
 Please have this snippet located at the beginning of your stylesheet, bless you!
@@ -111,6 +177,7 @@ You don't code anonymously, right?
 ```
 
 Seems redundant, but you've got the idea.
+
 
 ### CSSG
 
