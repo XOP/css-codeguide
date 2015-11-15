@@ -5,69 +5,25 @@ Comments are very !important.
 Comment all code, that potentially might raise questions later.
 Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
 
-### Mandatory commenting
 
-Always comment "magic numbers" and tricky approaches.
-Not mentioning typical hacks, some rules deserve being noticed.
-If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month.
+### Document author
 
-There is pretty brief list of rules that *do worth* commenting.
-You might want to come up with your own list, but this is the nice starting point.
+Please have this snippet located at the beginning of your stylesheet, bless you!
+You don't code anonymously, right?
 
 ```stylus
-.project-class {
-    z-index: 31; // reason for z-index
-    margin-left: -616px; // reason for negative margin
-    -webkit-backface-visibility: hidden; // reason for hack
-    overflow: hidden; // reason for overflow
-	}
+/**
+* author:       S Griffin | IM : contactme69 | e-mail : wdybih@gmail.com
+* spec:         http://link
+* created:      11/02/2013
+*
+* comments:		It's a nice example of CSS styleguide
+* @project class:	.somecode
+* @project colors:	#f0f0f0, #ffe1e1
+**/
 ```
 
-When using variables it is important to pay attention to values that just *do not fit*.
-Generally it's not a good idea to combine variables with regular units.
-
-Please avoid situations like this:
-
-```stylus
-$offset = 10px;
-
-.project-class {
-    padding: $offset ($offset + 3px); // by design
-	}
-```
-
-As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
-
-
-### Code comments
-
-Use these comments when to show context:
-```stylus
-//
-// icon
-.block_ic {
-    ...
-    }
-
-//
-// img
-.block_img {
-    ...
-    }
-```
-
-Use these comments when to describe modificators:
-```stylus
-// small button
-.btn.__small {
-    ...
-    }
-
-// full-width button
-.btn.__wide {
-    ...
-    }
-```
+Seems redundant, but you've got the idea.
 
 
 ### Helpers: TODO / FIXME
@@ -112,3 +68,173 @@ Of course these things colud be easily combined:
 ```
 
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
+
+
+### Mandatory commenting
+
+Always comment "magic numbers" and tricky approaches.
+Not mentioning typical hacks, some rules deserve being noticed.
+If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month (clue - you'll never do).
+
+There is pretty brief list of rules that *do worth* commenting.
+You might want to come up with your own list, but this is the nice starting point.
+
+```stylus
+.project-class {
+    z-index: 31; // reason for z-index
+    margin-left: -616px; // reason for negative margin
+    -webkit-backface-visibility: hidden; // reason for hack
+    overflow: hidden; // reason for overflow
+	}
+```
+
+When using variables it is important to pay attention to values that just *do not fit*.
+Generally it's not a good idea to combine variables with regular units.
+
+Please avoid situations like this:
+
+```stylus
+$offset = 10px;
+
+.project-class {
+    padding: $offset ($offset + 3px); // by design
+	}
+```
+
+As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
+
+
+### Structural comments
+
+These comments help to keep your CSS organized and improve understanding of HTML structure.
+Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
+
+```css
+/* Level 1
+---------------------------------------------------------------------------------- */
+
+.level-1 {
+    ...
+    }
+
+/* /Level 1
+---------------------------------------------------------------------------------- */
+```
+
+```css
+/* Level 2
+-------------------------------------------------- */
+
+.level-2 {
+    ...
+    }
+
+/* /Level 2
+-------------------------------------------------- */
+```
+
+```css
+/* Level 3 */
+
+.level-3 {
+    ...
+    }
+
+/* /Level 3 */
+```
+
+```css
+/* Level 4 */
+.level-4 {
+    ...
+    }
+```
+
+Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+
+```stylus
+/* Module
+---------------------------------------------------------------------------------- */
+
+.module {
+
+	}
+
+/* Module - Part 1
+-------------------------------------------------- */
+
+/* Core */
+
+.part-1 {
+
+	}
+
+/* /Core */
+
+
+/* Modifications */
+
+.part-1.__mod-1 {
+
+	}
+
+.part-1.__mod-2 {
+
+	}
+
+/* /Modifications */
+
+/* /Module - Part 1
+-------------------------------------------------- */
+
+
+/* Module 1 - Part 2
+-------------------------------------------------- */
+
+.part-2 {
+
+	}
+
+/*/ Module - Part 2
+-------------------------------------------------- */
+
+/* /Module
+---------------------------------------------------------------------------------- */
+```
+
+You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
+For example, for the first level comment just type `ch1 + tab`.
+
+
+### Code comments
+
+**todo**
+
+Use these comments when to show context:
+```stylus
+//
+// icon
+.block_ic {
+    ...
+    }
+
+//
+// img
+.block_img {
+    ...
+    }
+```
+
+Use these comments when to describe modificators:
+```stylus
+// small button
+.btn.__small {
+    ...
+    }
+
+// full-width button
+.btn.__wide {
+    ...
+    }
+```
+

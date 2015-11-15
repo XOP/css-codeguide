@@ -23,13 +23,14 @@ Let's get started!
 * [Methodology](#methodology)
 * [Structure of css/preprocessor file](#structure-of-csspreprocessor-file)
 	* [Files organizing](#files-organizing)
-	* [Structural comments](#structural-comments)
-	* [Document author](#document-author)
+	* [Code organizing within a file](#code-organizing-within-a-file)
 	* [CSSG](#cssg)
 * [Comments](#comments)
+	* [Document author](#document-author)
+	* [Helpers: TODO / FIXME](#helpers--todo--fixme)
 	* [Mandatory commenting](#mandatory-commenting)
+	* [Structural comments](#structural-comments)
 	* [Code comments](#code-comments)
-	* [Helpers: TODO / FIXME](#helpers:-todo--fixme)
 * [Syntax & formatting](#syntax--formatting)
 	* [Basic formatting](#basic-formatting)
 	* [Grouping of properties](#grouping-of-properties)
@@ -142,9 +143,149 @@ css/
 ```
 
 
+### Code organizing within a file
+
+**todo**
+
+
+### CSSG
+
+The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
+In a nutshell, it's a meta-language that uses CSS comments for module documenting.
+
+Take a look at live example:
+
+```stylus
+/*
+
+	pform_map		                            $__active $__search $__map
+		pform_tags
+			<tico>
+
+		pform_map_search
+			<input>
+			suggest . __active
+				pform_map_img
+					<object>
+
+				pform_map_ac . lp
+				<sugggest-list>
+				pform_map_ac . lp . __active
+
+*/
+```
+
+It's pretty easy to start and hard to resist hereafter.
+
+## Comments
+
+Comments are important.
+Comments are very !important.
+Comment all code, that potentially might raise questions later.
+Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
+
+
+### Document author
+
+Please have this snippet located at the beginning of your stylesheet, bless you!
+You don't code anonymously, right?
+
+```stylus
+/**
+* author:       S Griffin | IM : contactme69 | e-mail : wdybih@gmail.com
+* spec:         http://link
+* created:      11/02/2013
+*
+* comments:		It's a nice example of CSS styleguide
+* @project class:	.somecode
+* @project colors:	#f0f0f0, #ffe1e1
+**/
+```
+
+Seems redundant, but you've got the idea.
+
+
+### Helpers: TODO / FIXME
+
+Many IDEs obtain nice feature providing support for TODO or FIXME comment keyword.
+
+Current code guide suggests providing additional info along with the directives.  
+Consider the following:  
+
+*Author name* - allows to easily detect responsible person, even having Git annotate.
+
+```stylus
+/*
+    TODO: stewie.griffin@acmecorp.com
+*/
+```
+
+*Crux of the matter* - allows get the whole picture with ease.
+```stylus
+/*
+    TODO: replace with variables
+*/
+
+/*
+    FIXME: this value does not belong here
+*/
+```
+
+*Due date* - it us pretty useful to understand the urgency or/and point of no return for this current code.
+```stylus
+/*
+    FIXME: 07/08/2015
+*/
+```
+
+Of course these things colud be easily combined:
+```stylus
+/*
+    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 05/09/2015
+    check and fix dependent components
+*/
+```
+
+One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
+
+
+### Mandatory commenting
+
+Always comment "magic numbers" and tricky approaches.
+Not mentioning typical hacks, some rules deserve being noticed.
+If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month (clue - you'll never do).
+
+There is pretty brief list of rules that *do worth* commenting.
+You might want to come up with your own list, but this is the nice starting point.
+
+```stylus
+.project-class {
+    z-index: 31; // reason for z-index
+    margin-left: -616px; // reason for negative margin
+    -webkit-backface-visibility: hidden; // reason for hack
+    overflow: hidden; // reason for overflow
+	}
+```
+
+When using variables it is important to pay attention to values that just *do not fit*.
+Generally it's not a good idea to combine variables with regular units.
+
+Please avoid situations like this:
+
+```stylus
+$offset = 10px;
+
+.project-class {
+    padding: $offset ($offset + 3px); // by design
+	}
+```
+
+As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
+
+
 ### Structural comments
 
-These comments help to keep your CSS organized and improve understanding of HTML structure.  
+These comments help to keep your CSS organized and improve understanding of HTML structure.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
 
 ```css
@@ -215,9 +356,9 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 .part-1.__mod-1 {
 
 	}
-	
+
 .part-1.__mod-2 {
-	
+
 	}
 
 /* /Modifications */
@@ -244,98 +385,9 @@ You can use snippets from [IDE cross-project live templates repo](https://github
 For example, for the first level comment just type `ch1 + tab`.
 
 
-### Document author
-
-Please have this snippet located at the beginning of your stylesheet, bless you!
-You don't code anonymously, right?
-
-```stylus
-/**
-* author:       S Griffin | IM : contactme69 | e-mail : wdybih@gmail.com
-* spec:         http://link
-* created:      11/02/2013
-*
-* comments:		It's a nice example of CSS styleguide
-* @project class:	.somecode
-* @project colors:	#f0f0f0, #ffe1e1
-**/
-```
-
-Seems redundant, but you've got the idea.
-
-
-### CSSG
-
-The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for module documenting.
-
-Take a look at live example:
-
-```stylus
-/*
-
-	pform_map		                            $__active $__search $__map
-		pform_tags
-			<tico>
-
-		pform_map_search
-			<input>
-			suggest . __active
-				pform_map_img
-					<object>
-
-				pform_map_ac . lp
-				<sugggest-list>
-				pform_map_ac . lp . __active
-
-*/
-```
-
-It's pretty easy to start and hard to resist hereafter.
-
-
-## Comments
-
-Comments are important.
-Comments are very !important.
-Comment all code, that potentially might raise questions later.
-Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
-
-### Mandatory commenting
-
-Always comment "magic numbers" and tricky approaches.
-Not mentioning typical hacks, some rules deserve being noticed.
-If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month.
-
-There is pretty brief list of rules that *do worth* commenting.
-You might want to come up with your own list, but this is the nice starting point.
-
-```stylus
-.project-class {
-    z-index: 31; // reason for z-index
-    margin-left: -616px; // reason for negative margin
-    -webkit-backface-visibility: hidden; // reason for hack
-    overflow: hidden; // reason for overflow
-	}
-```
-
-When using variables it is important to pay attention to values that just *do not fit*.
-Generally it's not a good idea to combine variables with regular units.
-
-Please avoid situations like this:
-
-```stylus
-$offset = 10px;
-
-.project-class {
-    padding: $offset ($offset + 3px); // by design
-	}
-```
-
-As a common rule - *do not* rely on your memory or memory of your colleagues, just comment suspicious values.
-
-
 ### Code comments
+
+**todo**
 
 Use these comments when to show context:
 ```stylus
@@ -365,49 +417,6 @@ Use these comments when to describe modificators:
     }
 ```
 
-
-### Helpers: TODO / FIXME
-
-Many IDEs obtain nice feature providing support for TODO or FIXME comment keyword.
-
-Current code guide suggests providing additional info along with the directives.  
-Consider the following:  
-
-*Author name* - allows to easily detect responsible person, even having Git annotate.
-
-```stylus
-/*
-    TODO: stewie.griffin@acmecorp.com
-*/
-```
-
-*Crux of the matter* - allows get the whole picture with ease.
-```stylus
-/*
-    TODO: replace with variables
-*/
-
-/*
-    FIXME: this value does not belong here
-*/
-```
-
-*Due date* - it us pretty useful to understand the urgency or/and point of no return for this current code.
-```stylus
-/*
-    FIXME: 07/08/2015
-*/
-```
-
-Of course these things colud be easily combined:
-```stylus
-/*
-    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 05/09/2015
-    check and fix dependent components
-*/
-```
-
-One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
 
 ## Syntax & formatting

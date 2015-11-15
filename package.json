@@ -1,7 +1,22 @@
 {
   "name": "css-codeguide",
-  "version": "2.2.0",
+  "version": "2.3.0",
+  "description": "Documentation for coding and maintaining the most transparent CSS",
+  "keywords": [
+    "preprocessor",
+    "css",
+    "style-guide",
+    "code-guide",
+    "code-style",
+    "styles",
+    "coding"
+  ],
   "author": "stewiekillsloiss@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XOP/css-codeguide.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.9.3",
@@ -19,5 +34,8 @@
     "gulp-wrapper": "^1.0.0",
     "merge2": "^0.3.6",
     "run-sequence": "^1.1.2"
+  },
+  "scripts": {
+    "build": "gulp build"
   }
 }
