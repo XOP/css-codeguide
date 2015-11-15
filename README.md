@@ -27,7 +27,7 @@ Let's get started!
 	* [CSSG](#cssg)
 * [Comments](#comments)
 	* [Document author](#document-author)
-	* [Helpers: TODO / FIXME](#helpers--todo--fixme)
+	* [Helpers: TODO / FIXME](#helpers-todo--fixme)
 	* [Mandatory commenting](#mandatory-commenting)
 	* [Structural comments](#structural-comments)
 	* [Code comments](#code-comments)
