@@ -20,7 +20,6 @@ Let's get started!
 <!--mdMenu-->
 ## Table of Contents
 * [Intro](#intro)
-* [Methodology](#methodology)
 * [Structure of css/preprocessor file](#structure-of-csspreprocessor-file)
 	* [Files organizing](#files-organizing)
 	* [Code organizing within a file](#code-organizing-within-a-file)
@@ -66,23 +65,6 @@ If you are not into preprocessors yet, check out the following popular tools you
 
 4. If you have any questions, comments or suggestions, please open an issue.
 
-## Methodology
-
-Methodology we are using is called [Multilayer CSS](http://operatino.github.io/MCSS/en/) (MCSS).
-Core methodology principles are based on [BEM](https://en.bem.info/). It consists of two important things:
-
-1. Philosophy for structure of styles
-2. Naming convention for selectors (see example below)
-
-```stylus
-.module-name {}
-.module-name_child {}
-.module-name_child_child-of-child {}
-.module-name_child__modifier {}
-```
-
-Module interaction scheme
-![Module interaction scheme](http://operatino.github.io/MCSS/images/layers.jpg)
 
 ## Structure of css/preprocessor file
 
@@ -1100,3 +1082,4 @@ It is a Grunt task for generating CSS with 2x background-images.
 Feel free to ask questions via [email](mailto:stewiekillsloiss@gmail.com).  
 All content is available for free distribution.  
 [Link to source](https://github.com/XOP/css-codeguide) is mandatory when copying materials.
+
