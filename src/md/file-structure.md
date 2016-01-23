@@ -4,7 +4,7 @@ CSS structure provides maintainability, scalability and any other -ability for t
 Different methodologies propose different ways of organizing CSS files.  
 Pros and cons of these approaches lay beyond the topic, so let's focus on structure of single CSS file. 
 
-Principles described below can be succesfully adopted and integrated into existing system.
+Principles described below can be successfully adopted and integrated into existing system.
 
 
 ### Files organizing
@@ -45,15 +45,16 @@ css/
     ...
 ```
 
-Pure CSS modules rely on full incapsulation on all levels:
+Pure CSS modules rely on full encapsulation on all levels:
 ```
 css/
    header/
        header.css
-       [header.js]
+       Header.jsx
    article/
        article.css
-       [article.js]
+       Article.jsx
+   ...
 ```
 
 
@@ -69,7 +70,7 @@ In a nutshell, it's a meta-language that uses CSS comments for module documentin
 
 Take a look at live example:
 
-```stylus
+```css
 /*
 
 	pform_map		                            $__active $__search $__map
