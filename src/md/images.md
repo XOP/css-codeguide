@@ -11,7 +11,7 @@ It is a tiny css sprites generator based on inline sprites definition and refere
 
 Example:
 
-```stylus
+```scss
 /** sprite: main-sprt; sprite-image: url('/img/sprites/main-sprt.png'); */
 
 .my-main-page-icon {
@@ -21,7 +21,7 @@ Example:
 
 Also we use mixin to handle sprites:
 
-```stylus
+```scss
 //
 // set sprite reference to background image
 // @url - image url

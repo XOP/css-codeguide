@@ -2,7 +2,10 @@
 
 Couple welcome words about code guide specifics to take the most from using it:
 
-1. Documentation provided is written with regards on using CSS preprocessor, [Stylus](https://learnboost.github.io/stylus/) in our case. However, common information is valid for vanilla CSS syntax.
+1. Documentation provided is written with regards on using CSS preprocessor. 
+As the most popular and widespread one SCSS is used in documentation.  
+Please notice, that common conceptions are valid for vanilla CSS in the first place.
+
 If you are not into preprocessors yet, check out the following popular tools you will most certainly find useful: [SASS/SCSS](http://sass-lang.com/), [LESS](http://lesscss.org/), [Stylus](https://learnboost.github.io/stylus/), [PostCSS](https://github.com/postcss/postcss).
 
 2. Current code guide is the result of the front-end team experience, so it might have project-specific and environment assumptions. To make it more friendly we provide useful links to cover blank spots and perhaps introduce useful tips on some topics.

@@ -9,7 +9,7 @@ Going from easy-to-difficult let's define how the simple selector must look:
 * whitespaces for logical separation of CSS rules if needed
 * shorthand properties if possible
 
-```stylus
+```css
 .class {
     display: block;
     margin: 12px;
@@ -30,7 +30,7 @@ One of the way how to organize declarations:
 4. All other stuff
 5. Animations
 
-```stylus
+```css
 .class {
 	position: relative;
 	right: 0;
@@ -60,7 +60,7 @@ One of the way how to organize declarations:
 It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.
 Anyhow, here is recommended style:
 
-```stylus
+```css
 .class {
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -88,7 +88,7 @@ Here you can find the way how to organize selectors in real life. Typically we s
 There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js).
 See example below to see how all of selectors live together.
 
-```stylus
+```css
 /* Elem
 -------------------------------------------------- */
 
@@ -156,7 +156,7 @@ See example below to see how all of selectors live together.
 
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
 
-```stylus
+```css
 .mb-x {margin-bottom: 4px;}
 .mb-2x {margin-bottom: 8px;}
 .mb-3x {margin-bottom: 12px;}
@@ -181,7 +181,7 @@ a.white:hover,
 
 Sometimes you have really deep nesting elements:
 
-```stylus
+```css
 .elem {
     }
 
@@ -196,7 +196,7 @@ Sometimes you have really deep nesting elements:
 
 What you can make here is to return cascade back when it is logically possible.
 
-```stylus
+```css
 .elem {
     }
 

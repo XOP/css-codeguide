@@ -56,7 +56,10 @@ Let's get started!
 
 Couple welcome words about code guide specifics to take the most from using it:
 
-1. Documentation provided is written with regards on using CSS preprocessor, [Stylus](https://learnboost.github.io/stylus/) in our case. However, common information is valid for vanilla CSS syntax.
+1. Documentation provided is written with regards on using CSS preprocessor. 
+As the most popular and widespread one SCSS is used in documentation.  
+Please notice, that common conceptions are valid for vanilla CSS in the first place.
+
 If you are not into preprocessors yet, check out the following popular tools you will most certainly find useful: [SASS/SCSS](http://sass-lang.com/), [LESS](http://lesscss.org/), [Stylus](https://learnboost.github.io/stylus/), [PostCSS](https://github.com/postcss/postcss).
 
 2. Current code guide is the result of the front-end team experience, so it might have project-specific and environment assumptions. To make it more friendly we provide useful links to cover blank spots and perhaps introduce useful tips on some topics.
@@ -64,6 +67,7 @@ If you are not into preprocessors yet, check out the following popular tools you
 3. Feel free to fork it, edit and use inside your project. We will be happy to get feedback and know how it resolves your team issues, please do not hesitate to contact us!
 
 4. If you have any questions, comments or suggestions, please open an issue.
+
 
 
 ## Structure of css/preprocessor file
@@ -422,7 +426,7 @@ Going from easy-to-difficult let's define how the simple selector must look:
 * whitespaces for logical separation of CSS rules if needed
 * shorthand properties if possible
 
-```stylus
+```css
 .class {
     display: block;
     margin: 12px;
@@ -443,7 +447,7 @@ One of the way how to organize declarations:
 4. All other stuff
 5. Animations
 
-```stylus
+```css
 .class {
 	position: relative;
 	right: 0;
@@ -473,7 +477,7 @@ One of the way how to organize declarations:
 It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.
 Anyhow, here is recommended style:
 
-```stylus
+```css
 .class {
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -501,7 +505,7 @@ Here you can find the way how to organize selectors in real life. Typically we s
 There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js).
 See example below to see how all of selectors live together.
 
-```stylus
+```css
 /* Elem
 -------------------------------------------------- */
 
@@ -569,7 +573,7 @@ See example below to see how all of selectors live together.
 
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
 
-```stylus
+```css
 .mb-x {margin-bottom: 4px;}
 .mb-2x {margin-bottom: 8px;}
 .mb-3x {margin-bottom: 12px;}
@@ -594,7 +598,7 @@ a.white:hover,
 
 Sometimes you have really deep nesting elements:
 
-```stylus
+```css
 .elem {
     }
 
@@ -609,7 +613,7 @@ Sometimes you have really deep nesting elements:
 
 What you can make here is to return cascade back when it is logically possible.
 
-```stylus
+```css
 .elem {
     }
 
@@ -642,7 +646,7 @@ Here is the list what features of preprocessors we are using:
 Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
 Separate nesting rules with a whitespace.
 
-```stylus
+```scss
 /* bad */
 .class
     display block
@@ -675,7 +679,7 @@ Avoid using unnecessary nesting and deeper than **3** levels. We use nesting onl
 All other cases rely on MCSS. One more thing we want to mention is never use composite class names using nesting.
 It makes impossible to find classes in your project.
 
-```stylus
+```scss
 /* awful */
 .module {
     ...
@@ -716,7 +720,7 @@ It makes impossible to find classes in your project.
 
 Do not use `&` as a child in nesting except context classes.
 
-```stylus
+```scss
 /* bad */
 .block {
     .module & {
@@ -737,7 +741,7 @@ In this way you can use nesting for all selectors inside. Also it is possible to
 Just choose your own way and follow it everywhere.
 *Note: We are not using `&`.*
 
-```stylus
+```scss
 /* good */
 .block.__v2 {
     // ...
@@ -765,7 +769,7 @@ Just choose your own way and follow it everywhere.
 
 Do not use structural comments inside nesting. If you want to do that - check out your logic, something wrong with it.
 
-```stylus
+```scss
 /* bad */
 .block {
     /* Module
@@ -824,7 +828,7 @@ $global = {
 
 Later in this file you can set up aliases for a short declaration, like this:
 
-```stylus
+```scss
 /* global.styl */
 ...
 
@@ -839,7 +843,7 @@ $bg = $global.backgrounds;
 
 Module vars is a special case of global vars and only used inside certain module. It can also be placed in separate *global* file.
 
-```stylus
+```scss
 $toolbar {
     height: {
         wide: 40px,
@@ -858,7 +862,7 @@ $toolbar {
 
 Local variables is used in local module file and located in *vars* section:
 
-```stylus
+```scss
 /* Vars
 -------------------------------------------------- */
 
@@ -876,7 +880,7 @@ $heightBig = 32px;
 ### Mixins
 
 When you use mixins - write them first in a ruleset.
-```stylus
+```scss
 /* bad */
 .selector {
     key: value;
@@ -896,7 +900,7 @@ When you use mixins - write them first in a ruleset.
 
 Here are some useful set of mixins that we are using:
 
-```stylus
+```scss
 /* Utilities
 -------------------------------------------------- */
 
@@ -1026,13 +1030,14 @@ For more information please check out [this article](http://csswizardry.com/2014
 ### Media queries
 
 Nothing special here, just use the snippet showing below:
-```stylus
+```scss
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
 	.selector {
 	    ...
 	    }
 	}
 ```
+
 
 ## Images
 
@@ -1047,7 +1052,7 @@ It is a tiny css sprites generator based on inline sprites definition and refere
 
 Example:
 
-```stylus
+```scss
 /** sprite: main-sprt; sprite-image: url('/img/sprites/main-sprt.png'); */
 
 .my-main-page-icon {
@@ -1057,7 +1062,7 @@ Example:
 
 Also we use mixin to handle sprites:
 
-```stylus
+```scss
 //
 // set sprite reference to background image
 // @url - image url

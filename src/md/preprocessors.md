@@ -14,7 +14,7 @@ Here is the list what features of preprocessors we are using:
 Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
 Separate nesting rules with a whitespace.
 
-```stylus
+```scss
 /* bad */
 .class
     display block
@@ -47,7 +47,7 @@ Avoid using unnecessary nesting and deeper than **3** levels. We use nesting onl
 All other cases rely on MCSS. One more thing we want to mention is never use composite class names using nesting.
 It makes impossible to find classes in your project.
 
-```stylus
+```scss
 /* awful */
 .module {
     ...
@@ -88,7 +88,7 @@ It makes impossible to find classes in your project.
 
 Do not use `&` as a child in nesting except context classes.
 
-```stylus
+```scss
 /* bad */
 .block {
     .module & {
@@ -109,7 +109,7 @@ In this way you can use nesting for all selectors inside. Also it is possible to
 Just choose your own way and follow it everywhere.
 *Note: We are not using `&`.*
 
-```stylus
+```scss
 /* good */
 .block.__v2 {
     // ...
@@ -137,7 +137,7 @@ Just choose your own way and follow it everywhere.
 
 Do not use structural comments inside nesting. If you want to do that - check out your logic, something wrong with it.
 
-```stylus
+```scss
 /* bad */
 .block {
     /* Module
@@ -196,7 +196,7 @@ $global = {
 
 Later in this file you can set up aliases for a short declaration, like this:
 
-```stylus
+```scss
 /* global.styl */
 ...
 
@@ -211,7 +211,7 @@ $bg = $global.backgrounds;
 
 Module vars is a special case of global vars and only used inside certain module. It can also be placed in separate *global* file.
 
-```stylus
+```scss
 $toolbar {
     height: {
         wide: 40px,
@@ -230,7 +230,7 @@ $toolbar {
 
 Local variables is used in local module file and located in *vars* section:
 
-```stylus
+```scss
 /* Vars
 -------------------------------------------------- */
 
@@ -248,7 +248,7 @@ $heightBig = 32px;
 ### Mixins
 
 When you use mixins - write them first in a ruleset.
-```stylus
+```scss
 /* bad */
 .selector {
     key: value;
@@ -268,7 +268,7 @@ When you use mixins - write them first in a ruleset.
 
 Here are some useful set of mixins that we are using:
 
-```stylus
+```scss
 /* Utilities
 -------------------------------------------------- */
 
@@ -398,7 +398,7 @@ For more information please check out [this article](http://csswizardry.com/2014
 ### Media queries
 
 Nothing special here, just use the snippet showing below:
-```stylus
+```scss
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
 	.selector {
 	    ...

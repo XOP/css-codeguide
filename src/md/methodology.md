@@ -6,7 +6,7 @@ Core methodology principles are based on [BEM](https://en.bem.info/). It consist
 1. Philosophy for structure of styles
 2. Naming convention for selectors (see example below)
 
-```stylus
+```css
 .module-name {}
 .module-name_child {}
 .module-name_child_child-of-child {}
