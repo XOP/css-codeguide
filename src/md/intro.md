@@ -1,5 +1,26 @@
 ## Intro
 
+
+### Why another Guide
+
+There is quiet a number of style/code- guides already:
+
+- [SASS guidelines](https://sass-guidelin.es)
+- [CSS {guide: lines;}](https://cssguidelin.es)
+
+(By the way it will be a great thing to at least take a look at them before proceeding).
+
+Why not just use one of them?
+
+The reason is specificity.  
+Generally guidelines address to the large audience.  
+
+This particular guide focuses on the subject, leaving aside general issues.  
+Brevity and practical experience is what is in the core of it.
+
+
+### About
+
 Couple welcome words about code guide specifics to take the most from using it:
 
 1. Documentation provided is written with regards on using CSS preprocessor. 
