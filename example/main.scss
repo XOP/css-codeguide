@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+// Normalize
+@import "/node_modules/normalize.css/*.css";
+
+// Variables
+@import "variables";
+
+// Mixins
+@import "mixins";
+
+// Components
+@import "component-1";
+@import "component-2";
+// etc
+
+// Utils
+@import "utils";
+
+// Override
+@import "override";

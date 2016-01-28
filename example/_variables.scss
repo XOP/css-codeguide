@@ -1,0 +1,95 @@
+/* Variables
+---------------------------------------------------------------------------------- */
+
+/* Font Family
+-------------------------------------------------- */
+
+$ff-main = Arial, Helvetica, sans-serif;
+$ff-aux = Georgia, Times, serif;
+
+/* /Font Family */
+
+
+/* Font Size
+-------------------------------------------------- */
+
+$fs-normal = 14px;
+
+$fs-xs = 10px;
+$fs-s = 12px;
+$fs-l = 16px;
+
+$fs-h1 = 32px;
+$fs-h2 = 24px;
+$fs-h3 = 20px;
+
+$fs-hero = 48px;
+
+/* /Font Size */
+
+
+/* Colors
+-------------------------------------------------- */
+
+$c-base = #333;
+$c-white = #fff;
+$c-darker = #666;
+$c-dark = #999;
+$c-light = #ccc;
+$c-lighter = #eee;
+
+// credits: https://www.materialpalette.com/
+$c-brand-main = #E64A19;
+$c-brand-aux = #FF5722;
+$c-brand-alt = #FFCCBC;
+$c-accent = #4CAF50;
+
+/* /Colors */
+
+
+/* Line Height
+-------------------------------------------------- */
+
+$lh-reset = 1;
+$lh-normal = 1.5;
+$lh-tight = 1.25;
+$lh-loose = 1.8;
+
+/* /Line Height */
+
+
+/* Grid
+-------------------------------------------------- */
+
+$gutter = 1rem;
+
+/* /Grid */
+
+
+/* Offset
+-------------------------------------------------- */
+
+$offset-step = .2rem;
+
+$offset-xxs = $offset-step;
+$offset-xs  = 2 * $offset-step;
+$offset-s   = 3 * $offset-step;
+$offset-m   = 4 * $offset-step;
+$offset-n   = 5 * $offset-step;
+$offset-l   = 7 * $offset-step;
+$offset-xl  = 10 * $offset-step;
+$offset-xxl = 15 * $offset-step;
+
+/* /Offset */
+
+
+/* Border Radius
+-------------------------------------------------- */
+
+$rad-btn = 3px;
+$rad-card = 8px;
+
+/* /Border Radius */
+
+/* /Variables
+---------------------------------------------------------------------------------- */

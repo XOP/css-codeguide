@@ -28,6 +28,37 @@ Long intro is not always welcome (for instance in teams with _history_),
  so it's just a suggestion. Fields can easily be added ot removed at every stage of code-style integration.
 
 
+### CSSG
+
+The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
+In a nutshell, it's a meta-language that uses CSS comments for module documenting.
+
+Take a look at live example:
+
+```css
+/*
+cssg
+
+	pform_map		                            $__active $__search $__map
+		pform_tags
+			<tico>
+
+		pform_map_search
+			<input>
+			suggest . __active
+				pform_map_img
+					<object>
+
+				pform_map_ac . lp
+				<sugggest-list>
+				pform_map_ac . lp . __active
+
+*/
+```
+
+It's pretty easy to start and hard to resist hereafter.
+
+
 ### Helpers: TODO / FIXME
 
 Many IDEs obtain nice feature providing support (at least code highlighting) for TODO or FIXME comment keyword.

@@ -24,10 +24,10 @@ Let's get started!
 	* [About](#about)
 * [Structure of css/preprocessor file](#structure-of-csspreprocessor-file)
 	* [Files organizing](#files-organizing)
-	* [Code organizing within a file](#code-organizing-within-a-file)
-	* [CSSG](#cssg)
+	* [Code organization within a file](#code-organization-within-a-file)
 * [Comments](#comments)
 	* [Document author](#document-author)
+	* [CSSG](#cssg)
 	* [Helpers: TODO / FIXME](#helpers-todo--fixme)
 	* [Mandatory commenting](#mandatory-commenting)
 	* [Structural comments](#structural-comments)
@@ -111,15 +111,24 @@ One of the main goals is to help other front-end teams combat there issues with 
 
 CSS structure provides maintainability, scalability and any other -ability for the CSS code you wish for.  
 Different methodologies propose different ways of organizing CSS files.  
-Pros and cons of these approaches lay beyond the topic, so let's focus on structure of single CSS file. 
+Pros and cons of these approaches lay beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
 
 Principles described below can be successfully adopted and integrated into existing system.
 
 
 ### Files organizing
 
-Consider file a CSS module.  
-Modules form the system:
+The very basic option is to organize all code within _1_ file.  
+This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
+```
+root/
+    styles.css
+```
+
+For the sake of the guide goals and sanity this approach is not considered any further.
+
+Consider file a CSS component.  
+Components form the system:
 ```
 css/
     navigation.css
@@ -128,18 +137,19 @@ css/
     ...
 ```
 
-Large modules may consist of multiple parts for the sake of readability:
+Large components may consist of multiple parts for the sake of readability:
 ```
 css/
     header/
-        header-layout.css
+        header-layout.css (*)
         header-logo.css
         header-navigation.css
         ...
     ...
 ```
+(*) notice the main component prefix, "header-" in this case. This is optional, but may solve search issues in IDE.
 
-It can also be convenient to separate core modules - "atoms" and "molecules" - modules, that consist of other modules *or* unique and used just once:
+It can also be convenient to separate core modules - "atoms" and "molecules" - components, that consist of other components *or* unique and used just once:
 ```
 css/
     base/
@@ -166,40 +176,20 @@ css/
    ...
 ```
 
+Here 
 
-### Code organizing within a file
+### Code organization within a file
 
-**todo**
+**[Code follow-up](example/_component-1.scss)**
 
+Organization here is mostly about [comments](#comments) and consistency.  
+As you can see, CSS component structure is pretty straightforward:
 
-### CSSG
-
-The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for module documenting.
-
-Take a look at live example:
-
-```css
-/*
-
-	pform_map		                            $__active $__search $__map
-		pform_tags
-			<tico>
-
-		pform_map_search
-			<input>
-			suggest . __active
-				pform_map_img
-					<object>
-
-				pform_map_ac . lp
-				<sugggest-list>
-				pform_map_ac . lp . __active
-
-*/
-```
-
-It's pretty easy to start and hard to resist hereafter.
+- [File data](#document-author) 
+- [CSSG](#cssg)
+- [Variables](#variables)
+- Layout
+- Parts
 
 
 ## Comments
@@ -230,6 +220,37 @@ You don't code anonymously, right?
 Seems redundant, but you've got the idea.  
 Long intro is not always welcome (for instance in teams with _history_),
  so it's just a suggestion. Fields can easily be added ot removed at every stage of code-style integration.
+
+
+### CSSG
+
+The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
+In a nutshell, it's a meta-language that uses CSS comments for module documenting.
+
+Take a look at live example:
+
+```css
+/*
+cssg
+
+	pform_map		                            $__active $__search $__map
+		pform_tags
+			<tico>
+
+		pform_map_search
+			<input>
+			suggest . __active
+				pform_map_img
+					<object>
+
+				pform_map_ac . lp
+				<sugggest-list>
+				pform_map_ac . lp . __active
+
+*/
+```
+
+It's pretty easy to start and hard to resist hereafter.
 
 
 ### Helpers: TODO / FIXME

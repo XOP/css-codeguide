@@ -11,11 +11,12 @@
 /* Media
 ---------------------------------------------------------------------------------- */
 
-/*  ---cssg
+/*
+cssg
 
-    media                       __selectable __selected
-        media_hld
-            media_img
+    media                       --selectable --selected
+        media__hld
+            media__img
                 [1]
                 img
 
@@ -24,25 +25,26 @@
 
                 [/]
 
-            media_cnt
-                media_h
-                media_tx
-                [media_lk]
+            media__cnt
+                media__h
+                media__tx
+                [media__lk]
 
 */
 
-/* Vars
+
+/* Variables
 -------------------------------------------------- */
 
+// ...
 
-
-/* /Vars */
+/* /Variables */
 
 
 /* Layout
 -------------------------------------------------- */
 
-
+// ...
 
 /* /Layout */
 
@@ -50,7 +52,7 @@
 /* Image
 -------------------------------------------------- */
 
-
+// ...
 
 /* /Image */
 
@@ -58,7 +60,7 @@
 /* Content
 -------------------------------------------------- */
 
-
+// ...
 
 /* /Content */
 
