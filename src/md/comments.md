@@ -1,9 +1,113 @@
 ## Comments
 
-Comments are _very_ `!important` and sadly often underestimated.
+Comments are _vital_ and sadly often underestimated.
 
 Comment all code, that potentially might raise questions later.  
 Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
+
+There are roughly two types of comments.  
+- Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
+- All other comments will be covered in a moment
+
+
+### Structural comments
+
+These comments help to keep your CSS organized and improve understanding of HTML structure.
+Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
+
+```scss
+/* Level 1
+---------------------------------------------------------------------------------- */
+
+// Contains the component itself
+
+/* /Level 1
+---------------------------------------------------------------------------------- */
+```
+
+```scss
+/* Level 2
+-------------------------------------------------- */
+
+.level-2 {
+    ...
+    }
+
+/* /Level 2
+-------------------------------------------------- */
+```
+
+```css
+/* Level 3 */
+
+.level-3 {
+    ...
+    }
+
+/* /Level 3 */
+```
+
+```css
+/* Level 4 */
+.level-4 {
+    ...
+    }
+```
+
+Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+
+```css
+/* Module
+---------------------------------------------------------------------------------- */
+
+.module {
+
+	}
+
+/* Module - Part 1
+-------------------------------------------------- */
+
+/* Core */
+
+.part-1 {
+
+	}
+
+/* /Core */
+
+
+/* Modifications */
+
+.part-1.__mod-1 {
+
+	}
+
+.part-1.__mod-2 {
+
+	}
+
+/* /Modifications */
+
+/* /Module - Part 1
+-------------------------------------------------- */
+
+
+/* Module 1 - Part 2
+-------------------------------------------------- */
+
+.part-2 {
+
+	}
+
+/*/ Module - Part 2
+-------------------------------------------------- */
+
+/* /Module
+---------------------------------------------------------------------------------- */
+```
+
+You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
+For example, for the first level comment just type `ch1 + tab`.
 
 
 ### Document author
@@ -142,108 +246,6 @@ $offset = 10px;
 ```
 
 Finally - a common rule: *do not* rely on your memory or memory of your colleagues, just comment suspicious values. Thank yourself later.
-
-
-### Structural comments
-
-These comments help to keep your CSS organized and improve understanding of HTML structure.
-Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
-
-```css
-/* Level 1
----------------------------------------------------------------------------------- */
-
-.level-1 {
-    ...
-    }
-
-/* /Level 1
----------------------------------------------------------------------------------- */
-```
-
-```css
-/* Level 2
--------------------------------------------------- */
-
-.level-2 {
-    ...
-    }
-
-/* /Level 2
--------------------------------------------------- */
-```
-
-```css
-/* Level 3 */
-
-.level-3 {
-    ...
-    }
-
-/* /Level 3 */
-```
-
-```css
-/* Level 4 */
-.level-4 {
-    ...
-    }
-```
-
-Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
-
-```css
-/* Module
----------------------------------------------------------------------------------- */
-
-.module {
-
-	}
-
-/* Module - Part 1
--------------------------------------------------- */
-
-/* Core */
-
-.part-1 {
-
-	}
-
-/* /Core */
-
-
-/* Modifications */
-
-.part-1.__mod-1 {
-
-	}
-
-.part-1.__mod-2 {
-
-	}
-
-/* /Modifications */
-
-/* /Module - Part 1
--------------------------------------------------- */
-
-
-/* Module 1 - Part 2
--------------------------------------------------- */
-
-.part-2 {
-
-	}
-
-/*/ Module - Part 2
--------------------------------------------------- */
-
-/* /Module
----------------------------------------------------------------------------------- */
-```
-
-You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
-For example, for the first level comment just type `ch1 + tab`.
 
 
 ### Code comments
