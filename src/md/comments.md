@@ -7,31 +7,69 @@ Comments should be short and capacious. At the same time beware of unnecessary c
 
 There are roughly two types of comments.  
 - Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
-- All other comments will be covered in a moment
+- All other comments will be covered right away!
 
 
 ### Structural comments
 
-These comments help to keep your CSS organized and improve understanding of HTML structure.
+**[Code follow-up](example/_component-1.scss)**
+
+These comments help to keep your CSS organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
 
-```scss
+**Level 1** is typically a component / file title.
+
+```css
 /* Level 1
 ---------------------------------------------------------------------------------- */
 
-// Contains the component itself
+/* code */
 
 /* /Level 1
 ---------------------------------------------------------------------------------- */
 ```
 
+At the moment there might be questions - where _exactly_ to place the code?  
+Is the block padding a normal thing?  
+
+As it comes to practical side - this is the matter of choice, habit and team preferences.  
+This may work for you...
+
+```css
+/* Element title
+---------------------------------------------------------------------------------- */
+.element {
+    
+}
+/* /Element title
+---------------------------------------------------------------------------------- */
+```
+
+...as fine as this:
+```css
+/* Element title
+---------------------------------------------------------------------------------- */
+
+.element {
+    
+}
+
+/* /Element title
+---------------------------------------------------------------------------------- */
+```
+
+For this code guide we'll stick with second option.
+
+But generally it does not matter.  
+Choose the style and stick with it. Working in team implies identical code-styling, and different code examples should look like written by one person.
+
+**Level 2** is for structure per se. Variables, Layout, component parts: Head, generic Right part, Content section etc.  
+
 ```scss
 /* Level 2
 -------------------------------------------------- */
 
-.level-2 {
-    ...
-    }
+/* code */
 
 /* /Level 2
 -------------------------------------------------- */
@@ -40,18 +78,14 @@ Consider each inner level a deeper nested element or modificator - this metaphor
 ```css
 /* Level 3 */
 
-.level-3 {
-    ...
-    }
+/* code */
 
 /* /Level 3 */
 ```
 
 ```css
 /* Level 4 */
-.level-4 {
-    ...
-    }
+/* code */
 ```
 
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
