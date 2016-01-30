@@ -5,7 +5,7 @@ Comments are _vital_ and sadly often underestimated.
 Comment all code, that potentially might raise questions later.  
 Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
 
-There are roughly two types of comments.  
+There are roughly two types of comments:  
 - Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
 - All other comments will be covered right away!
 
@@ -16,8 +16,6 @@ There are roughly two types of comments.
 
 These comments help to keep your CSS organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
-
-Common rule follows - respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
 
 **Level 1** is typically a component / file title.
 
@@ -60,7 +58,7 @@ This may work for you...
 ---------------------------------------------------------------------------------- */
 ```
 
-For this code guide we'll stick with second option.
+For this code guide we'll stick with the **second** option.
 
 But generally it does not matter.  
 Choose the style and stick with it. Working in team implies identical code-styling, and different code examples should look like written by one person.
@@ -89,6 +87,10 @@ Choose the style and stick with it. Working in team implies identical code-styli
 /* Level 4 */
 /* code */
 ```
+
+Common rules for structural comments:
+- Respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
+- Nesting is prohibited, that means each new comment block organizes a "caret return" (this will be demonstrated later)
 
 Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
