@@ -26,11 +26,11 @@ Let's get started!
 	* [Files organizing](#files-organizing)
 	* [Code organization within a file](#code-organization-within-a-file)
 * [Comments](#comments)
+	* [Structural comments](#structural-comments)
 	* [Document author](#document-author)
 	* [CSSG](#cssg)
 	* [Helpers: TODO / FIXME](#helpers-todo--fixme)
 	* [Mandatory commenting](#mandatory-commenting)
-	* [Structural comments](#structural-comments)
 	* [Code comments](#code-comments)
 * [Syntax & formatting](#syntax--formatting)
 	* [Basic formatting](#basic-formatting)
@@ -46,10 +46,6 @@ Let's get started!
 	* [Mixins](#mixins)
 	* [Extends](#extends)
 	* [Media queries](#media-queries)
-* [Images](#images)
-	* [Sprites](#sprites)
-	* [Retina images](#retina-images)
-	* [Styles for retina](#styles-for-retina)
 
 <!--mdMenu-->
 
@@ -118,6 +114,8 @@ Principles described below can be successfully adopted and integrated into exist
 
 ### Files organizing
 
+**[Code follow-up](example/)**
+
 The very basic option is to organize all code within _1_ file.  
 This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
 ```
@@ -175,29 +173,179 @@ css/
        Article.jsx
    ...
 ```
-
-Here 
+ 
 
 ### Code organization within a file
 
 **[Code follow-up](example/_component-1.scss)**
 
 Organization here is mostly about [comments](#comments) and consistency.  
-As you can see, CSS component structure is pretty straightforward:
+Generally, as you can see, CSS component structure is pretty straightforward:
 
-- [File data](#document-author) 
+- [File data](#document-author)
+- Component title
 - [CSSG](#cssg)
 - [Variables](#variables)
 - Layout
 - Parts
 
+Please notice, that except for Component title _all_ other parts can be omitted, according to the situation:
+
+**[File data](#document-author)** is the privilege of the team preferences, it might be excessive when working alone.  
+**[CSSG](#cssg)** is not needed when component consists of one element and almost "flat" in terms of cascade.  
+**[Variables](#variables)** have nothing to do with CSS yet (except for [--custom-properties](https://drafts.csswg.org/css-variables/)) and pretty much optional if there are no local overrides or any other local properties.  
+**Layout** is basically a component wrapper or skeleton, which might have modifiers applied to the descendants. It makes most sense when component itself is relatively complex.  
+**Parts**, however are also optional, when component consists of one element, like button or link.  
+
+This all leads to the important fact - simple CSS components are well structured "natively".
+
 
 ## Comments
 
-Comments are _very_ `!important` and sadly often underestimated.
+Comments are _vital_ and sadly often underestimated.
 
 Comment all code, that potentially might raise questions later.  
 Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
+
+There are roughly two types of comments.  
+- Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
+- All other comments will be covered right away!
+
+
+### Structural comments
+
+**[Code follow-up](example/_component-1.scss)**
+
+These comments help to keep your CSS organized, consistent and way more readable.
+Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
+
+Common rule follows - respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
+
+**Level 1** is typically a component / file title.
+
+```css
+/* Level 1
+---------------------------------------------------------------------------------- */
+
+/* code */
+
+/* /Level 1
+---------------------------------------------------------------------------------- */
+```
+
+At the moment there might be questions - where _exactly_ to place the code?  
+Is the block padding a normal thing?  
+
+As it comes to practical side - this is the matter of choice, habit and team preferences.  
+This may work for you...
+
+```css
+/* Element title
+---------------------------------------------------------------------------------- */
+.element {
+    
+}
+/* /Element title
+---------------------------------------------------------------------------------- */
+```
+
+...as fine as this:
+```css
+/* Element title
+---------------------------------------------------------------------------------- */
+
+.element {
+    
+}
+
+/* /Element title
+---------------------------------------------------------------------------------- */
+```
+
+For this code guide we'll stick with second option.
+
+But generally it does not matter.  
+Choose the style and stick with it. Working in team implies identical code-styling, and different code examples should look like written by one person.
+
+**Level 2** is for structure per se. Variables, Layout, component parts: Head, generic Right part, Content section etc.  
+
+```css
+/* Level 2
+-------------------------------------------------- */
+
+/* code */
+
+/* /Level 2
+-------------------------------------------------- */
+```
+
+```css
+/* Level 3 */
+
+/* code */
+
+/* /Level 3 */
+```
+
+```css
+/* Level 4 */
+/* code */
+```
+
+Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+
+```css
+/* Module
+---------------------------------------------------------------------------------- */
+
+.module {
+
+	}
+
+/* Module - Part 1
+-------------------------------------------------- */
+
+/* Core */
+
+.part-1 {
+
+	}
+
+/* /Core */
+
+
+/* Modifications */
+
+.part-1.__mod-1 {
+
+	}
+
+.part-1.__mod-2 {
+
+	}
+
+/* /Modifications */
+
+/* /Module - Part 1
+-------------------------------------------------- */
+
+
+/* Module 1 - Part 2
+-------------------------------------------------- */
+
+.part-2 {
+
+	}
+
+/*/ Module - Part 2
+-------------------------------------------------- */
+
+/* /Module
+---------------------------------------------------------------------------------- */
+```
+
+You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
+For example, for the first level comment just type `ch1 + tab`.
 
 
 ### Document author
@@ -336,108 +484,6 @@ $offset = 10px;
 ```
 
 Finally - a common rule: *do not* rely on your memory or memory of your colleagues, just comment suspicious values. Thank yourself later.
-
-
-### Structural comments
-
-These comments help to keep your CSS organized and improve understanding of HTML structure.
-Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
-
-```css
-/* Level 1
----------------------------------------------------------------------------------- */
-
-.level-1 {
-    ...
-    }
-
-/* /Level 1
----------------------------------------------------------------------------------- */
-```
-
-```css
-/* Level 2
--------------------------------------------------- */
-
-.level-2 {
-    ...
-    }
-
-/* /Level 2
--------------------------------------------------- */
-```
-
-```css
-/* Level 3 */
-
-.level-3 {
-    ...
-    }
-
-/* /Level 3 */
-```
-
-```css
-/* Level 4 */
-.level-4 {
-    ...
-    }
-```
-
-Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
-
-```css
-/* Module
----------------------------------------------------------------------------------- */
-
-.module {
-
-	}
-
-/* Module - Part 1
--------------------------------------------------- */
-
-/* Core */
-
-.part-1 {
-
-	}
-
-/* /Core */
-
-
-/* Modifications */
-
-.part-1.__mod-1 {
-
-	}
-
-.part-1.__mod-2 {
-
-	}
-
-/* /Modifications */
-
-/* /Module - Part 1
--------------------------------------------------- */
-
-
-/* Module 1 - Part 2
--------------------------------------------------- */
-
-.part-2 {
-
-	}
-
-/*/ Module - Part 2
--------------------------------------------------- */
-
-/* /Module
----------------------------------------------------------------------------------- */
-```
-
-You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
-For example, for the first level comment just type `ch1 + tab`.
 
 
 ### Code comments
@@ -1096,57 +1142,6 @@ Nothing special here, just use the snippet showing below:
 	}
 ```
 
-
-## Images
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins.
-We are using some plugins, written in our team.
-There are several plugins: for generating sprites, for generating x1 size images from x2 and for generating styles for retina.
-
-### Sprites
-
-We use [css-sprites-generator](https://github.com/cheshirsky/css-sprites-generator).
-It is a tiny css sprites generator based on inline sprites definition and references.
-
-Example:
-
-```scss
-/** sprite: main-sprt; sprite-image: url('/img/sprites/main-sprt.png'); */
-
-.my-main-page-icon {
-    background-image: url('path/to/image.png'); /** sprite-ref: main-sprt; */
-	}
-```
-
-Also we use mixin to handle sprites:
-
-```scss
-//
-// set sprite reference to background image
-// @url - image url
-// @name - sprite reference name
-// @params - extra string of sprite params
-sprite($url, $name, $params = ""){
-
-	$extras = "";
-	if $params {
-		$extras = "; " + unquote($params);
-	}
-
-	$ref = unquote("/** sprite-ref: ") + unquote($name) + unquote($extras) + unquote("; */");
-	background-image: url($url) $ref
-	}
-```
-
-### Retina images
-
-We use [grunt-retina-img plugin](https://github.com/odnoklassniki/grunt-retina-img).
-It is a small Grunt task for generating background-images from x2 size to x1.
-
-### Styles for retina
-
-We use [grunt-retina-css plugin](https://github.com/odnoklassniki/grunt-retina-css).
-It is a Grunt task for generating CSS with 2x background-images.
 
 
 -----

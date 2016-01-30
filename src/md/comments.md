@@ -17,6 +17,8 @@ There are roughly two types of comments.
 These comments help to keep your CSS organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
 
+Common rule follows - respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
+
 **Level 1** is typically a component / file title.
 
 ```css
@@ -65,7 +67,7 @@ Choose the style and stick with it. Working in team implies identical code-styli
 
 **Level 2** is for structure per se. Variables, Layout, component parts: Head, generic Right part, Content section etc.  
 
-```scss
+```css
 /* Level 2
 -------------------------------------------------- */
 
