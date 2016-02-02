@@ -4,15 +4,16 @@ CSS Codeguide
 > Documentation for coding and maintaining the most transparent CSS.
 > It is bringing the experience of multiple front-end teams.
 
-Current code guide is designed for experienced developers in the first place, but hopefully could be a great source of knowledge for the beginners.
-
-It **doesn't cover topics on CSS fundamentals, selector performance or methodologies**. On the other hand it touches different aspects of CSS and provides recommendation on best practicies.
+Current code guide is designed for **experienced developers** in the first place, but hopefully could be a great source of knowledge for the beginners.
 
 Basically this documentation is about how to work in team with 250+ style files and feel comfortable about that.
 
+Please be aware, that CSS fundamentals, selector performance or other common topics are not the part of this guide.
+On the other hand there will be reviewed different aspects of CSS described with practical examples, recommendations and best practicies.
+
 > All along the text there will be links to examples folder.
 > In most cases it is invaluable for understanding the picture in total,
-> so check it out before further reading and keep opened just in case.
+> so check it out before further reading and keep them opened just in case.
 
 Let's get started!
 
@@ -50,6 +51,7 @@ Let's get started!
 
 <!--mdMenu-->
 
+-----
 
 ## Intro
 
@@ -127,7 +129,7 @@ Current guide takes advantage of common [BEM principles](https://css-tricks.com/
 
 ## Structure of css/preprocessor file
 
-CSS structure provides maintainability, scalability and any other -ability for the CSS code you wish for.  
+CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
 Pros and cons of these approaches lay beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
 
@@ -136,7 +138,7 @@ Principles described below can be successfully adopted and integrated into exist
 
 ### Files organizing
 
-**[Code follow-up](example/)**
+:page_with_curl: **[Code follow-up](example/)**
 
 The very basic option is to organize all code within _1_ file.  
 This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
@@ -199,7 +201,7 @@ css/
 
 ### Code organization within a file
 
-**[Code follow-up](example/_component-1.scss)**
+:page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 Organization here is mostly about [comments](#comments) and consistency.  
 Generally, as you can see, CSS component structure is pretty straightforward:
@@ -236,7 +238,7 @@ There are roughly two types of comments:
 
 ### Structural comments
 
-**[Code follow-up](example/_component-1.scss)**
+:page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 These comments help to keep your CSS organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.

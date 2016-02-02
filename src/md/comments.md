@@ -12,7 +12,7 @@ There are roughly two types of comments:
 
 ### Structural comments
 
-**[Code follow-up](example/_component-1.scss)**
+:page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 These comments help to keep your CSS organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.

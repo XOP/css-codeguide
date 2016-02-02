@@ -1,6 +1,6 @@
 ## Structure of css/preprocessor file
 
-CSS structure provides maintainability, scalability and any other -ability for the CSS code you wish for.  
+CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
 Pros and cons of these approaches lay beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
 
@@ -9,7 +9,7 @@ Principles described below can be successfully adopted and integrated into exist
 
 ### Files organizing
 
-**[Code follow-up](example/)**
+:page_with_curl: **[Code follow-up](example/)**
 
 The very basic option is to organize all code within _1_ file.  
 This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
@@ -72,7 +72,7 @@ css/
 
 ### Code organization within a file
 
-**[Code follow-up](example/_component-1.scss)**
+:page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 Organization here is mostly about [comments](#comments) and consistency.  
 Generally, as you can see, CSS component structure is pretty straightforward:
