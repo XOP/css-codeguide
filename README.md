@@ -22,6 +22,7 @@ Let's get started!
 * [Intro](#intro)
 	* [Why another Guide](#why-another-guide)
 	* [About](#about)
+* [Methodology](#methodology)
 * [Structure of css/preprocessor file](#structure-of-csspreprocessor-file)
 	* [Files organizing](#files-organizing)
 	* [Code organization within a file](#code-organization-within-a-file)
@@ -61,6 +62,7 @@ There is quiet a number of style/code- guides already, that can be divided into:
 
 - [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 - [CSS {guide: lines;}](https://cssguidelin.es)
+- [SUIT CSS (codestyle only)](https://github.com/suitcss/suit/blob/master/doc/STYLE.md)
 - [SASS guidelines](https://sass-guidelin.es)
 
 Address the large audience, covering all (sometimes almost encyclopedic) aspects.  
@@ -101,6 +103,24 @@ One of the main goals is to help other front-end teams combat there issues with 
 
 4. If you have any questions, comments or suggestions, please open an issue.
 
+
+## Methodology
+
+In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
+In fact, architecture is often named methodology and vice versa.
+
+There is quiet a number of methodologies to choose from:
+- [OOCSS](https://github.com/stubbornella/oocss/wiki)
+- [BEM](http://getbem.com/)
+- [SMACSS](https://smacss.com/)
+- [Atomic CSS](http://acss.io/)
+- [Suit CSS](http://suitcss.github.io/)
+- [MCSS](http://operatino.github.io/MCSS/en/)
+
+Some of them just provide rules and instructions, others propose the whole workflow to consider.  
+Feel free to investigate what suits your needs best!
+
+Current guide takes advantage of common [BEM principles](https://css-tricks.com/bem-101/) and also has few traits from [Suit CSS](http://suitcss.github.io/).
 
 
 ## Structure of css/preprocessor file

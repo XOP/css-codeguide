@@ -9,6 +9,7 @@ There is quiet a number of style/code- guides already, that can be divided into:
 
 - [Idiomatic CSS](https://github.com/necolas/idiomatic-css)
 - [CSS {guide: lines;}](https://cssguidelin.es)
+- [SUIT CSS (codestyle only)](https://github.com/suitcss/suit/blob/master/doc/STYLE.md)
 - [SASS guidelines](https://sass-guidelin.es)
 
 Address the large audience, covering all (sometimes almost encyclopedic) aspects.  

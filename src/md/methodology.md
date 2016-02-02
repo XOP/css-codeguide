@@ -1,17 +1,17 @@
 ## Methodology
 
-Methodology we are using is called [Multilayer CSS](http://operatino.github.io/MCSS/en/) (MCSS).
-Core methodology principles are based on [BEM](https://en.bem.info/). It consists of two important things:
+In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
+In fact, architecture is often named methodology and vice versa.
 
-1. Philosophy for structure of styles
-2. Naming convention for selectors (see example below)
+There is quiet a number of methodologies to choose from:
+- [OOCSS](https://github.com/stubbornella/oocss/wiki)
+- [BEM](http://getbem.com/)
+- [SMACSS](https://smacss.com/)
+- [Atomic CSS](http://acss.io/)
+- [Suit CSS](http://suitcss.github.io/)
+- [MCSS](http://operatino.github.io/MCSS/en/)
 
-```css
-.module-name {}
-.module-name_child {}
-.module-name_child_child-of-child {}
-.module-name_child__modifier {}
-```
+Some of them just provide rules and instructions, others propose the whole workflow to consider.  
+Feel free to investigate what suits your needs best!
 
-Module interaction scheme
-![Module interaction scheme](http://operatino.github.io/MCSS/images/layers.jpg)
+Current guide takes advantage of common [BEM principles](https://css-tricks.com/bem-101/) and also has few traits from [Suit CSS](http://suitcss.github.io/).
