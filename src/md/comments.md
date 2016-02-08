@@ -2,11 +2,11 @@
 
 Comments are _vital_ and sadly often underestimated.
 
-Comment all code, that potentially might raise questions later.  
-Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
+In total, all code, that potentially might raise questions later, should be commented.  
+Comments have to be short, capacious and up-to-date. Avoid excessive (unnecessary) commenting.
 
-There are roughly two types of comments:  
-- Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
+There are generally _two_ types of comments:  
+- Structural comments (were briefly introduced in [previous chapter](#code-organization-within-a-file))
 - All other comments will be covered right away!
 
 

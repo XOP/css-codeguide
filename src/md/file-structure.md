@@ -1,4 +1,4 @@
-## Structure of css/preprocessor file
+## Structure of СSS/preprocessor file
 
 CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
@@ -11,7 +11,7 @@ Principles described below can be successfully adopted and integrated into exist
 
 :page_with_curl: **[Code follow-up](example/)**
 
-The very basic option is to organize all code within _1_ file.  
+The very basic option is to organize all code within _one_ file.  
 This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
 ```
 root/

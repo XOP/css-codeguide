@@ -24,7 +24,7 @@ Let's get started!
 	* [Why another Guide](#why-another-guide)
 	* [About](#about)
 * [Methodology](#methodology)
-* [Structure of css/preprocessor file](#structure-of-csspreprocessor-file)
+* [Structure of СSS/preprocessor file](#structure-of-сsspreprocessor-file)
 	* [Files organizing](#files-organizing)
 	* [Code organization within a file](#code-organization-within-a-file)
 * [Comments](#comments)
@@ -127,7 +127,7 @@ Feel free to investigate what suits your needs best!
 Current guide takes advantage of common [BEM principles](https://css-tricks.com/bem-101/) and also has few traits from [Suit CSS](http://suitcss.github.io/).
 
 
-## Structure of css/preprocessor file
+## Structure of СSS/preprocessor file
 
 CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
@@ -140,7 +140,7 @@ Principles described below can be successfully adopted and integrated into exist
 
 :page_with_curl: **[Code follow-up](example/)**
 
-The very basic option is to organize all code within _1_ file.  
+The very basic option is to organize all code within _one_ file.  
 This approach will work fine for small or/and one-time projects, that do not require maintainability whatsoever.
 ```
 root/
@@ -228,11 +228,11 @@ This all leads to the important fact - simple CSS components are well structured
 
 Comments are _vital_ and sadly often underestimated.
 
-Comment all code, that potentially might raise questions later.  
-Comments should be short and capacious. At the same time beware of unnecessary commenting and keep them up to date.
+In total, all code, that potentially might raise questions later, should be commented.  
+Comments have to be short, capacious and up-to-date. Avoid excessive (unnecessary) commenting.
 
-There are roughly two types of comments:  
-- Structural comments were introduced in [previous chapter](#code-organization-within-a-file)
+There are generally _two_ types of comments:  
+- Structural comments (were briefly introduced in [previous chapter](#code-organization-within-a-file))
 - All other comments will be covered right away!
 
 
