@@ -17,3 +17,14 @@ Some of them just provide rules and instructions, others propose the whole workf
 Feel free to investigate what suits your needs best!
 
 Current guide takes advantage of common [BEM principles](https://css-tricks.com/bem-101/) and also has few traits from [Suit CSS](http://suitcss.github.io/).
+
+You can skip the following chapters and jump right to [file-structure](#structure-of-сsspreprocessor-file), but it is highly advised to go through this path of knowledge.
+
+
+### Naming principles
+
+
+### Modifiers and states
+
+
+### Utilities
