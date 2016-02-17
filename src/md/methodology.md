@@ -1,5 +1,7 @@
 ## Methodology
 
+### Introduction
+
 In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
 In fact, architecture is often named methodology and vice versa.
 
@@ -20,9 +22,14 @@ Current guide takes advantage of common [BEM principles](https://css-tricks.com/
 
 You can skip the following chapters and jump right to [file-structure](#structure-of-сsspreprocessor-file), but it is highly advised to go through this path of knowledge.
 
-
 ### Basics
 
+There's more than enough said about BEM, so it's no need to generate duplication.  
+One important thing to remember, though: like everything else, BEM is a living system, approach, that deals with architecture issues. Since environment evolves, architecture adapts. And so does BEM (or other methodology of your choice).  
+It has become very natural to see different takes on the same problem using same methodology.
+
+Taking that into consideration, here is  
+**Current state of things**:
 
 ### Naming principles
 
@@ -50,7 +57,7 @@ $color-brand-primary: $eaf;
 $line-height-regular: 1.5;
 ```
 
-2. Children determined by '__':
+2. Children determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -70,11 +77,14 @@ CSS example:
 HTML example:
 ```html
 <section class="section">
-    <p class="section__text">Example</p>
+    <p class="section__text">
+        <span class="section__text__icon"></span>
+        Section text
+    </p>
 </section>
 ```
 
-3. Modifiers determined by '--':
+3. Modifiers determined by '--' - separator:
 ```
 .element--mod
 .element--complex-name-mod
