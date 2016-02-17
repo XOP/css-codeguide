@@ -31,9 +31,10 @@ It has become very natural to see different takes on the same problem using same
 Taking that into consideration, here is  
 **Current state of things**:
 
+
 ### Naming principles
 
-1. Dash-binding syntax:
+Through all the code there's dash-binding syntax being used:
 ```
 .element
 .element-long-name
@@ -57,7 +58,7 @@ $color-brand-primary: $eaf;
 $line-height-regular: 1.5;
 ```
 
-2. Children determined by '__' - separator:
+Element children are determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -84,7 +85,18 @@ HTML example:
 </section>
 ```
 
-3. Modifiers determined by '--' - separator:
+
+### Modifiers and states
+
+To help to get your head around the following:  
+modifiers - illustrate added or, well, _modified_ features of element   
+and states - is mostly about interactions.
+
+For instance:  
+Modifiers: 'decorated', 'large size', 'secondary type' etc.  
+States: 'disabled', 'in progress', 'hidden for user' etc.
+
+Modifiers are determined by '--' - separator:
 ```
 .element--mod
 .element--complex-name-mod
@@ -102,7 +114,7 @@ HTML example:
 <header class="header header--main">Title</header>
 ```
 
-4. States start with keyword `is`:
+States start with keyword `is`:
 ```
 .is-state
 ```
@@ -121,8 +133,5 @@ HTML example:
 ```html
 <button class="button is-disabled">Sorry, can't do</button>
 ```
-
-### Modifiers and states
-
 
 ### Utilities
