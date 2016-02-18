@@ -96,6 +96,8 @@ For instance:
 Modifiers: 'decorated', 'large size', 'secondary type' etc.  
 States: 'disabled', 'in progress', 'hidden for user' etc.
 
+Useful hint: if you are not confident with the type of the feature - just use modifier and change later when it's clear.
+
 Modifiers are determined by '--' - separator:
 ```
 .element--mod
