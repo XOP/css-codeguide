@@ -116,7 +116,7 @@ HTML example:
 <header class="header header--main">Title</header>
 ```
 
-States start with keyword `is`:
+States are determined by `is-` namespace:
 ```
 .is-state
 ```
@@ -137,3 +137,33 @@ HTML example:
 ```
 
 ### Utilities
+
+Another concept to grasp - utility classes.  
+With some respect to Atomic CSS this is the last stand between your CSS and production code. Simply put - they can override other CSS properties and you won't want to override them.  
+Basic rule - they should complete only one simple task - usually this is hiding element or changing font-size. But actually this depends on you and your system.  
+Another rule - they can't be mixed with other classes - not in CSS.  
+Often they are assigned via JS.
+
+Utilities are determined by `u-` namespace:
+```
+.u-hidden
+```
+
+CSS example: 
+```css
+.u-hidden {
+    display: none;
+}
+
+.u-hidden-visually {
+    visibility: hidden;
+}
+```
+
+HTML example:
+```html
+<section class="menu js-menu u-hidden-visually">...</section>
+```
+
+### JS interactivity
+
