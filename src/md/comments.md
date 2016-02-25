@@ -150,8 +150,7 @@ For example, for the first level comment just type `ch1 + tab`.
 
 ### Document author
 
-Please have this snippet located at the beginning of your stylesheet, bless you!
-You don't code anonymously, right?
+Having this snippet at the top of the file immediately answers many questions, especially when the code is to be seen for the first time.  
 
 ```scss
 /**
@@ -169,36 +168,38 @@ Seems redundant, but you've got the idea.
 Long intro is not always welcome (for instance in teams with _history_),
  so it's just a suggestion. Fields can easily be added ot removed at every stage of code-style integration.
 
+There's also a snippet for that in [live templates repo](https://github.com/XOP/live-templates).
+
 
 ### CSSG
 
 The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for module documenting.
+In a nutshell, it's a meta-language that uses CSS comments for html (_-module_) documenting.
 
-Take a look at live example:
+Here's an example:
 
 ```css
 /*
 cssg
 
-	pform_map		                            $__active $__search $__map
-		pform_tags
-			<tico>
-
-		pform_map_search
-			<input>
-			suggest . __active
-				pform_map_img
-					<object>
-
-				pform_map_ac . lp
-				<sugggest-list>
-				pform_map_ac . lp . __active
+	media                   --special | --custom
+	    media__header
+	        ...
+	        
+	    media__content
+	        a . media__link
+	            <icon>
+	            
+	        media__text
+	            ...
 
 */
 ```
 
 It's pretty easy to start and hard to resist hereafter.
+
+It seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
+In fact, there's a common `bs` (bootstrap) template that just gets you ready with all basic things. 
 
 
 ### Helpers: TODO / FIXME

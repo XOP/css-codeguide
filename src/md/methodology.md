@@ -1,5 +1,6 @@
 ## Methodology
 
+
 ### Introduction
 
 In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
@@ -22,14 +23,14 @@ Current guide takes advantage of common [BEM principles](https://css-tricks.com/
 
 You can skip the following chapters and jump right to [file-structure](#structure-of-сsspreprocessor-file), but it is highly advised to go through this path of knowledge.
 
+
 ### Basics
 
 There's more than enough said about BEM, so it's no need to generate duplication.  
 One important thing to remember, though: like everything else, BEM is a living system, approach, that deals with architecture issues. Since environment evolves, architecture adapts. And so does BEM (or other methodology of your choice).  
 It has become very natural to see different takes on the same problem using same methodology.
 
-Taking that into consideration, here is  
-**Current state of things**:
+Taking that into consideration, here is the **current state of things**:
 
 
 ### Naming principles
@@ -53,12 +54,12 @@ CSS example:
 
 SCSS example: 
 ```scss
-$color-brand-primary: $eaf;
+$color-brand-primary: yellow;
 
 $line-height-regular: 1.5;
 ```
 
-Element children are determined by '__' - separator:
+Child elements are determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -98,7 +99,7 @@ States: 'disabled', 'in progress', 'hidden for user' etc.
 
 Useful hint: if you are not confident with the type of the feature - just use modifier and change later when it's clear.
 
-Modifiers are determined by '--' - separator:
+**Modifiers** are determined by '--' - separator:
 ```
 .element--mod
 .element--complex-name-mod
@@ -116,7 +117,7 @@ HTML example:
 <header class="header header--main">Title</header>
 ```
 
-States are determined by `is-` namespace:
+**States** are determined by `is-` namespace:
 ```
 .is-state
 ```
@@ -136,11 +137,12 @@ HTML example:
 <button class="button is-disabled">Sorry, can't do</button>
 ```
 
+
 ### Utilities
 
 Another concept to grasp - utility classes.  
 With some respect to Atomic CSS this is the last stand between your CSS and production code. Simply put - they can override other CSS properties and you won't want to override them.  
-Basic rule - they should complete only one simple task - usually this is hiding element or changing font-size. But actually this depends on you and your system.  
+Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
 Another rule - they can't be mixed with other classes - not in CSS.  
 Often they are assigned via JS.
 
@@ -165,16 +167,18 @@ HTML example:
 <section class="menu js-menu u-hidden-visually">...</section>
 ```
 
+
 ### JS interactivity
 
-JS-related classnames, which begin with the namespace `js-` are also called 'JS hooks' sometimes. Hooks are basically pointers or selectors and thus - can't have CSS rules applied to them.
+JS-related classnames, which begin with the namespace `js-` are also called 'JS hooks' sometimes.  
+Hooks are basically pointers or selectors and thus - can't have CSS rules applied to them.
 
 The reason to use this approach is the separation of concerns. It's easier to debug and maintain the markup apart from the script logic.
 
-Of course, it's a bit different story when using framework like [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/), so this point can be just passed.
+Of course, it's a bit different story when using frameworks like [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/), so this point can be just passed.
 
 CSS example: 
-```css
+```scss
 // may present in stylesheet 
 // but no styling applied
 // .js-test {}
@@ -191,3 +195,7 @@ document
     .querySelectorAll('.js-test')
     .classList.add('u-hidden');
 ```
+
+
+### Mixins (not a preprocessor thing yet)
+
