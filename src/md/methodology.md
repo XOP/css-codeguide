@@ -167,3 +167,27 @@ HTML example:
 
 ### JS interactivity
 
+JS-related classnames, which begin with the namespace `js-` are also called 'JS hooks' sometimes. Hooks are basically pointers or selectors and thus - can't have CSS rules applied to them.
+
+The reason to use this approach is the separation of concerns. It's easier to debug and maintain the markup apart from the script logic.
+
+Of course, it's a bit different story when using framework like [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/), so this point can be just passed.
+
+CSS example: 
+```css
+// may present in stylesheet 
+// but no styling applied
+// .js-test {}
+```
+
+HTML example:
+```html
+<a class="link js-test">Pseudo-link</a>
+```
+
+JS example:
+```js
+document
+    .querySelectorAll('.js-test')
+    .classList.add('u-hidden');
+```
