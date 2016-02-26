@@ -75,6 +75,10 @@ Choose the style and stick with it. Working in team implies identical code-styli
 -------------------------------------------------- */
 ```
 
+**Level 3** and **Level 4** normally would be used seldom. However, you may consider them for more complex component structures, something like part of a part of a part.
+
+**Level 3:**
+
 ```css
 /* Level 3 */
 
@@ -83,6 +87,8 @@ Choose the style and stick with it. Working in team implies identical code-styli
 /* /Level 3 */
 ```
 
+**Level 4:**
+
 ```css
 /* Level 4 */
 /* code */
@@ -90,9 +96,10 @@ Choose the style and stick with it. Working in team implies identical code-styli
 
 Common rules for structural comments:
 - Respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
-- Nesting is prohibited, that means each new comment block organizes a "caret return" (this will be demonstrated later)
+- Indentation is prohibited, that means each new comment block organizes a "caret return" (this will be demonstrated later)
 
-Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+To improve readability use 2 whitespaces between level 1 and level 2 blocks. Use 1 whitespace between all others.  
+Again, it's only a recommendation. Stick with what works best for you.
 
 ```css
 /* Module
@@ -100,7 +107,7 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
 .module {
 
-	}
+}
 
 /* Module - Part 1
 -------------------------------------------------- */
@@ -109,33 +116,29 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
 .part-1 {
 
-	}
+}
 
 /* /Core */
 
 
-/* Modifications */
+/* Modification */
 
-.part-1.__mod-1 {
+.part-1--modifier {
 
-	}
+}
 
-.part-1.__mod-2 {
-
-	}
-
-/* /Modifications */
+/* /Modification */
 
 /* /Module - Part 1
 -------------------------------------------------- */
 
 
-/* Module 1 - Part 2
+/* Module - Part 2
 -------------------------------------------------- */
 
 .part-2 {
 
-	}
+}
 
 /*/ Module - Part 2
 -------------------------------------------------- */
@@ -144,13 +147,21 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 ---------------------------------------------------------------------------------- */
 ```
 
-You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
-For example, for the first level comment just type `ch1 + tab`.
+:bulb:  
+
+It's not convenient to type these slashes and dashes by hand or copy paste the pieces of code all the time.  
+There's a bunch of tools to bring fun to the boredom.
+
+For instance, there are snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates). Based on [Live Templates](https://www.jetbrains.com/idea/help/live-templates.html) they are compliant with most of [Jetbrains](https://www.jetbrains.com/) products.
+
+:zap: 
+
+Snippets for Sublime Text is the work in progress.
 
 
 ### Document author
 
-Having this snippet at the top of the file immediately answers many questions, especially when the code is to be seen for the first time.  
+Having this piece of code at the top of the file immediately answers many questions, especially when the file is to be seen for the first time.  
 
 ```scss
 /**
@@ -166,7 +177,7 @@ Having this snippet at the top of the file immediately answers many questions, e
 
 Seems redundant, but you've got the idea.  
 Long intro is not always welcome (for instance in teams with _history_),
- so it's just a suggestion. Fields can easily be added ot removed at every stage of code-style integration.
+ so it's just a suggestion. Fields can easily be added ot removed at the every stage of code-style integration.
 
 There's also a snippet for that in [live templates repo](https://github.com/XOP/live-templates).
 
