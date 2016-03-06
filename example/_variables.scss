@@ -1,95 +1,115 @@
 /* Variables
 ---------------------------------------------------------------------------------- */
 
-/* Font Family
--------------------------------------------------- */
-
-$ff-main = Arial, Helvetica, sans-serif;
-$ff-aux = Georgia, Times, serif;
-
-/* /Font Family */
-
-
-/* Font Size
--------------------------------------------------- */
-
-$fs-normal = 14px;
-
-$fs-xs = 10px;
-$fs-s = 12px;
-$fs-l = 16px;
-
-$fs-h1 = 32px;
-$fs-h2 = 24px;
-$fs-h3 = 20px;
-
-$fs-hero = 48px;
-
-/* /Font Size */
-
-
 /* Colors
 -------------------------------------------------- */
 
-$c-base = #333;
-$c-white = #fff;
-$c-darker = #666;
-$c-dark = #999;
-$c-light = #ccc;
-$c-lighter = #eee;
+/* Branding */
 
-// credits: https://www.materialpalette.com/
-$c-brand-main = #E64A19;
-$c-brand-aux = #FF5722;
-$c-brand-alt = #FFCCBC;
-$c-accent = #4CAF50;
+$color-text: #222;
+$color-background: #fff;
 
-/* /Colors */
+$color-brand-primary: #4590ff;
+$color-brand-primary-light: #71c0ff;
+$color-brand-primary-dark: #2e77ff;
 
+$color-brand-secondary: #ff4f2f;
+$color-brand-secondary-light: #ff744e;
+$color-brand-secondary-dark: #e2321e;
 
-/* Line Height
+$color-accent: #71b524;
+$color-accent-light: #9cda21;
+$color-accent-dark: #4e8f22;
+
+/* /Branding */
+
+/* Shades */
+
+$color-text-light: lighten($color-text, 25%);
+$color-text-lighter: lighten($color-text, 50%);
+$color-text-lightest: lighten($color-text, 75%);
+
+/* /Shades */
+
+/* Inverse */
+
+$color-text-inverse: #f8f8f8;
+
+/* /Inverse */
+
+/* /Colors
 -------------------------------------------------- */
 
-$lh-reset = 1;
-$lh-normal = 1.5;
-$lh-tight = 1.25;
-$lh-loose = 1.8;
 
-/* /Line Height */
+/* Font family
+-------------------------------------------------- */
+
+$font-main: "Custom Font";
+$font-fallback: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* /Font family
+-------------------------------------------------- */
+
+
+/* Font size
+-------------------------------------------------- */
+
+$font-size-s: .6rem;
+$font-size-m: .8rem;
+$font-size-n: 1rem;
+$font-size-l: 1.2rem;
+$font-size-xl: 1.6rem;
+$font-size-hero: 2.2rem;
+
+/* /Font size
+-------------------------------------------------- */
+
+
+/* Line height
+-------------------------------------------------- */
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.75;
+
+/* /Line height
+-------------------------------------------------- */
 
 
 /* Grid
 -------------------------------------------------- */
 
-$gutter = 1rem;
+$grid-step = .25rem;
 
-/* /Grid */
+$gutter = $grid-step * 4;
+
+/* /Grid
+-------------------------------------------------- */
 
 
 /* Offset
 -------------------------------------------------- */
 
-$offset-step = .2rem;
+$offset-xxs = $grid-step;
+$offset-xs  = 2 * $grid-step;
+$offset-s   = 3 * $grid-step;
+$offset-n   = 4 * $grid-step;
+$offset-l   = 6 * $grid-step;
+$offset-xl   = 8 * $grid-step;
+$offset-xxl  = 10 * $grid-step;
 
-$offset-xxs = $offset-step;
-$offset-xs  = 2 * $offset-step;
-$offset-s   = 3 * $offset-step;
-$offset-m   = 4 * $offset-step;
-$offset-n   = 5 * $offset-step;
-$offset-l   = 7 * $offset-step;
-$offset-xl  = 10 * $offset-step;
-$offset-xxl = 15 * $offset-step;
-
-/* /Offset */
-
-
-/* Border Radius
+/* /Offset
 -------------------------------------------------- */
 
-$rad-btn = 3px;
-$rad-card = 8px;
 
-/* /Border Radius */
+/* Border radius
+-------------------------------------------------- */
+
+$radius-normal: 3px;
+$radius-medium: 8px;
+
+/* /Border radius
+-------------------------------------------------- */
 
 /* /Variables
 ---------------------------------------------------------------------------------- */

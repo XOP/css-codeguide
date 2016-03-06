@@ -11,24 +11,28 @@
 /* Media
 ---------------------------------------------------------------------------------- */
 
+@import "variables";
+@import "mixins";
+
 /*
 cssg
 
     media                       --selectable --selected
-        media__hld
-            media__img
+        media__container
+            media__image
                 [1]
-                img
+                <img>
 
                 [2]
                 <stub>
 
                 [/]
 
-            media__cnt
-                media__h
-                media__tx
-                [media__lk]
+            media__content
+                media__header
+                    <header-level-3>
+
+                media__text
 
 */
 
@@ -36,33 +40,74 @@ cssg
 /* Variables
 -------------------------------------------------- */
 
-// ...
+$media-bg-color: $color-brand-primary-light;
+$media-bg-color-hover: lighten($color-brand-primary-light, 25%);
 
-/* /Variables */
+/* /Variables
+-------------------------------------------------- */
 
 
 /* Layout
 -------------------------------------------------- */
 
-// ...
+.media {
+    display: flex;
 
-/* /Layout */
+    background: $media-bg-color;
+    cursor: pointer;
+
+    &:hover {
+        background: $media-bg-color-hover;
+        }
+    }
+
+/* /Layout
+-------------------------------------------------- */
 
 
 /* Image
 -------------------------------------------------- */
 
-// ...
+.media__image {
+    flex: 1 0 25%;
+    }
 
-/* /Image */
+/* /Image
+-------------------------------------------------- */
 
 
 /* Content
 -------------------------------------------------- */
 
-// ...
+.media__content {
+    flex: 1 1 auto;
+    }
 
-/* /Content */
+/* /Content
+-------------------------------------------------- */
+
+
+/* Content parts
+-------------------------------------------------- */
+
+/* Header */
+
+.media__header {
+    margin-bottom: $offset-s;
+    }
+
+/* /Header */
+
+/* Text */
+
+.media__text {
+    color: $color-text-light;
+    }
+
+/* /Text */
+
+/* /Content parts
+-------------------------------------------------- */
 
 /* /Media
 ---------------------------------------------------------------------------------- */

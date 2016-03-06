@@ -1,7 +1,19 @@
 /* Mixins
 ---------------------------------------------------------------------------------- */
 
-// ...
+@mixin cover ($position: absolute) {
+    position: $position;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+
+@mixin trunc () {
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    }
 
 /* /Mixins
 ---------------------------------------------------------------------------------- */

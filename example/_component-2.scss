@@ -4,65 +4,46 @@
 * created:      19/07/2015
 *
 * comments:         common media-element
-* @project class:   media
+* @project class:   media-list
 **/
 
 
 /* Media
 ---------------------------------------------------------------------------------- */
 
+@import "variables";
+@import "mixins";
+
 /*
 cssg
 
-    media                       --selectable --selected
-        media__hld
-            media__img
-                [1]
-                img
-
-                [2]
-                <stub>
-
-                [/]
-
-            media__cnt
-                media__h
-                media__tx
-                [media__lk]
+    media-list
+        media-list__item +
+            <media>
 
 */
-
-
-/* Variables
--------------------------------------------------- */
-
-// ...
-
-/* /Variables */
 
 
 /* Layout
 -------------------------------------------------- */
 
-// ...
+.media-list {
+    padding: $gutter;
+    }
 
-/* /Layout */
-
-
-/* Image
+/* /Layout
 -------------------------------------------------- */
 
-// ...
 
-/* /Image */
-
-
-/* Content
+/* Item
 -------------------------------------------------- */
 
-// ...
+.media-list__item {
+    margin: $offset-n 0;
+    }
 
-/* /Content */
+/* /Item
+-------------------------------------------------- */
 
 /* /Media
 ---------------------------------------------------------------------------------- */
