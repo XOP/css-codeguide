@@ -199,3 +199,19 @@ document
 
 ### Mixins (not a preprocessor thing yet)
 
+Mixing in terms of methodology means blending properties of one component to other.  
+Say, you have a _list item_, but you also need it to be _selectable item_.  
+There are different ways of achieving this, certainly. The "mixin" way allows to avoid extra styling. On the other hand, it's harder to maintain layout and there's probability of getting into code mess.
+Also, if you rely on component approach, this will not work.
+Description here is given for understanding principles. But this approach is **not recommended**.
+Simply put - avoid until unavoidable.
+
+CSS example: 
+```scss
+
+```
+
+HTML example:
+```html
+
+```
