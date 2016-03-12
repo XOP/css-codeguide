@@ -30,6 +30,7 @@ Let's get started!
 	* [Modifiers and states](#modifiers-and-states)
 	* [Utilities](#utilities)
 	* [JS interactivity](#js-interactivity)
+	* [Mixins (not a preprocessor thing yet)](#mixins-(not-a-preprocessor-thing-yet))
 * [Structure of СSS/preprocessor file](#structure-of-сsspreprocessor-file)
 	* [Files organizing](#files-organizing)
 	* [Code organization within a file](#code-organization-within-a-file)
@@ -114,6 +115,7 @@ One of the main goals is to help other front-end teams combat there issues with 
 
 ## Methodology
 
+
 ### Introduction
 
 In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
@@ -136,14 +138,14 @@ Current guide takes advantage of common [BEM principles](https://css-tricks.com/
 
 You can skip the following chapters and jump right to [file-structure](#structure-of-сsspreprocessor-file), but it is highly advised to go through this path of knowledge.
 
+
 ### Basics
 
 There's more than enough said about BEM, so it's no need to generate duplication.  
 One important thing to remember, though: like everything else, BEM is a living system, approach, that deals with architecture issues. Since environment evolves, architecture adapts. And so does BEM (or other methodology of your choice).  
 It has become very natural to see different takes on the same problem using same methodology.
 
-Taking that into consideration, here is  
-**Current state of things**:
+Taking that into consideration, here is the **current state of things**:
 
 
 ### Naming principles
@@ -167,12 +169,12 @@ CSS example:
 
 SCSS example: 
 ```scss
-$color-brand-primary: $eaf;
+$color-brand-primary: yellow;
 
 $line-height-regular: 1.5;
 ```
 
-Element children are determined by '__' - separator:
+Child elements are determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -212,7 +214,7 @@ States: 'disabled', 'in progress', 'hidden for user' etc.
 
 Useful hint: if you are not confident with the type of the feature - just use modifier and change later when it's clear.
 
-Modifiers are determined by '--' - separator:
+**Modifiers** are determined by '--' - separator:
 ```
 .element--mod
 .element--complex-name-mod
@@ -230,7 +232,7 @@ HTML example:
 <header class="header header--main">Title</header>
 ```
 
-States are determined by `is-` namespace:
+**States** are determined by `is-` namespace:
 ```
 .is-state
 ```
@@ -250,11 +252,12 @@ HTML example:
 <button class="button is-disabled">Sorry, can't do</button>
 ```
 
+
 ### Utilities
 
 Another concept to grasp - utility classes.  
 With some respect to Atomic CSS this is the last stand between your CSS and production code. Simply put - they can override other CSS properties and you won't want to override them.  
-Basic rule - they should complete only one simple task - usually this is hiding element or changing font-size. But actually this depends on you and your system.  
+Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
 Another rule - they can't be mixed with other classes - not in CSS.  
 Often they are assigned via JS.
 
@@ -279,16 +282,18 @@ HTML example:
 <section class="menu js-menu u-hidden-visually">...</section>
 ```
 
+
 ### JS interactivity
 
-JS-related classnames, which begin with the namespace `js-` are also called 'JS hooks' sometimes. Hooks are basically pointers or selectors and thus - can't have CSS rules applied to them.
+JS-related classnames, which begin with the namespace `js-` are also called 'JS hooks' sometimes.  
+Hooks are basically pointers or selectors and thus - can't have CSS rules applied to them.
 
 The reason to use this approach is the separation of concerns. It's easier to debug and maintain the markup apart from the script logic.
 
-Of course, it's a bit different story when using framework like [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/), so this point can be just passed.
+Of course, it's a bit different story when using frameworks like [React](https://facebook.github.io/react/) or [Angular](https://angularjs.org/), so this point can be just passed.
 
 CSS example: 
-```css
+```scss
 // may present in stylesheet 
 // but no styling applied
 // .js-test {}
@@ -304,6 +309,42 @@ JS example:
 document
     .querySelectorAll('.js-test')
     .classList.add('u-hidden');
+```
+
+
+### Mixins (not a preprocessor thing yet)
+
+Mixing in terms of methodology means blending properties of one component to other.  
+Say, you have a _list item_, but you also need it to be _selectable item_.  
+There are different ways of achieving this, certainly. The "mixin" way allows to avoid extra styling. On the other hand, it's harder to maintain layout and there's probability of getting into code mess.
+Also, if you rely on component approach, this will not work.
+Description here is given for understanding principles. But this approach is **not recommended**.
+Simply put - avoid until unavoidable.
+
+CSS example: 
+```scss
+
+.list-item {
+    padding: 2rem 0;
+}
+
+.selectable-item {
+    outline: 1rem solid #f00;
+}
+
+.list-item.selectable-item {
+    outline-offset: 1rem;
+}
+
+```
+
+HTML example:
+```html
+<ul>
+    <li class="list-item selectable-item">
+        List-Item selectable content
+    </li>
+</ul>
 ```
 
 
@@ -481,6 +522,10 @@ Choose the style and stick with it. Working in team implies identical code-styli
 -------------------------------------------------- */
 ```
 
+**Level 3** and **Level 4** normally would be used seldom. However, you may consider them for more complex component structures, something like part of a part of a part.
+
+**Level 3:**
+
 ```css
 /* Level 3 */
 
@@ -489,6 +534,8 @@ Choose the style and stick with it. Working in team implies identical code-styli
 /* /Level 3 */
 ```
 
+**Level 4:**
+
 ```css
 /* Level 4 */
 /* code */
@@ -496,9 +543,10 @@ Choose the style and stick with it. Working in team implies identical code-styli
 
 Common rules for structural comments:
 - Respect _level order_ - Level 2 should be placed only inside Level 1, Level 4 only inside Level 3 etc.
-- Nesting is prohibited, that means each new comment block organizes a "caret return" (this will be demonstrated later)
+- Indentation is prohibited, that means each new comment block organizes a "caret return" (this will be demonstrated later)
 
-Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
+To improve readability use 2 whitespaces between level 1 and level 2 blocks. Use 1 whitespace between all others.  
+Again, it's only a recommendation. Stick with what works best for you.
 
 ```css
 /* Module
@@ -506,7 +554,7 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
 .module {
 
-	}
+}
 
 /* Module - Part 1
 -------------------------------------------------- */
@@ -515,33 +563,29 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 
 .part-1 {
 
-	}
+}
 
 /* /Core */
 
 
-/* Modifications */
+/* Modification */
 
-.part-1.__mod-1 {
+.part-1--modifier {
 
-	}
+}
 
-.part-1.__mod-2 {
-
-	}
-
-/* /Modifications */
+/* /Modification */
 
 /* /Module - Part 1
 -------------------------------------------------- */
 
 
-/* Module 1 - Part 2
+/* Module - Part 2
 -------------------------------------------------- */
 
 .part-2 {
 
-	}
+}
 
 /*/ Module - Part 2
 -------------------------------------------------- */
@@ -550,14 +594,21 @@ Use 2 whitespaces between level 1 blocks and 1 whitespace between anothers.
 ---------------------------------------------------------------------------------- */
 ```
 
-You can use snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates).
-For example, for the first level comment just type `ch1 + tab`.
+:bulb:  
+
+It's not convenient to type these slashes and dashes by hand or copy paste the pieces of code all the time.  
+There's a bunch of tools to bring fun to the boredom.
+
+For instance, there are snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates). Based on [Live Templates](https://www.jetbrains.com/idea/help/live-templates.html) they are compliant with most of [Jetbrains](https://www.jetbrains.com/) products.
+
+:zap: 
+
+Snippets for Sublime Text is the work in progress.
 
 
 ### Document author
 
-Please have this snippet located at the beginning of your stylesheet, bless you!
-You don't code anonymously, right?
+Having this piece of code at the top of the file immediately answers many questions, especially when the file is to be seen for the first time.  
 
 ```scss
 /**
@@ -573,38 +624,40 @@ You don't code anonymously, right?
 
 Seems redundant, but you've got the idea.  
 Long intro is not always welcome (for instance in teams with _history_),
- so it's just a suggestion. Fields can easily be added ot removed at every stage of code-style integration.
+ so it's just a suggestion. Fields can easily be added ot removed at the every stage of code-style integration.
+
+There's also a snippet for that in [live templates repo](https://github.com/XOP/live-templates).
 
 
 ### CSSG
 
 The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for module documenting.
+In a nutshell, it's a meta-language that uses CSS comments for html (_-module_) documenting.
 
-Take a look at live example:
+Here's an example:
 
 ```css
 /*
 cssg
 
-	pform_map		                            $__active $__search $__map
-		pform_tags
-			<tico>
-
-		pform_map_search
-			<input>
-			suggest . __active
-				pform_map_img
-					<object>
-
-				pform_map_ac . lp
-				<sugggest-list>
-				pform_map_ac . lp . __active
+	media                   --special | --custom
+	    media__header
+	        ...
+	        
+	    media__content
+	        a . media__link
+	            <icon>
+	            
+	        media__text
+	            ...
 
 */
 ```
 
 It's pretty easy to start and hard to resist hereafter.
+
+It seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
+In fact, there's a common `bs` (bootstrap) template that just gets you ready with all basic things. 
 
 
 ### Helpers: TODO / FIXME
