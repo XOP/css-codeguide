@@ -209,9 +209,25 @@ Simply put - avoid until unavoidable.
 CSS example: 
 ```scss
 
+.list-item {
+    padding: 2rem 0;
+}
+
+.selectable-item {
+    outline: 1rem solid #f00;
+}
+
+.list-item.selectable-item {
+    outline-offset: 1rem;
+}
+
 ```
 
 HTML example:
 ```html
-
+<ul>
+    <li class="list-item selectable-item">
+        List-Item selectable content
+    </li>
+</ul>
 ```
