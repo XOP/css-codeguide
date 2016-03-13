@@ -242,19 +242,31 @@ Consider the following:
 *Due date* - it us pretty useful to understand the urgency or/and point of no return for this current code.
 ```css
 /*
-    FIXME: 07/08/2015
+    FIXME: 17.08.2015
 */
 ```
 
 Of course these things colud be easily combined:
 ```css
 /*
-    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 05/09/2015
+    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 21.09.2015
     check and fix dependent components
 */
 ```
 
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
+
+
+### How to comment code
+
+So far it should be pretty clear, how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
+
+Since it appears, your main concern with styleguide regards, will be code maintainability. Respect some basic rules and you will be safe:
+- comment magic numbers and tricky approaches
+- leave comments to improve readability
+- avoid unnecessary comments that harm readability
+- too many 'TODO'-s - it's time to refactor the whole thing
+- separate variables' and values' concerns
 
 
 ### Mandatory commenting
@@ -295,37 +307,8 @@ $offset = 10px;
 	}
 ```
 
-Finally - a common rule: *do not* rely on your memory or memory of your colleagues, just comment suspicious values. Thank yourself later.
+### To recap
 
-
-### Code comments
-
-**todo**
-
-Use these comments when to show context:
-```scss
-//
-// icon
-.block_ic {
-    ...
-    }
-
-//
-// img
-.block_img {
-    ...
-    }
-```
-
-Use these comments when to describe modificators:
-```scss
-// small button
-.btn.__small {
-    ...
-    }
-
-// full-width button
-.btn.__wide {
-    ...
-    }
-```
+Finally - a common rule: *do not* rely on your memory or memory of your colleagues.  
+Comment suspicious values.  
+Thank yourself later.
