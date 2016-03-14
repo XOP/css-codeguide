@@ -261,12 +261,49 @@ One extra healthy point here is to limit the number of **"todo"** expressions du
 
 So far it should be pretty clear, how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
 
-Since it appears, your main concern with styleguide regards, will be code maintainability. Respect some basic rules and you will be safe:
-- comment magic numbers and tricky approaches
+Since it appears, your main concern with regards to styleguide, will be code maintainability. Respect some basic rules and you will be safe:
 - leave comments to improve readability
 - avoid unnecessary comments that harm readability
 - too many 'TODO'-s - it's time to refactor the whole thing
+
+Also, there is a couple of best practicies, that worth mentioning:
+- always comment magic numbers and tricky approaches
 - separate variables' and values' concerns
+
+
+Some clarification needed on these things:
+
+**Always comment "magic numbers" and tricky approaches**
+
+Not mentioning typical hacks, some rules deserve being noticed.
+If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month (clue - you'll never do).
+
+```scss
+.project-class {
+    margin-top: 13px; // pixel-moving, probably?
+    font-size: 1.66rem; // reason for non-standard value
+    }
+```
+
+**Values and Variables - separation of concerns**
+
+When using variables it is important to pay attention to values that just *do not fit*.
+Generally it's a _bad idea_ to combine variables with regular units.
+
+Avoid situations like this:
+
+```scss
+$offset = 10px;
+
+.project-class {
+    padding: $offset ($offset + 3px); // by design
+	}
+```
+
+
+### Preprocessor syntax specifics
+
+todo
 
 
 ### Mandatory commenting
@@ -283,29 +320,6 @@ You might want to come up with your own list, but this is the nice starting poin
     }
 ```
 
-Always comment "magic numbers" and tricky approaches.
-Not mentioning typical hacks, some rules deserve being noticed.
-If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month (clue - you'll never do).
-
-```scss
-.project-class {
-    margin-top: 13px; // pixel-moving, probably?
-    font-size: 1.66rem; // reason for non-standard value
-    }
-```
-
-When using variables it is important to pay attention to values that just *do not fit*.
-Generally it's not a good idea to combine variables with regular units.
-
-Please avoid situations like this:
-
-```scss
-$offset = 10px;
-
-.project-class {
-    padding: $offset ($offset + 3px); // by design
-	}
-```
 
 ### To recap
 
