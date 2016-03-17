@@ -35,13 +35,13 @@ Taking that into consideration, here is the **current state of things**:
 
 ### Naming principles
 
-Through all the code there's dash-binding syntax being used:
+Through all the code there's **dash-binding syntax** being used:
 ```
 .element
 .element-long-name
 ```
 
-the same applies to variables, element descendants and everything else.
+The same applies to **element descendants** and everything else.
 
 CSS example: 
 ```css
@@ -52,6 +52,8 @@ CSS example:
 }
 ```
 
+This is also valid for the variables:
+
 SCSS example: 
 ```scss
 $color-brand-primary: yellow;
@@ -59,7 +61,10 @@ $color-brand-primary: yellow;
 $line-height-regular: 1.5;
 ```
 
-Child elements are determined by '__' - separator:
+:bulb:
+Please note that variables'-specific naming principles fully covered in the [corresponding chapter](#variables-naming).
+
+**Child elements** are determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -90,14 +95,15 @@ HTML example:
 ### Modifiers and states
 
 To help to get your head around the following:  
-modifiers - illustrate added or, well, _modified_ features of element   
-and states - is mostly about interactions.
+**modifiers** - illustrate added or, well, _modified_ features of element   
+and **states** - are mostly about interactions.
 
-For instance:  
+Examples:  
 Modifiers: 'decorated', 'large size', 'secondary type' etc.  
 States: 'disabled', 'in progress', 'hidden for user' etc.
 
-Useful hint: if you are not confident with the type of the feature - just use modifier and change later when it's clear.
+:bulb:
+If you are not confident with the type of the feature - just use modifier and change it later when things get clear.
 
 **Modifiers** are determined by '--' - separator:
 ```
@@ -140,7 +146,7 @@ HTML example:
 
 ### Utilities
 
-Another concept to grasp - utility classes.  
+Another concept to grasp - **utility classes**.  
 With some respect to Atomic CSS this is the last stand between your CSS and production code. Simply put - they can override other CSS properties and you won't want to override them.  
 Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
 Another rule - they can't be mixed with other classes - not in CSS.  

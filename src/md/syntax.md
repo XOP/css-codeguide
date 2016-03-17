@@ -21,7 +21,7 @@ Most of these rules are supported by various IDEs:
 }
 ```
 
-### Best practicies
+### Best practices
 
 The following list summarizes frequently used best practicies for writing and maintaining CSS:
 - prefer `rem`-s or/and `pixel` values over `em`-s
@@ -170,6 +170,11 @@ See example below to see how all of selectors live together.
 /* /Elem
 -------------------------------------------------- */
 ```
+
+
+### @-rules
+
+todo
 
 
 ### Exceptions

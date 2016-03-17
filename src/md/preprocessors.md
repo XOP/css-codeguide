@@ -163,231 +163,22 @@ Do not use structural comments inside nesting. If you want to do that - check ou
 -------------------------------------------------- */
 ```
 
-### Variables
+### Variables naming
 
-All variables should start with `$` and written in camel case. We split variables into 3 categories:
-
-* Global
-* Module
-* Local
-
-Global variables have `$global` namespace and it can be used in each files.
-We use grunt to make files ending with `.global.styl` visible for a whole project.
-
-*Note, that alignment and styling of this files is the same with javascript.*
-
-```js
-$global = {
-    colors: {
-        default: #333,
-        inverted: #ccc,
-        ...
-    },
-
-    backgrounds: {
-        basic: #fff,
-        light: #f0f0f0,
-        ...
-    },
-
-    ...
-}
-```
-
-Later in this file you can set up aliases for a short declaration, like this:
-
-```scss
-/* global.styl */
-...
-
-$bg = $global.backgrounds;
+todo
 
 
-/* anywhere else */
-.class {
-    background: $bg.basic;
-    }
-```
+### Variables maintenance
 
-Module vars is a special case of global vars and only used inside certain module. It can also be placed in separate *global* file.
+todo
 
-```scss
-$toolbar {
-    height: {
-        wide: 40px,
-        thin: 20px
-    },
-
-    colors: {
-        item: #333,
-        hover: #eb722e,
-        selected: #b84819
-    },
-
-    ...
-}
-```
-
-Local variables is used in local module file and located in *vars* section:
-
-```scss
-/* Vars
--------------------------------------------------- */
-
-$radius = 3px;
-
-$ff = arial, helvetica, sans-serif;
-
-$heightSmall = 24px;
-$heightBig = 32px;
-
-/* /Vars
--------------------------------------------------- */
-```
 
 ### Mixins
 
+todo
+
 When you use mixins - write them first in a ruleset.
-```scss
-/* bad */
-.selector {
-    key: value;
 
-    mixin();
-    mixin2();
-    }
-
-/* good */
-.selector {
-    mixin();
-    mixin2();
-
-    key: value;
-    }
-```
-
-Here are some useful set of mixins that we are using:
-
-```scss
-/* Utilities
--------------------------------------------------- */
-
-//
-// clearfix - modern way
-clearfix() {
-	&:before,
-	&:after {
-		content: '';
-		display: table;
-		}
-
-	&:after {
-		clear: both;
-		}
-	}
-
-//
-// vertical aligning using pseudo-elements
-// 2 mixins - va() && va_rarget()
-// @height - implicitly set container height
-va($height = 100%){
-    &:after {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        min-height: 100%;
-        height: $height;
-        }
-    }
-
-//
-// ellip / ellip-i
-// @inline - inline element
-// @boxSizing - apply if used with paddings
-ellip($inline = false, $boxSizing = false){
-
-    if $inline {
-        display: inline-block;
-        }
-
-    if $boxSizing {
-        box-sizing: border-box;
-        }
-
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    }
-
-/* /Utilities
--------------------------------------------------- */
-
-/* Special
--------------------------------------------------- */
-
-//
-// render in separate layer
-// hack to balance CPU/GPU load
-// example: gpuRender(chrome, mac-chrome)
-gpuRender($browsers){
-    $i = 0;
-    $comma = ",";
-    $rule = "";
-
-    for $b in arguments {
-        $i += 1;
-        if ($i == length(arguments)){
-            $comma = "";
-            }
-
-        $rule += unquote(".") + $b + unquote(" &") + unquote($comma);
-        }
-
-    {$rule} {
-        backface-visibility: hidden;
-        }
-    }
-
-/* /Special
--------------------------------------------------- */
-
-/* Animation
--------------------------------------------------- */
-
-animFadeIn($on){
-	if $on {
-		transition: $animDuration opacity, visibility 0s $animDuration;
-		}
-    }
-
-animFadeInCallback($on){
-    if $on {
-        transition-delay: 0s;
-        }
-    }
-
-animColor($on){
-	if $on {
-		transition: $animDuration color;
-		}
-    }
-
-animBackgroundColor($on){
-	if $on {
-		transition: $animDuration background-color;
-		}
-    }
-
-animBorderColor($on){
-    if $on {
-        transition: $animDuration border-color;
-        }
-    }
-
-/* /Animation
--------------------------------------------------- */
-```
 
 ### Extends
 
@@ -395,13 +186,3 @@ animBorderColor($on){
 > Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
 For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
-### Media queries
-
-Nothing special here, just use the snippet showing below:
-```scss
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
-	.selector {
-	    ...
-	    }
-	}
-```
