@@ -35,6 +35,10 @@ Taking that into consideration, here is the **current state of things**:
 
 ### Naming principles
 
+Taking into consideration amount of naming patterns (dashes, underscores, camel-/snake-/kebab-/etc- case) you may end up with hundreds of variations.
+
+This is why it is important to define these fundamentals _before_ getting feet wet.
+
 Through all the code there's **dash-binding syntax** being used:
 ```
 .element
@@ -142,6 +146,50 @@ HTML example:
 ```html
 <button class="button is-disabled">Sorry, can't do</button>
 ```
+
+To clarify some things:  
+Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics. This is the reason some other methodologies deviate from BEM pattern.
+
+:bulb:
+There are several ways to define modifiers/states classnames as well!
+
+Pattern 1:
+```css
+.button {
+}
+
+/* modifier */
+.button--main {
+}
+
+/* state */
+.button--disabled {
+}
+
+/* also a state! */
+.button--is-disabled {
+}
+``
+
+Pattern 2:
+```css
+.button {
+}
+
+/* modifier */
+.button.--main {
+}
+
+/* state */
+.button.--disabled {
+}
+
+/* or another way */
+.button.--is-disabled {
+}
+```
+
+...todo
 
 
 ### Utilities
