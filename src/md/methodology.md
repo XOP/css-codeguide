@@ -148,12 +148,13 @@ HTML example:
 ```
 
 To clarify some things:  
-Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics. This is the reason some other methodologies deviate from BEM pattern.
+Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics.  
+This is the reason some other methodologies deviate from BEM pattern.
 
 :bulb:
-There are several ways to define modifiers/states classnames as well!
+There are several ways to define modifier-/state- classnames as well!
 
-Pattern 1:
+Pattern A:
 ```css
 .button {
 }
@@ -171,7 +172,7 @@ Pattern 1:
 }
 ``
 
-Pattern 2:
+Pattern B:
 ```css
 .button {
 }
@@ -184,12 +185,21 @@ Pattern 2:
 .button.--disabled {
 }
 
-/* or another way */
+/* and another way */
 .button.--is-disabled {
 }
 ```
 
-...todo
+Pros:  
+A - lesser specificity
+B - flexible application
+
+Cons:
+A - hard times combining classes
+B - common namespace
+
+Recommendations are pretty straightforward:  
+use pattern A unless encounter a firm reason for switching to pattern B. 
 
 
 ### Utilities
