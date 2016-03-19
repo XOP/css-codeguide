@@ -68,7 +68,7 @@ css/
        Article.jsx
    ...
 ```
- 
+
 
 ### Code organization within a file
 

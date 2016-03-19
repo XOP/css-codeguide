@@ -56,7 +56,7 @@ Here's the legend:
 :zap: - warning or attention required  
 :page_with_curl: - code follow-up
 
-3\. "I'm reading and yet can not understand a thing!". Well I've been there too. Let's have a talk about it. Welcome to [issues](https://github.com/XOP/css-codeguide/issues)! 
+3\. "I'm reading and yet can not understand a thing!". Well I've been there too. Let's have a talk about it. Waiting for [your questions](https://github.com/XOP/css-codeguide/issues)! 
 
-4\. Feedback is much appreciated!  
-One of the main goals is to help other front-end teams combat there problems with documentation. So don't hesitate and [contact](https://github.com/XOP/css-codeguide/issues) at ease.
+4\. Feedback is much appreciated as well!  
+One of the main goals here is to help other front-end teams combat there problems with documentation. So don't hesitate and [contact](https://github.com/XOP/css-codeguide/issues) at ease.
