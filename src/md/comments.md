@@ -184,8 +184,9 @@ There's also a snippet for that in [live templates repo](https://github.com/XOP/
 
 ### CSSG
 
-The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for html (_-module_) documenting.
+The main idea behind [CSSG](http://cssg.rocks) project is bringing extra transparency to the common CSS codebase.
+
+Simply put, it's a meta-language that uses CSS comments for html (_-module_) documenting.
 
 Here's an example:
 
@@ -209,7 +210,7 @@ cssg
 
 It's pretty easy to start and hard to resist hereafter.
 
-It seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
+Seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
 In fact, there's a common `bs` (bootstrap) template that just gets you ready with all basic things. 
 
 
@@ -259,19 +260,18 @@ One extra healthy point here is to limit the number of **"todo"** expressions du
 
 ### How to comment code
 
-So far it should be pretty clear, how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
+So far it should be pretty clear how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
 
 Since it appears, your main concern with regards to styleguide, will be code maintainability. Respect some basic rules and you will be safe:
 - leave comments to improve readability
 - avoid unnecessary comments that harm readability
 - too many 'TODO'-s - it's time to refactor the whole thing
 
-Also, there is a couple of best practicies, that worth mentioning:
+Also, there is a couple of best practices, that worth mentioning:
 - always comment magic numbers and tricky approaches
 - separate variables' and values' concerns
 
-
-Some clarification needed on these things:
+Some clarification is needed here:
 
 **Always comment "magic numbers" and tricky approaches**
 
@@ -303,7 +303,46 @@ $offset = 10px;
 
 ### Preprocessor syntax specifics
 
-todo
+Preprocessors introduce JS-style of comments:
+
+```scss
+/* traditional comment */
+.foo {
+}
+
+// "inline" comment
+.bar {
+}
+```
+
+"Inline" comments can be used in the absolutely same way along with the "block" comments.  
+Possible, but _not desired_ outcome of that:
+
+```scss
+//
+// Foo component
+.foo {
+    color: $color-main;
+    
+    overflow: hidden !important; // need this to override inline
+    
+    /* context */
+    .bar {
+        padding: 1rem;
+    }
+}
+
+/*
+    todo: replace Foo with Tar
+*/
+
+// ...
+```
+
+Example is exaggerated on purpose.  
+The point is - proper styleguide conventions required.
+
+...
 
 
 ### Mandatory commenting

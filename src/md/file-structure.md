@@ -2,7 +2,7 @@
 
 CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
-Pros and cons of these approaches lay beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
+Pros and cons of these approaches are beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
 
 Principles described below can be successfully adopted and integrated into existing system.
 
