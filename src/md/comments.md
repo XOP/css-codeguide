@@ -15,7 +15,7 @@ There are generally _two_ types of comments:
 :page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 These comments help to keep your CSS organized, consistent and way more readable.
-Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
+Consider each inner level a deeper nested element or modifier - this metaphor helps to get the image.
 
 **Level 1** is typically a component / file title.
 
@@ -287,7 +287,7 @@ If values like `z-index: 14;` or `margin: -137px auto;` make total sense today -
 
 **Values and Variables - separation of concerns**
 
-When using variables it is important to pay attention to values that just *do not fit*.
+When using variables it is important to pay attention to values that just _do not fit_.
 Generally it's a _bad idea_ to combine variables with regular units.
 
 Avoid situations like this:
@@ -315,19 +315,20 @@ Preprocessors introduce JS-style of comments:
 }
 ```
 
-"Inline" comments can be used in the absolutely same way along with the "block" comments.  
+"Inline" comments can be used in the absolutely same manner along with the "block" comments.
 Possible, but _not desired_ outcome of that:
 
 ```scss
 //
 // Foo component
 .foo {
-    color: $color-main;
-    
     overflow: hidden !important; // need this to override inline
-    
-    /* context */
-    .bar {
+
+    color: $color-main;
+
+
+    /* parent context */
+    .bar & {
         padding: 1rem;
     }
 }
@@ -335,20 +336,62 @@ Possible, but _not desired_ outcome of that:
 /*
     todo: replace Foo with Tar
 */
-
-// ...
+.bar {
+    padding: 0 calc(100% - 980px); /* page restrictions */
+}
 ```
 
-Example is exaggerated on purpose.  
-The point is - proper styleguide conventions required.
+This example is exaggerated on purpose.
+The point is - to prevent visual pollution some code-guide conventions required.
 
-...
+Here's the proposition:
+1. _Everywhere but inside_ of curly braces (consider "rule scope") use "block" comments. Practical examples can be found [earlier in this chapter](#structural-comments).
+2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, & - selection etc.
+
+With these in mind, let's "fix" the previous example:
+
+```scss
+/* Foo
+-------------------------------------------------- */
+
+.foo {
+    overflow: hidden !important; // need this to override inline
+
+    color: $color-main;
+
+    // parent context
+    .bar & {
+        padding: 1rem;
+    }
+}
+
+/* /Foo
+-------------------------------------------------- */
+
+
+/* Bar
+-------------------------------------------------- */
+
+/* TODO: replace with Tar */
+
+.bar {
+    padding: 0 calc(100% - 980px); // page restrictions
+}
+
+/* /Bar
+-------------------------------------------------- */
+```
+
+Don't mind the "&"-usage, nesting and all other formatting specifics yet.
+This is the scope of the [next chapter](#syntax--formatting).
 
 
 ### Mandatory commenting
 
-There is pretty brief list of rules that *do worth* commenting.
-You might want to come up with your own list, but this is the nice starting point.
+There is pretty brief list of rules that _do worth_ commenting.
+You might want to come up with your own list, but here's the nice starting point:
+
+...
 
 ```scss
 .project-class {
@@ -362,6 +405,9 @@ You might want to come up with your own list, but this is the nice starting poin
 
 ### To recap
 
-Finally - a common rule: *do not* rely on your memory or memory of your colleagues.  
-Comment suspicious values.  
+Follow a common rule:
+
+> _Do not_ rely on your memory or memory of your colleagues
+
+Just comment suspicious values.
 Thank yourself later.
