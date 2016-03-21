@@ -21,6 +21,7 @@ Most of these rules are supported by various IDEs:
 }
 ```
 
+
 ### Best practices
 
 The following list summarizes frequently used best practicies for writing and maintaining CSS:
@@ -95,6 +96,7 @@ Anyhow, here is recommended style:
 	animation-name: myAnimation;
 }
 ```
+
 
 ### Combining of selectors
 
