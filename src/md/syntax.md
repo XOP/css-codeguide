@@ -6,11 +6,15 @@ todo: code follow-up
 
 Let's define the very basics for formatting.  
 Most of these rules are supported by various IDEs:
+
 - 4 spaces for indentation
 - new line for each declaration ('block'-notation)
 - every declaration ends with semicolon
 - double quotes where needed
 - prefer shorthands over multiple properties
+- spaces and braces on their places
+
+This can be simply illustrated with the following code:
 
 ```css
 .foo {
@@ -20,21 +24,6 @@ Most of these rules are supported by various IDEs:
     font-family: "Custom Font", Arial, sans-serif;
 }
 ```
-
-
-### Best practices
-
-The following list summarizes frequently used best practicies for writing and maintaining CSS:
-- prefer `rem`-s or/and `pixel` values over `em`-s
-- prefer component approach over random and overall
-- keep component-specific styles in separate files
-- break-up complex components
-
-Preprocessor-related:
-- keep global variables in one or multiple _variable_-only files
-- avoid local/custom variables
-- if needed, keep them clearly commented and separated from globals
-- avoid variable mutations
 
 
 ### Grouping of properties
@@ -98,7 +87,22 @@ Anyhow, here is recommended style:
 ```
 
 
-### Combining of selectors
+### Best practices
+
+The following list summarizes frequently used best practices for writing and maintaining CSS:
+- prefer `rem`-s or/and `pixel` values over `em`-s
+- prefer component approach over random and overall
+- keep component-specific styles in separate files
+- break-up complex components
+
+Preprocessor-related:
+- keep global variables in one or multiple _variable_-only files
+- avoid local/custom variables
+- if needed, keep them clearly commented and separated from globals
+- avoid variable mutations
+
+
+### Multiple selectors
 
 Here you can find the way how to organize selectors in real life. Typically we separate different types of selectors:
 * pseudo elements and states

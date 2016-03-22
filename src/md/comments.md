@@ -383,24 +383,22 @@ With these in mind, let's "fix" the previous example:
 ```
 
 Don't mind the "&"-usage, nesting and all other formatting specifics yet.
-This is the scope of the [next chapter](#syntax--formatting).
+This is the scope of the [following chapter](#syntax--formatting).
 
 
 ### Mandatory commenting
 
-There is pretty brief list of rules that _do worth_ commenting.
-You might want to come up with your own list, but here's the nice starting point:
+Some CSS rules _deserve_ to be commented. This practice has been proved by time.
+There is pretty brief list of such rules, which sure is not dogmatic.
+
+Feel free to come up with your own list, here's the nice starting point:
+
+- `z-index`
+- `margin (with negative value)`
+- `overflow: hidden`
+- `translate3d(0)` or `-webkit-backface-visibility`
 
 ...
-
-```scss
-.project-class {
-    z-index: 31; // reason for value
-    margin-left: -616px; // reason for negative margin
-    -webkit-backface-visibility: hidden; // reason for hack
-    overflow: hidden; // reason for unsafe value 
-    }
-```
 
 
 ### To recap
