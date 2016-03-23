@@ -6,9 +6,9 @@ CSS Codeguide
 
 :construction::construction::construction::construction::construction::construction::construction::construction::construction::construction:
 
-> :warning: WORK IN PROGRESS
-> some parts may be missing
-> another require revision
+> :warning: WORK IN PROGRESS  
+> some parts may be missing  
+> another require revision  
 > **stay tuned for major updates!**
 
 :construction::construction::construction::construction::construction::construction::construction::construction::construction::construction:
