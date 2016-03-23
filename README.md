@@ -23,6 +23,10 @@ Let's get started!
 * [Intro](#intro)
 	* [Why another Guide](#why-another-guide)
 	* [About](#about)
+* [Main principles](#main-principles)
+	* [The first](#the-first)
+	* [The second](#the-second)
+	* [What's more](#what's-more)
 * [Methodology](#methodology)
 	* [Introduction](#introduction)
 	* [Basics](#basics)
@@ -39,22 +43,31 @@ Let's get started!
 	* [Document author](#document-author)
 	* [CSSG](#cssg)
 	* [Helpers: TODO / FIXME](#helpers-todo--fixme)
+	* [How to comment code](#how-to-comment-code)
+	* [Preprocessor syntax specifics](#preprocessor-syntax-specifics)
 	* [Mandatory commenting](#mandatory-commenting)
-	* [Code comments](#code-comments)
+	* [To recap](#to-recap)
 * [Syntax & formatting](#syntax--formatting)
 	* [Basic formatting](#basic-formatting)
 	* [Grouping of properties](#grouping-of-properties)
 	* [Vendor prefixes](#vendor-prefixes)
-	* [Combining of selectors](#combining-of-selectors)
+	* [Best practices](#best-practices)
+	* [Multiple selectors](#multiple-selectors)
+	* [@-rules](#@-rules)
 	* [Exceptions](#exceptions)
 	* [Returning of cascade](#returning-of-cascade)
 * [Syntax using preprocessors](#syntax-using-preprocessors)
 	* [Common rules](#common-rules)
 	* [Nesting](#nesting)
-	* [Variables](#variables)
+	* [Variables naming](#variables-naming)
+	* [Variables maintenance](#variables-maintenance)
 	* [Mixins](#mixins)
 	* [Extends](#extends)
-	* [Media queries](#media-queries)
+* [Tools](#tools)
+	* [Task runners](#task-runners)
+	* [Webpack](#webpack)
+	* [Variables export](#variables-export)
+	* [PostCSS all around](#postcss-all-around)
 
 <!--mdMenu-->
 
@@ -99,18 +112,76 @@ But anyhow, it would be a great thing to at least take a look at other examples 
 
 Couple welcome words about code guide specifics to take the most from using it:
 
-1. Documentation provided is written with regards on using CSS preprocessor. 
-As the most popular and widespread one SCSS is used in documentation.  
-Please notice, that common conceptions are valid for vanilla CSS in the first place.
+1\. Documentation is written with regards on using CSS preprocessor. 
+As the most popular and widespread one, **[SASS](http://sass-lang.com/) (SCSS syntax)** is used for illustrating purposes.  
+Please notice, that common conceptions are also valid for **vanilla CSS** in the first place.
 
-If you are not into preprocessors yet, check out the following popular tools you will most certainly find useful: [SASS/SCSS](http://sass-lang.com/), [LESS](http://lesscss.org/), [Stylus](https://learnboost.github.io/stylus/), [PostCSS](https://github.com/postcss/postcss).
+:bulb:  
+If you are not into preprocessors yet, check out the following popular tools you will most certainly find useful:
 
-2. Current code guide is the result of the front-end teams experience, so it might have project-specific and environment assumptions. To make it more friendly there will be useful links to cover blank spots and useful tips on some topics.
+- [SASS/SCSS](http://sass-lang.com/)
+- [LESS](http://lesscss.org/)
+- [Stylus](https://learnboost.github.io/stylus/)
+- [PostCSS](https://github.com/postcss/postcss)
 
-3. Feel free to fork it, edit and use inside your project. Feedback is much appreciated!  
-One of the main goals is to help other front-end teams combat there issues with documentation. So don't hesiate and contact at ease.
+2\. Current code guide is the result of several front-end teams experience, so it might have project-specific and environment assumptions. To make it more friendly there will be plenty of useful links to cover blank spots and useful tips on some topics.
 
-4. If you have any questions, comments or suggestions, please open an issue.
+Here's the legend:  
+:bulb: - useful tip  
+:zap: - warning or attention required  
+:page_with_curl: - code follow-up
+
+3\. "I'm reading and yet can not understand a thing!". Well I've been there too. Let's have a talk about it. Waiting for [your questions](https://github.com/XOP/css-codeguide/issues)! 
+
+4\. Feedback is much appreciated as well!  
+One of the main goals here is to help other front-end teams combat there problems with documentation. So don't hesitate and [contact](https://github.com/XOP/css-codeguide/issues) at ease.
+
+
+## Main principles
+
+As it comes from the title, this chapter is about principal ways to do CSS.
+
+There are **two major trends** nowadays.
+
+
+### The first 
+
+...is the oldest school and thus most popular.  
+It can be described with the following statements:
+
+- one or several stylesheets in the `<head>` via the `<link>` tag
+- `normalize.css` or `reset.css` prior to the main CSS
+- some rules may be inlined in `<style>` to deal with the _browser issues_ 
+- the order of rules is extremely important 
+- the cascade takes it's toll as well
+- inline styling is far less prominent and used only for specific features
+
+
+### The second
+
+...is heavily influenced by developing of JS frameworks, namely [React JS](https://facebook.github.io/react/) and the following spreading of corresponding CSS conceptions - [Radium](https://github.com/FormidableLabs/radium), [CSS modules](https://github.com/css-modules/css-modules) and some others.
+
+What is this all about?
+
+- CSS is controlled and maintained via JS
+- inline styles over traditional external ones
+- cascade and rules order almost do not matter
+
+In fact, [here](https://speakerdeck.com/vjeux/react-css-in-js) is the presentation, covering all interesting points.
+
+
+### What's more
+
+Of course different combinations of the mentioned practices exist and appear from time to time.  
+Further in the guide we'll stick to the classic approach.
+
+Two reasons for backing this up:
+
+1. Traditional system is way more popular and requires more attention
+2. Second model is playing mostly on the JS field and slightly off the topic
+ 
+This does not mean that supporters of the latter won't find anything useful here.  
+In many ways CSS remains the same and these systems have many points of contact. 
 
 
 ## Methodology
@@ -118,7 +189,7 @@ One of the main goals is to help other front-end teams combat there issues with 
 
 ### Introduction
 
-In a nutshell, CSS methodology prescribes how CSS should be written, therefore defining the scalability, maintainability and architecture in total.  
+In a nutshell, CSS methodology prescribes _how CSS should be written_, therefore defining the scalability, maintainability and architecture in total.  
 In fact, architecture is often named methodology and vice versa.
 
 It also important to mention that this all does not make any sense if in the end results in productivity deterioration. Consider architecture in terms of convenience and development speed as well.
@@ -131,32 +202,40 @@ There is quiet a number of methodologies to choose from:
 - [Suit CSS](http://suitcss.github.io/)
 - [MCSS](http://operatino.github.io/MCSS/en/)
 
-Some of them just provide rules and instructions, others propose the whole workflow to acquire.  
-Feel free to investigate what suits your needs best!
+...and this is only the majority.
+
+Some of them just provide rules and instructions, others propose the whole workflow to acquire.
 
 Current guide takes advantage of common [BEM principles](https://css-tricks.com/bem-101/) and also has few traits from [Suit CSS](http://suitcss.github.io/).
 
-You can skip the following chapters and jump right to [file-structure](#structure-of-сsspreprocessor-file), but it is highly advised to go through this path of knowledge.
+If you feel yourself pretty confident around methodologies and BEM in particular, jump right to [file-structure](#structure-of-сsspreprocessor-file) section.  
+Nevertheless it is highly advised to go through this path of knowledge.
 
 
 ### Basics
 
 There's more than enough said about BEM, so it's no need to generate duplication.  
-One important thing to remember, though: like everything else, BEM is a living system, approach, that deals with architecture issues. Since environment evolves, architecture adapts. And so does BEM (or other methodology of your choice).  
+One important thing to remember, though: like everything else, BEM is a living system, approach, that deals with architecture issues. Since environments evolve, architecture adapts. And so does BEM (or other methodology of your choice).  
 It has become very natural to see different takes on the same problem using same methodology.
 
-Taking that into consideration, here is the **current state of things**:
+:zap:  
+This is actually very important, because it helps to grasp further materials in depth.  
+So don't mind to to read through that part again and again until it becomes clear.
 
 
 ### Naming principles
 
-Through all the code there's dash-binding syntax being used:
+In respect of naming patterns' variety (dashes, underscores, camel-/snake-/kebab-/etc- case) you may end up with hundreds of variations.
+
+This is why it is important to define these fundamentals _before_ getting feet wet.
+
+Through all the code there's **dash-binding syntax** being used:
 ```
 .element
 .element-long-name
 ```
 
-the same applies to variables, element descendants and everything else.
+The same applies to **element descendants** and everything else.
 
 CSS example: 
 ```css
@@ -167,6 +246,8 @@ CSS example:
 }
 ```
 
+This is also valid for the variables:
+
 SCSS example: 
 ```scss
 $color-brand-primary: yellow;
@@ -174,7 +255,10 @@ $color-brand-primary: yellow;
 $line-height-regular: 1.5;
 ```
 
-Child elements are determined by '__' - separator:
+:bulb:
+Please note that variables'-specific naming principles fully covered in the [corresponding chapter](#variables-naming).
+
+**Child elements** are determined by '__' - separator:
 ```
 .element__child
 .element__child-long-name
@@ -205,14 +289,15 @@ HTML example:
 ### Modifiers and states
 
 To help to get your head around the following:  
-modifiers - illustrate added or, well, _modified_ features of element   
-and states - is mostly about interactions.
+**modifiers** - illustrate added or, well, _modified_ features of element   
+and **states** - are mostly about interactions.
 
-For instance:  
+Examples:  
 Modifiers: 'decorated', 'large size', 'secondary type' etc.  
 States: 'disabled', 'in progress', 'hidden for user' etc.
 
-Useful hint: if you are not confident with the type of the feature - just use modifier and change later when it's clear.
+:bulb:
+If you are not confident with the type of the feature - just use modifier and change it later when things get clear.
 
 **Modifiers** are determined by '--' - separator:
 ```
@@ -252,11 +337,66 @@ HTML example:
 <button class="button is-disabled">Sorry, can't do</button>
 ```
 
+To clarify some things:  
+Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics.  
+This is the reason some other methodologies deviate from BEM pattern.
+
+:bulb:  
+There are several ways to define modifier-/state- classnames as well!
+
+Pattern A:
+```css
+.button {
+}
+
+/* modifier */
+.button--main {
+}
+
+/* state */
+.button--disabled {
+}
+
+/* also a state! */
+.button--is-disabled {
+}
+``
+
+Pattern B:
+```css
+.button {
+}
+
+/* modifier */
+.button.--main {
+}
+
+/* state */
+.button.--disabled {
+}
+
+/* and another way */
+.button.--is-disabled {
+}
+```
+
+Pros:  
+A - lesser specificity
+B - flexible application
+
+Cons:
+A - hard times combining classes
+B - common namespace
+
+Recommendations are pretty straightforward:  
+use pattern A unless encounter a firm reason for switching to pattern B. 
+
 
 ### Utilities
 
-Another concept to grasp - utility classes.  
-With some respect to Atomic CSS this is the last stand between your CSS and production code. Simply put - they can override other CSS properties and you won't want to override them.  
+Another concept to grasp - **utility classes**.  
+With some respect to Atomic CSS this is the last stand between your CSS and production code. In other words - they can override other CSS properties and you won't want to override them.
+
 Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
 Another rule - they can't be mixed with other classes - not in CSS.  
 Often they are assigned via JS.
@@ -314,11 +454,14 @@ document
 
 ### Mixins (not a preprocessor thing yet)
 
-Mixing in terms of methodology means blending properties of one component to other.  
+Mixing in terms of methodology means blending properties of one component to another.  
 Say, you have a _list item_, but you also need it to be _selectable item_.  
-There are different ways of achieving this, certainly. The "mixin" way allows to avoid extra styling. On the other hand, it's harder to maintain layout and there's probability of getting into code mess.
-Also, if you rely on component approach, this will not work.
-Description here is given for understanding principles. But this approach is **not recommended**.
+There are different ways of achieving this, certainly. 
+
+The "mixin" way allows to avoid extra styling. On the other hand, it's harder to maintain layout and there's probability of getting into code mess.
+Also, if you rely on component approach, this is not what you need to acquire.
+
+Description here is given for understanding principles. But this approach is **not recommended**.  
 Simply put - avoid until unavoidable.
 
 CSS example: 
@@ -352,7 +495,7 @@ HTML example:
 
 CSS structure is the kernel of the architecture.   
 Different methodologies propose different ways of organizing CSS files.  
-Pros and cons of these approaches lay beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
+Pros and cons of these approaches are beyond the topic, so let's touch it slightly and focus on structure of single CSS file. 
 
 Principles described below can be successfully adopted and integrated into existing system.
 
@@ -418,7 +561,7 @@ css/
        Article.jsx
    ...
 ```
- 
+
 
 ### Code organization within a file
 
@@ -462,7 +605,7 @@ There are generally _two_ types of comments:
 :page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
 These comments help to keep your CSS organized, consistent and way more readable.
-Consider each inner level a deeper nested element or modificator - this metaphor helps to get the image.
+Consider each inner level a deeper nested element or modifier - this metaphor helps to get the image.
 
 **Level 1** is typically a component / file title.
 
@@ -631,8 +774,9 @@ There's also a snippet for that in [live templates repo](https://github.com/XOP/
 
 ### CSSG
 
-The main idea behind [CSSG](http://cssg.rocks) project is bringing transparency to the common CSS codebase.
-In a nutshell, it's a meta-language that uses CSS comments for html (_-module_) documenting.
+The main idea behind [CSSG](http://cssg.rocks) project is bringing extra transparency to the common CSS codebase.
+
+Simply put, it's a meta-language that uses CSS comments for html (_-module_) documenting.
 
 Here's an example:
 
@@ -656,7 +800,7 @@ cssg
 
 It's pretty easy to start and hard to resist hereafter.
 
-It seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
+Seems obvious now, but there's a snippet for that as well in the [live templates repo](https://github.com/XOP/live-templates).  
 In fact, there's a common `bs` (bootstrap) template that just gets you ready with all basic things. 
 
 
@@ -689,14 +833,14 @@ Consider the following:
 *Due date* - it us pretty useful to understand the urgency or/and point of no return for this current code.
 ```css
 /*
-    FIXME: 07/08/2015
+    FIXME: 17.08.2015
 */
 ```
 
 Of course these things colud be easily combined:
 ```css
 /*
-    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 05/09/2015
+    TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 21.09.2015
     check and fix dependent components
 */
 ```
@@ -704,21 +848,23 @@ Of course these things colud be easily combined:
 One extra healthy point here is to limit the number of **"todo"** expressions due to better organization.
 
 
-### Mandatory commenting
+### How to comment code
 
-There is pretty brief list of rules that *do worth* commenting.
-You might want to come up with your own list, but this is the nice starting point.
+So far it should be pretty clear how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
 
-```scss
-.project-class {
-    z-index: 31; // reason for value
-    margin-left: -616px; // reason for negative margin
-    -webkit-backface-visibility: hidden; // reason for hack
-    overflow: hidden; // reason for unsafe value 
-    }
-```
+Since it appears, your main concern with regards to styleguide, will be code maintainability. Respect some basic rules and you will be safe:
+- leave comments to improve readability
+- avoid unnecessary comments that harm readability
+- too many 'TODO'-s - it's time to refactor the whole thing
 
-Always comment "magic numbers" and tricky approaches.
+Also, there is a couple of best practices, that worth mentioning:
+- always comment magic numbers and tricky approaches
+- separate variables' and values' concerns
+
+Some clarification is needed here:
+
+**Always comment "magic numbers" and tricky approaches**
+
 Not mentioning typical hacks, some rules deserve being noticed.
 If values like `z-index: 14;` or `margin: -137px auto;` make total sense today - try to figure it out after a month (clue - you'll never do).
 
@@ -729,10 +875,12 @@ If values like `z-index: 14;` or `margin: -137px auto;` make total sense today -
     }
 ```
 
-When using variables it is important to pay attention to values that just *do not fit*.
-Generally it's not a good idea to combine variables with regular units.
+**Values and Variables - separation of concerns**
 
-Please avoid situations like this:
+When using variables it is important to pay attention to values that just _do not fit_.
+Generally it's a _bad idea_ to combine variables with regular units.
+
+Avoid situations like this:
 
 ```scss
 $offset = 10px;
@@ -742,61 +890,144 @@ $offset = 10px;
 	}
 ```
 
-Finally - a common rule: *do not* rely on your memory or memory of your colleagues, just comment suspicious values. Thank yourself later.
 
+### Preprocessor syntax specifics
 
-### Code comments
+Preprocessors introduce JS-style of comments:
 
-**todo**
-
-Use these comments when to show context:
 ```scss
-//
-// icon
-.block_ic {
-    ...
-    }
+/* traditional comment */
+.foo {
+}
 
-//
-// img
-.block_img {
-    ...
-    }
+// "inline" comment
+.bar {
+}
 ```
 
-Use these comments when to describe modificators:
-```scss
-// small button
-.btn.__small {
-    ...
-    }
+"Inline" comments can be used in the absolutely same manner along with the "block" comments.
+Possible, but _not desired_ outcome of that:
 
-// full-width button
-.btn.__wide {
-    ...
+```scss
+//
+// Foo component
+.foo {
+    overflow: hidden !important; // need this to override inline
+
+    color: $color-main;
+
+
+    /* parent context */
+    .bar & {
+        padding: 1rem;
     }
+}
+
+/*
+    todo: replace Foo with Tar
+*/
+.bar {
+    padding: 0 calc(100% - 980px); /* page restrictions */
+}
 ```
+
+This example is exaggerated on purpose.
+The point is - to prevent visual pollution some code-guide conventions required.
+
+Here's the proposition:
+1. _Everywhere but inside_ of curly braces (consider "rule scope") use "block" comments. Practical examples can be found [earlier in this chapter](#structural-comments).
+2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, & - selection etc.
+
+With these in mind, let's "fix" the previous example:
+
+```scss
+/* Foo
+-------------------------------------------------- */
+
+.foo {
+    overflow: hidden !important; // need this to override inline
+
+    color: $color-main;
+
+    // parent context
+    .bar & {
+        padding: 1rem;
+    }
+}
+
+/* /Foo
+-------------------------------------------------- */
+
+
+/* Bar
+-------------------------------------------------- */
+
+/* TODO: replace with Tar */
+
+.bar {
+    padding: 0 calc(100% - 980px); // page restrictions
+}
+
+/* /Bar
+-------------------------------------------------- */
+```
+
+Don't mind the "&"-usage, nesting and all other formatting specifics yet.
+This is the scope of the [following chapter](#syntax--formatting).
+
+
+### Mandatory commenting
+
+Some CSS rules _deserve_ to be commented. This practice has been proved by time.
+There is pretty brief list of such rules, which sure is not dogmatic.
+
+Feel free to come up with your own list, here's the nice starting point:
+
+- `z-index`
+- `margin (with negative value)`
+- `overflow: hidden`
+- `translate3d(0)` or `-webkit-backface-visibility`
+
+...
+
+
+### To recap
+
+Follow a common rule:
+
+> _Do not_ rely on your memory or memory of your colleagues
+
+Just comment suspicious values.
+Thank yourself later.
 
 
 ## Syntax & formatting
 
 ### Basic formatting
 
-Going from easy-to-difficult let's define how the simple selector must look:
-* four spaces indents, no tabs;
-* closing brace align with properties (weird, but just try it :)
-* each declaration on a new line
-* whitespaces for logical separation of CSS rules if needed
-* shorthand properties if possible
+todo: code follow-up
+
+Let's define the very basics for formatting.  
+Most of these rules are supported by various IDEs:
+
+- 4 spaces for indentation
+- new line for each declaration ('block'-notation)
+- every declaration ends with semicolon
+- double quotes where needed
+- prefer shorthands over multiple properties
+- spaces and braces on their places
+
+This can be simply illustrated with the following code:
 
 ```css
-.class {
-    display: block;
-    margin: 12px;
-    background: #dedede url('path/to/img.png') 0 0 no-repeat;
-    color: #333;
-    }
+.foo {
+    margin: 0;
+    padding: 1rem 2rem;
+    background: #333 no-repeat url("images/foo.png");
+    font-family: "Custom Font", Arial, sans-serif;
+}
 ```
+
 
 ### Grouping of properties
 
@@ -835,6 +1066,7 @@ One of the way how to organize declarations:
 	}
 ```
 
+
 ### Vendor prefixes
 
 It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefixer) with this one.
@@ -846,7 +1078,7 @@ Anyhow, here is recommended style:
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	}
+}
 
 .class {
 	-webkit-animation-duration: 1s;
@@ -854,10 +1086,26 @@ Anyhow, here is recommended style:
 
 	-webkit-animation-name: myAnimation;
 	animation-name: myAnimation;
-	}
+}
 ```
 
-### Combining of selectors
+
+### Best practices
+
+The following list summarizes frequently used best practices for writing and maintaining CSS:
+- prefer `rem`-s or/and `pixel` values over `em`-s
+- prefer component approach over random and overall
+- keep component-specific styles in separate files
+- break-up complex components
+
+Preprocessor-related:
+- keep global variables in one or multiple _variable_-only files
+- avoid local/custom variables
+- if needed, keep them clearly commented and separated from globals
+- avoid variable mutations
+
+
+### Multiple selectors
 
 Here you can find the way how to organize selectors in real life. Typically we separate different types of selectors:
 * pseudo elements and states
@@ -932,6 +1180,12 @@ See example below to see how all of selectors live together.
 -------------------------------------------------- */
 ```
 
+
+### @-rules
+
+todo
+
+
 ### Exceptions
 
 Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
@@ -956,6 +1210,7 @@ a.white:hover,
 	background-repeat: no-repeat;
 	}
 ```
+
 
 ### Returning of cascade
 
@@ -1158,231 +1413,22 @@ Do not use structural comments inside nesting. If you want to do that - check ou
 -------------------------------------------------- */
 ```
 
-### Variables
+### Variables naming
 
-All variables should start with `$` and written in camel case. We split variables into 3 categories:
-
-* Global
-* Module
-* Local
-
-Global variables have `$global` namespace and it can be used in each files.
-We use grunt to make files ending with `.global.styl` visible for a whole project.
-
-*Note, that alignment and styling of this files is the same with javascript.*
-
-```js
-$global = {
-    colors: {
-        default: #333,
-        inverted: #ccc,
-        ...
-    },
-
-    backgrounds: {
-        basic: #fff,
-        light: #f0f0f0,
-        ...
-    },
-
-    ...
-}
-```
-
-Later in this file you can set up aliases for a short declaration, like this:
-
-```scss
-/* global.styl */
-...
-
-$bg = $global.backgrounds;
+todo
 
 
-/* anywhere else */
-.class {
-    background: $bg.basic;
-    }
-```
+### Variables maintenance
 
-Module vars is a special case of global vars and only used inside certain module. It can also be placed in separate *global* file.
+todo
 
-```scss
-$toolbar {
-    height: {
-        wide: 40px,
-        thin: 20px
-    },
-
-    colors: {
-        item: #333,
-        hover: #eb722e,
-        selected: #b84819
-    },
-
-    ...
-}
-```
-
-Local variables is used in local module file and located in *vars* section:
-
-```scss
-/* Vars
--------------------------------------------------- */
-
-$radius = 3px;
-
-$ff = arial, helvetica, sans-serif;
-
-$heightSmall = 24px;
-$heightBig = 32px;
-
-/* /Vars
--------------------------------------------------- */
-```
 
 ### Mixins
 
+todo
+
 When you use mixins - write them first in a ruleset.
-```scss
-/* bad */
-.selector {
-    key: value;
 
-    mixin();
-    mixin2();
-    }
-
-/* good */
-.selector {
-    mixin();
-    mixin2();
-
-    key: value;
-    }
-```
-
-Here are some useful set of mixins that we are using:
-
-```scss
-/* Utilities
--------------------------------------------------- */
-
-//
-// clearfix - modern way
-clearfix() {
-	&:before,
-	&:after {
-		content: '';
-		display: table;
-		}
-
-	&:after {
-		clear: both;
-		}
-	}
-
-//
-// vertical aligning using pseudo-elements
-// 2 mixins - va() && va_rarget()
-// @height - implicitly set container height
-va($height = 100%){
-    &:after {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        min-height: 100%;
-        height: $height;
-        }
-    }
-
-//
-// ellip / ellip-i
-// @inline - inline element
-// @boxSizing - apply if used with paddings
-ellip($inline = false, $boxSizing = false){
-
-    if $inline {
-        display: inline-block;
-        }
-
-    if $boxSizing {
-        box-sizing: border-box;
-        }
-
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    }
-
-/* /Utilities
--------------------------------------------------- */
-
-/* Special
--------------------------------------------------- */
-
-//
-// render in separate layer
-// hack to balance CPU/GPU load
-// example: gpuRender(chrome, mac-chrome)
-gpuRender($browsers){
-    $i = 0;
-    $comma = ",";
-    $rule = "";
-
-    for $b in arguments {
-        $i += 1;
-        if ($i == length(arguments)){
-            $comma = "";
-            }
-
-        $rule += unquote(".") + $b + unquote(" &") + unquote($comma);
-        }
-
-    {$rule} {
-        backface-visibility: hidden;
-        }
-    }
-
-/* /Special
--------------------------------------------------- */
-
-/* Animation
--------------------------------------------------- */
-
-animFadeIn($on){
-	if $on {
-		transition: $animDuration opacity, visibility 0s $animDuration;
-		}
-    }
-
-animFadeInCallback($on){
-    if $on {
-        transition-delay: 0s;
-        }
-    }
-
-animColor($on){
-	if $on {
-		transition: $animDuration color;
-		}
-    }
-
-animBackgroundColor($on){
-	if $on {
-		transition: $animDuration background-color;
-		}
-    }
-
-animBorderColor($on){
-    if $on {
-        transition: $animDuration border-color;
-        }
-    }
-
-/* /Animation
--------------------------------------------------- */
-```
 
 ### Extends
 
@@ -1390,16 +1436,25 @@ animBorderColor($on){
 > Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
 For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
 
-### Media queries
 
-Nothing special here, just use the snippet showing below:
-```scss
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
-	.selector {
-	    ...
-	    }
-	}
-```
+
+## Tools
+
+todo
+
+
+### Task runners
+
+
+### Webpack
+
+
+### Variables export
+
+todo: SASS to JS
+
+
+### PostCSS all around
 
 
 
