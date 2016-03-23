@@ -4,6 +4,15 @@ CSS Codeguide
 > Documentation for coding and maintaining the most transparent CSS.
 > It is bringing the experience of multiple front-end teams.
 
+:construction::construction::construction::construction::construction::construction::construction::construction::construction::construction:
+
+> :warning: WORK IN PROGRESS
+> some parts may be missing
+> another require revision
+> **stay tuned for major updates!**
+
+:construction::construction::construction::construction::construction::construction::construction::construction::construction::construction:
+
 Current code guide is designed for **experienced developers** in the first place, but hopefully could be a great source of knowledge for the beginners.
 
 Basically this documentation is about how to work in team with 250+ style files and feel comfortable about that.
