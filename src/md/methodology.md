@@ -151,6 +151,8 @@ HTML example:
 <button class="button is-disabled">Sorry, can't do</button>
 ```
 
+So far it can be very tempting to use `.is-disabled` on it's own, though it shouldn't happen. Best way to guarantee this is prevent the states from having their own CSS rules. Use them only in combination with component classes.
+
 To clarify some things:  
 Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics.  
 This is the reason some other methodologies deviate from BEM pattern.
@@ -200,10 +202,89 @@ B - flexible application
 
 Cons:
 A - hard times combining classes
-B - common namespace
+B - common namespace, harder to maintain
 
 Recommendations are pretty straightforward:  
-use pattern A unless encounter a firm reason for switching to pattern B. 
+use pattern A unless encounter a solid reason for switching to pattern B. 
+
+:zap:
+There's a bit more about states and modifiers. Check out the markup for the more complex example:
+
+```html
+<div class="input [state]">
+    <div class="input__name [state]">
+        Search
+    </div>
+    <input class="input__element [state]" type="text" placeholder="Find"/>
+</div>
+```
+
+From here there are two popular options for handling state change in CSS (consider the same logic for modification):
+
+- A - provide state for each component's descendant
+- B - stylize descendants depending on parent's state
+
+This can be illustrated with the following code:
+
+Pattern A:
+
+```html
+<div class="input">
+    <div class="input__name is-disabled">
+        Search
+    </div>
+    <input class="input__element is-disabled" type="text" placeholder="Find"/>
+</div>
+```
+
+```css
+.input__name {
+    color: #333;
+}
+
+.input__name.is-disabled {
+    color: #999;
+}
+
+.input__element {
+    background: #fff;
+}
+
+.input__element.is-disabled {
+    background: #aaa;
+}
+```
+
+Pattern B:
+
+```html
+<div class="input is-disabled">
+    <div class="input__name">
+        Search
+    </div>
+    <input class="input__element" type="text" placeholder="Find"/>
+</div>
+```
+
+```css
+.input__name {
+    color: #333;
+}
+
+.input__element {
+    background: #fff;
+}
+
+.input.is-disabled .input__name {
+    color: #999;
+}
+
+.input.is-disabled .input__element {
+    background: #aaa;
+}
+```
+
+General recommendation is to use Pattern A over Pattern B. However, in some situations (and this one in particular) Pattern A is more beneficial, since it's easier to maintain the code and control states. 
 
 
 ### Utilities
