@@ -211,9 +211,12 @@ use pattern A unless encounter a firm reason for switching to pattern B.
 Another concept to grasp - **utility classes**.  
 With some respect to Atomic CSS this is the last stand between your CSS and production code. In other words - they can override other CSS properties and you won't want to override them.
 
-Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
-Another rule - they can't be mixed with other classes - not in CSS.  
-Often they are assigned via JS.
+Basic rule - they should complete only one simple task - hiding element, changing font-size - and nothing else. This means one-two declarations and generally no nesting.
+
+Another rule - they can't be mixed with other classes or be included into other components - not in CSS.  
+Pretty often they get assigned via JS.
+
+And finally, utilities should never be overwritten. Think about them in the key of somewhat `!important` value.
 
 Utilities are determined by `u-` namespace:
 ```
@@ -264,6 +267,8 @@ document
     .querySelectorAll('.js-test')
     .classList.add('u-hidden');
 ```
+
+One extra recommendation - use a descriptive classname enough. For instance, `.js-navigation` is just an element hook, whereas `.js-navigation-open` is pointing to a corresponding trigger of sort. 
 
 
 ### Mixins (not a preprocessor thing yet)
