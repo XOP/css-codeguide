@@ -1,40 +1,41 @@
 ## Syntax using preprocessors
 
-No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
-Here is the list what features of preprocessors we are using:
+As it was [mentioned](#about), this documentation is written with regards of [SASS](http://sass-lang.com/) (SCSS syntax) syntax. 
 
-* Variables
-* Nesting (with limitations)
-* Mixins
-* Code blocks
-* Loops (with restrictions)
+Nowadays it's hard to imagine writing and maintaining CSS without preprocessor engaged. It's a powerful tool for everyday frontend development. However, power is also responsibility, so it is important to sustain balance of productivity and language intricacy. 
 
-### Common rules
+Guide recommendations is to limit usage of preprocessor features to (in order of relevance):  
 
-Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
-Separate nesting rules with a whitespace.
+- Variables
+- Nesting (\& - specific syntax)
+- Mixins (includes)
+
+
+### Common formatting rules
+
+Following SCSS syntax, preprocessor formatting is identical to [CSS syntax](#basic-formatting) with some complements, which are above-mentioned variables and nesting.
+
+Here is the basic example of preprocessor syntax:
 
 ```scss
-/* bad */
-.class
-    display block
-    color red
+.component-name {
+    @include trunc();
+    
+    margin: $offset-n 0;
+    min-width: $component-width;
+    
+    color: $color-text;
+    
     &:hover {
-        color: #000;
-        }
-
-/* good */
-.class {
-    display: block;
-    color: red;
-
-    &:hover {
-        color: #000;
-        }
+        color: $color-text-light;
     }
+}
+
+.component-name__descendant {
+    padding: $offset-xs;
+}
 ```
 
-The rule here is to write your code as plain css.
 
 ### Nesting
 
