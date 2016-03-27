@@ -5,14 +5,19 @@
 todo: code follow-up
 
 Let's define the very basics for formatting.  
-Most of these rules are supported by various IDEs:
+Most of these rules are supported by various IDEs' linters:
 
-- 4 spaces for indentation
+- 4 spaces for indentation step
 - new line for each declaration ('block'-notation)
+- new line for each selector
+- two lines between rules
 - every declaration ends with semicolon
-- double quotes where needed
+- single space between the property and value
+- no space between property name and semicolon
+- double quotes where needed (dropped for single font-family names)
 - prefer shorthands over multiple properties
-- spaces and braces on their places
+- curly braces: _opening_ on the line with selector, _closing_ on the new line after all rules
+- single space between selector and curly brace
 
 This can be simply illustrated with the following code:
 
@@ -22,6 +27,16 @@ This can be simply illustrated with the following code:
     padding: 1rem 2rem;
     background: #333 no-repeat url("images/foo.png");
     font-family: "Custom Font", Arial, sans-serif;
+}
+
+.bar-first,
+.bar-second {
+    position: relative;
+    background: transparent;
+}
+
+.tar {
+    visibility: hidden;
 }
 ```
 
@@ -70,14 +85,14 @@ It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefi
 Anyhow, here is recommended style:
 
 ```css
-.class {
+.foo {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
 
-.class {
+.bar {
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
 
@@ -90,12 +105,14 @@ Anyhow, here is recommended style:
 ### Best practices
 
 The following list summarizes frequently used best practices for writing and maintaining CSS:
+
 - prefer `rem`-s or/and `pixel` values over `em`-s
 - prefer component approach over random and overall
 - keep component-specific styles in separate files
 - break-up complex components
 
 Preprocessor-related:
+
 - keep global variables in one or multiple _variable_-only files
 - avoid local/custom variables
 - if needed, keep them clearly commented and separated from globals
@@ -206,40 +223,4 @@ a.white:hover,
 	{
 	background-repeat: no-repeat;
 	}
-```
-
-
-### Returning of cascade
-
-Sometimes you have really deep nesting elements:
-
-```css
-.elem {
-    }
-
-    .elem-child {
-        }
-
-        .elem-child-child {
-            }
-
-            //...
-```
-
-What you can make here is to return cascade back when it is logically possible.
-
-```css
-.elem {
-    }
-
-    .elem-child {
-        }
-
-.elem-child-child {
-    }
-
-    .elem-child-child-child {
-        }
-
-        //...
 ```

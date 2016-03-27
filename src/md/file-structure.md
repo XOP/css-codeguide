@@ -83,13 +83,19 @@ Generally, as you can see, CSS component structure is pretty straightforward:
 - [Variables](#variables)
 - Layout
 - Parts
+- Modifiers
+- States
 
 Please notice, that except for Component title _all_ other parts can be omitted, according to the situation:
 
-**[File data](#document-author)** is the privilege of the team preferences, it might be excessive when working alone.  
-**[CSSG](#cssg)** is not needed when component consists of one element and almost "flat" in terms of cascade.  
-**[Variables](#variables)** have nothing to do with CSS yet (except for [--custom-properties](https://drafts.csswg.org/css-variables/)) and pretty much optional if there are no local overrides or any other local properties.  
-**Layout** is basically a component wrapper or skeleton, which might have modifiers applied to the descendants. It makes most sense when component itself is relatively complex.  
-**Parts**, however are also optional, when component consists of one element, like button or link.  
+**[File data](#document-author)** is the privilege of the team preferences, it might be excessive when working alone.
 
-This all leads to the important fact - simple CSS components are well structured "natively".
+**[CSSG](#cssg)** is not needed when component consists of one element and almost "flat" in terms of cascade.
+
+**[Variables](#variables)** have nothing to do with CSS yet (except for [--custom-properties](https://drafts.csswg.org/css-variables/)) and pretty much optional if there are no local overrides or any other local properties.
+
+**Layout** is basically a component wrapper or skeleton, which might have modifiers applied to the descendants. It makes most sense when component itself is relatively complex.
+
+**Parts**, **Modifiers** and **States** however are also optional, when component consists of one element, like button or link and relatively plain.
+
+:bulb: Media-query-specific rules are not decoupled from the main ones. There's more about media-queries handling in [one of the following](#@-rules) chapters.
