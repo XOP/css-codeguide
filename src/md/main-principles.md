@@ -28,13 +28,13 @@ What is this all about?
 - inline styles over traditional external ones
 - cascade and rules order almost do not matter
 
-In fact, [here](https://speakerdeck.com/vjeux/react-css-in-js) is the presentation, covering all interesting points.
+In fact, [here](https://speakerdeck.com/vjeux/react-css-in-js) is the presentation, covering all relevant moments.
 
 
 ### What's more
 
 Of course different combinations of the mentioned practices exist and appear from time to time.  
-Further in the guide we'll stick to the classic approach.
+Further in the guide we'll stick to the _classic_ approach.
 
 Two reasons for backing this up:
 
