@@ -56,7 +56,7 @@ module.exports = function(cb){
                 header = header.replace(/#{1,6}\s/g, '').trim();
                 // Create links like md parser does
                 link = '#' + header
-                                .replace(/[&\/:]/g, '')
+                                .replace(/[&\/:\(\)]/g, '')
                                 .replace(/[\s]/g, '-')
                                 .toLowerCase();
 

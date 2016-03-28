@@ -176,7 +176,7 @@ Pattern A:
 /* also a state! */
 .button--is-disabled {
 }
-``
+```
 
 Pattern B:
 ```css

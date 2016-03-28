@@ -43,7 +43,7 @@ Let's get started!
 	* [Modifiers and states](#modifiers-and-states)
 	* [Utilities](#utilities)
 	* [JS interactivity](#js-interactivity)
-	* [Mixins (not a preprocessor thing yet)](#mixins-(not-a-preprocessor-thing-yet))
+	* [Mixins (not a preprocessor thing yet)](#mixins-not-a-preprocessor-thing-yet)
 * [Structure of СSS/preprocessor file](#structure-of-сsspreprocessor-file)
 	* [Files organizing](#files-organizing)
 	* [Code organization within a file](#code-organization-within-a-file)
@@ -365,7 +365,7 @@ Pattern A:
 /* also a state! */
 .button--is-disabled {
 }
-``
+```
 
 Pattern B:
 ```css
