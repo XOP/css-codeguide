@@ -20,8 +20,8 @@ Basically this documentation is about how to work in team with 250+ style files 
 Please be aware, that CSS fundamentals, selector performance or other common topics are not the part of this guide.
 On the other hand there will be reviewed different aspects of CSS described with practical examples, recommendations and best practicies.
 
-> All along the text there will be links to examples folder.
-> In most cases it is invaluable for understanding the picture in total,
+> All along the text there will be links to examples folder.  
+> In most cases it is invaluable for understanding the picture in total,  
 > so check it out before further reading and keep them opened just in case.
 
 Let's get started!
@@ -64,19 +64,13 @@ Let's get started!
 	* [Multiple selectors](#multiple-selectors)
 	* [@-rules](#@-rules)
 	* [Exceptions](#exceptions)
-	* [Returning of cascade](#returning-of-cascade)
 * [Syntax using preprocessors](#syntax-using-preprocessors)
-	* [Common rules](#common-rules)
-	* [Nesting](#nesting)
+	* [Common formatting rules](#common-formatting-rules)
 	* [Variables naming](#variables-naming)
 	* [Variables maintenance](#variables-maintenance)
 	* [Mixins](#mixins)
 	* [Extends](#extends)
-* [Tools](#tools)
-	* [Task runners](#task-runners)
-	* [Webpack](#webpack)
-	* [Variables export](#variables-export)
-	* [PostCSS all around](#postcss-all-around)
+	* [Nesting](#nesting)
 
 <!--mdMenu-->
 
@@ -176,13 +170,13 @@ What is this all about?
 - inline styles over traditional external ones
 - cascade and rules order almost do not matter
 
-In fact, [here](https://speakerdeck.com/vjeux/react-css-in-js) is the presentation, covering all interesting points.
+In fact, [here](https://speakerdeck.com/vjeux/react-css-in-js) is the presentation, covering all relevant moments.
 
 
 ### What's more
 
 Of course different combinations of the mentioned practices exist and appear from time to time.  
-Further in the guide we'll stick to the classic approach.
+Further in the guide we'll stick to the _classic_ approach.
 
 Two reasons for backing this up:
 
@@ -346,6 +340,8 @@ HTML example:
 <button class="button is-disabled">Sorry, can't do</button>
 ```
 
+So far it can be very tempting to use `.is-disabled` on it's own, though it shouldn't happen. Best way to guarantee this is prevent the states from having their own CSS rules. Use them only in combination with component classes.
+
 To clarify some things:  
 Modifier and State are the same things in terms of BEM, the only thing that differs is the semantics.  
 This is the reason some other methodologies deviate from BEM pattern.
@@ -395,10 +391,89 @@ B - flexible application
 
 Cons:
 A - hard times combining classes
-B - common namespace
+B - common namespace, harder to maintain
 
 Recommendations are pretty straightforward:  
-use pattern A unless encounter a firm reason for switching to pattern B. 
+use pattern A unless encounter a solid reason for switching to pattern B. 
+
+:zap:
+There's a bit more about states and modifiers. Check out the markup for the more complex example:
+
+```html
+<div class="input [state]">
+    <div class="input__name [state]">
+        Search
+    </div>
+    <input class="input__element [state]" type="text" placeholder="Find"/>
+</div>
+```
+
+From here there are two popular options for handling state change in CSS (consider the same logic for modification):
+
+- A - provide state for each component's descendant
+- B - stylize descendants depending on parent's state
+
+This can be illustrated with the following code:
+
+Pattern A:
+
+```html
+<div class="input">
+    <div class="input__name is-disabled">
+        Search
+    </div>
+    <input class="input__element is-disabled" type="text" placeholder="Find"/>
+</div>
+```
+
+```css
+.input__name {
+    color: #333;
+}
+
+.input__name.is-disabled {
+    color: #999;
+}
+
+.input__element {
+    background: #fff;
+}
+
+.input__element.is-disabled {
+    background: #aaa;
+}
+```
+
+Pattern B:
+
+```html
+<div class="input is-disabled">
+    <div class="input__name">
+        Search
+    </div>
+    <input class="input__element" type="text" placeholder="Find"/>
+</div>
+```
+
+```css
+.input__name {
+    color: #333;
+}
+
+.input__element {
+    background: #fff;
+}
+
+.input.is-disabled .input__name {
+    color: #999;
+}
+
+.input.is-disabled .input__element {
+    background: #aaa;
+}
+```
+
+General recommendation is to use Pattern A over Pattern B. However, in some situations (and this one in particular) Pattern A is more beneficial, since it's easier to maintain the code and control states. 
 
 
 ### Utilities
@@ -406,9 +481,12 @@ use pattern A unless encounter a firm reason for switching to pattern B.
 Another concept to grasp - **utility classes**.  
 With some respect to Atomic CSS this is the last stand between your CSS and production code. In other words - they can override other CSS properties and you won't want to override them.
 
-Basic rule - they should complete only one simple task - hiding element, changing font-size, etc. Actually this depends on you and your system features.  
-Another rule - they can't be mixed with other classes - not in CSS.  
-Often they are assigned via JS.
+Basic rule - they should complete only one simple task - hiding element, changing font-size - and nothing else. This means one-two declarations and generally no nesting.
+
+Another rule - they can't be mixed with other classes or be included into other components - not in CSS.  
+Pretty often they get assigned via JS.
+
+And finally, utilities should never be overwritten. Think about them in the key of somewhat `!important` value.
 
 Utilities are determined by `u-` namespace:
 ```
@@ -459,6 +537,8 @@ document
     .querySelectorAll('.js-test')
     .classList.add('u-hidden');
 ```
+
+One extra recommendation - use a descriptive classname enough. For instance, `.js-navigation` is just an element hook, whereas `.js-navigation-open` is pointing to a corresponding trigger of sort. 
 
 
 ### Mixins (not a preprocessor thing yet)
@@ -585,16 +665,22 @@ Generally, as you can see, CSS component structure is pretty straightforward:
 - [Variables](#variables)
 - Layout
 - Parts
+- Modifiers
+- States
 
 Please notice, that except for Component title _all_ other parts can be omitted, according to the situation:
 
-**[File data](#document-author)** is the privilege of the team preferences, it might be excessive when working alone.  
-**[CSSG](#cssg)** is not needed when component consists of one element and almost "flat" in terms of cascade.  
-**[Variables](#variables)** have nothing to do with CSS yet (except for [--custom-properties](https://drafts.csswg.org/css-variables/)) and pretty much optional if there are no local overrides or any other local properties.  
-**Layout** is basically a component wrapper or skeleton, which might have modifiers applied to the descendants. It makes most sense when component itself is relatively complex.  
-**Parts**, however are also optional, when component consists of one element, like button or link.  
+**[File data](#document-author)** is the privilege of the team preferences, it might be excessive when working alone.
 
-This all leads to the important fact - simple CSS components are well structured "natively".
+**[CSSG](#cssg)** is not needed when component consists of one element and almost "flat" in terms of cascade.
+
+**[Variables](#variables)** have nothing to do with CSS yet (except for [--custom-properties](https://drafts.csswg.org/css-variables/)) and pretty much optional if there are no local overrides or any other local properties.
+
+**Layout** is basically a component wrapper or skeleton, which might have modifiers applied to the descendants. It makes most sense when component itself is relatively complex.
+
+**Parts**, **Modifiers** and **States** however are also optional, when component consists of one element, like button or link and relatively plain.
+
+:bulb: Media-query-specific rules are not decoupled from the main ones. There's more about media-queries handling in [one of the following](#@-rules) chapters.
 
 
 ## Comments
@@ -1017,14 +1103,19 @@ Thank yourself later.
 todo: code follow-up
 
 Let's define the very basics for formatting.  
-Most of these rules are supported by various IDEs:
+Most of these rules are supported by various IDEs' linters:
 
-- 4 spaces for indentation
+- 4 spaces for indentation step
 - new line for each declaration ('block'-notation)
+- new line for each selector
+- two lines between rules
 - every declaration ends with semicolon
-- double quotes where needed
+- single space between the property and value
+- no space between property name and semicolon
+- double quotes where needed (dropped for single font-family names)
 - prefer shorthands over multiple properties
-- spaces and braces on their places
+- curly braces: _opening_ on the line with selector, _closing_ on the new line after all rules
+- single space between selector and curly brace
 
 This can be simply illustrated with the following code:
 
@@ -1034,6 +1125,16 @@ This can be simply illustrated with the following code:
     padding: 1rem 2rem;
     background: #333 no-repeat url("images/foo.png");
     font-family: "Custom Font", Arial, sans-serif;
+}
+
+.bar-first,
+.bar-second {
+    position: relative;
+    background: transparent;
+}
+
+.tar {
+    visibility: hidden;
 }
 ```
 
@@ -1082,14 +1183,14 @@ It is much better to rely on [autoprefixer](https://github.com/postcss/autoprefi
 Anyhow, here is recommended style:
 
 ```css
-.class {
+.foo {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
 
-.class {
+.bar {
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
 
@@ -1102,12 +1203,14 @@ Anyhow, here is recommended style:
 ### Best practices
 
 The following list summarizes frequently used best practices for writing and maintaining CSS:
+
 - prefer `rem`-s or/and `pixel` values over `em`-s
 - prefer component approach over random and overall
 - keep component-specific styles in separate files
 - break-up complex components
 
 Preprocessor-related:
+
 - keep global variables in one or multiple _variable_-only files
 - avoid local/custom variables
 - if needed, keep them clearly commented and separated from globals
@@ -1221,79 +1324,124 @@ a.white:hover,
 ```
 
 
-### Returning of cascade
-
-Sometimes you have really deep nesting elements:
-
-```css
-.elem {
-    }
-
-    .elem-child {
-        }
-
-        .elem-child-child {
-            }
-
-            //...
-```
-
-What you can make here is to return cascade back when it is logically possible.
-
-```css
-.elem {
-    }
-
-    .elem-child {
-        }
-
-.elem-child-child {
-    }
-
-    .elem-child-child-child {
-        }
-
-        //...
-```
-
-
 ## Syntax using preprocessors
 
-No matter what preprocessor you are using. The point is to decide which functionality you use with these preprocessors.
-Here is the list what features of preprocessors we are using:
+As it was [mentioned](#about), this documentation is written with regards of [SASS](http://sass-lang.com/) (SCSS syntax) syntax. 
 
-* Variables
-* Nesting (with limitations)
-* Mixins
-* Code blocks
-* Loops (with restrictions)
+Nowadays it's hard to imagine writing and maintaining CSS without preprocessor engaged. It's a powerful tool for everyday frontend development. However, power is also responsibility, so it is important to sustain balance of productivity and language intricacy. 
 
-### Common rules
+Guide recommendations is to limit usage of preprocessor features to following (in order of relevance):  
 
-Whilst you can drop out brackets from declaration using stylus, we recommend not to do that.
-Separate nesting rules with a whitespace.
+- Variables
+- Nesting (\& - specific syntax)
+- Mixins (includes)
+- SASS helper functions
+
+:page_with_curl: Check the [examples folder](example/) for the descriptive code samples. [Variables](example/_variables.scss) and [Mixins](example/_mixins.scss) will be used through this chapter as well. 
+
+
+### Common formatting rules
+
+Following SCSS syntax, preprocessor formatting is identical to [CSS syntax](#basic-formatting) with some complements, which are above-mentioned _variables_ and _nesting_.
+
+Here is the basic example of preprocessor syntax ([structural comments](#structural-comments) are dropped for brevity):
 
 ```scss
-/* bad */
-.class
-    display block
-    color red
+.component-name {
+    @include trunc();
+    
+    margin: $offset-n 0;
+    padding: $offset-xs;
+    
+    color: $color-text;
+    
     &:hover {
-        color: #000;
-        }
-
-/* good */
-.class {
-    display: block;
-    color: red;
-
-    &:hover {
-        color: #000;
-        }
+        color: $color-text-light;
     }
+}
+
+.component-name__descendant {
+    text-decoration: underline;
+}
 ```
 
-The rule here is to write your code as plain css.
+Here is somewhat complex version of this example:
+
+```scss
+.component-name {
+    @include trunc();
+    
+    position: relative;
+    
+    margin: $offset-n 0;
+    padding: $offset-xs;
+    
+    color: $color-text;
+    
+    &:hover {
+        color: $color-text-light;
+    }
+    
+    // component overlay
+    &:after {
+        @include cover();
+        
+        content: "";
+        
+        display: none; // hidden on mobile
+    }
+    
+    @include respond($mq-desktop) {
+        &:after {
+            display: block;
+            
+            background: opacify($color-brand-secondary, .8);
+        }
+    }
+}
+
+.component-name__descendant {
+    text-decoration: underline;
+    
+    @include respond($mq-desktop) {
+        font-size: $font-size-l;
+    }
+}
+```
+
+A lot of interesting happening here:
+
+- variables' usage
+- mixins' usage
+- sass functions usage
+- nesting specifics
+
+We'll go through all these points in the following sections.
+
+
+### Variables naming
+
+todo
+
+
+### Variables maintenance
+
+todo
+
+
+### Mixins
+
+todo
+
+When you use mixins - write them first in a ruleset.
+
+
+### Extends
+
+> Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
+> Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
+For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+
 
 ### Nesting
 
@@ -1422,55 +1570,16 @@ Do not use structural comments inside nesting. If you want to do that - check ou
 -------------------------------------------------- */
 ```
 
-### Variables naming
-
-todo
-
-
-### Variables maintenance
-
-todo
-
-
-### Mixins
-
-todo
-
-When you use mixins - write them first in a ruleset.
-
-
-### Extends
-
-> Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
-> Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
-For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
-
-
-
-## Tools
-
-todo
-
-
-### Task runners
-
-
-### Webpack
-
-
-### Variables export
-
-todo: SASS to JS
-
-
-### PostCSS all around
 
 
 
 -----
 
+Thank you for reading!
 
-Feel free to ask questions via [email](mailto:stewiekillsloiss@gmail.com).  
-All content is available for free distribution.  
-[Link to source](https://github.com/XOP/css-codeguide) is mandatory when copying materials.
+This is the living document, content is regularly updated, so come back in a month or so. And [star or watch](https://github.com/XOP/css-codeguide) this thing just in case!
+
+Your questions are welcome in the [issues](https://github.com/XOP/css-codeguide/issues). You also can try reach author and main maintainer via [email](mailto:stewiekillsloiss@gmail.com).
+
+Content of the current guide is under [MIT License](LICENSE).
 
