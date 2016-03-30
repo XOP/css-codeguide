@@ -345,6 +345,7 @@ This example is exaggerated on purpose.
 The point is - to prevent visual pollution some code-guide conventions required.
 
 Here's the proposition:
+
 1. _Everywhere but inside_ of curly braces (consider "rule scope") use "block" comments. Practical examples can be found [earlier in this chapter](#structural-comments).
 2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, & - selection etc.
 

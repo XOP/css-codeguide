@@ -4,7 +4,7 @@ As it was [mentioned](#about), this documentation is written with regards of [SA
 
 Nowadays it's hard to imagine writing and maintaining CSS without preprocessor engaged. It's a powerful tool for everyday frontend development. However, power is also responsibility, so it is important to sustain balance of productivity and language intricacy. 
 
-Guide recommendations is to limit usage of preprocessor features to following (in order of relevance):  
+Guide recommendations is to limit usage of preprocessor features to the following (in order of relevance):  
 
 - Variables
 - Nesting (\& - specific syntax)
@@ -16,7 +16,7 @@ Guide recommendations is to limit usage of preprocessor features to following (i
 
 ### Common formatting rules
 
-Following SCSS syntax, preprocessor formatting is identical to [CSS syntax](#basic-formatting) with some complements, which are above-mentioned _variables_ and _nesting_.
+Following SCSS syntax, preprocessor formatting is mostly identical to the [CSS syntax](#basic-formatting).
 
 Here is the basic example of preprocessor syntax ([structural comments](#structural-comments) are dropped for brevity):
 
@@ -83,11 +83,11 @@ Here is somewhat complex version of this example:
 }
 ```
 
-A lot of interesting happening here:
+Compared to the CSS formatting, there are some differences, or better say, complements:
 
 - variables' usage
 - mixins' usage
-- sass functions usage
+- sass functions' usage
 - nesting specifics
 
 We'll go through all these points in the following sections.
@@ -95,7 +95,40 @@ We'll go through all these points in the following sections.
 
 ### Variables naming
 
-todo
+:bulb: Depending on the preprocessor, variable name might need to begin with the key symbol, like `$` or `@`. In [Stylus](http://stylus-lang.com/docs/variables.html), however, this is optional. Due to the SASS syntax let's stick with the `$`-based naming.
+
+It makes more sense for variables naming to inherit from [classnames naming](#naming-principles), following the same methodology pattern. Here is the basic example:
+
+```scss
+$color-light: #666;
+
+$font-size-s: .6rem;
+
+$offset-xxl: 4rem;
+```
+
+The naming pattern is:
+```
+[$]-[property-name]-[type] 
+```
+
+It can be extended further according to the project needs:
+```scss
+$color-main-dark: #3a1101;
+```
+
+or
+
+```scss
+$bg-color-secondary-75: #ea02dd;
+```
+
+...following the pattern:
+```
+[$]-[property-name]-[type]-[grade]
+```
+
+The latter might be more applicable to colors, since they are tricky to handle and usually require diverse approach.
 
 
 ### Variables maintenance
