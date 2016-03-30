@@ -130,6 +130,10 @@ $bg-color-secondary-75: #ea02dd;
 
 The latter might be more applicable to colors, since they are tricky to handle and usually require diverse approach.
 
+Variables can be used to define another variables! This may be useful for creating offset- or typographic- system. A piece of a good advice will be - keep at simple, avoid complicated calculations.
+
+One of the best practices of using variables for defining variables will be (no big surprise!) creating color scheme.
+
 
 ### Variables maintenance
 
