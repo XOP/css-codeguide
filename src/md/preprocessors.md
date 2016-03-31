@@ -142,9 +142,73 @@ todo
 
 ### Mixins
 
-todo
+Mixins (paired with includes) are pretty useful and often save the day. To maintain your stylesheets _sane and clear_ keep close to this set of rules:
 
-When you use mixins - write them first in a ruleset.
+- Mixin should do _one thing_ and do it good
+- Avoid large set of parameters (up to 3 is optimum)
+- Provide defaults for the variables
+- Use them wisely: restrain amount of available helpers to a minimum
+- Avoid one-line mixins
+
+Here's the good common example:
+
+```scss
+@mixin cover ($position: absolute) {
+    position: $position;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+```
+
+**Not good** examples:
+
+```scss
+// many variables to handle
+@mixin common-font ($font-family, $font-size, $line-height, $font-style) {
+    font: $font-style #{$font-size}/#{$line-height} $font-family, sans-serif;
+}
+
+// no default value
+// name does not match the function
+@mixin color ($color) {
+    color: $color;
+    background-color: black;
+}
+
+// single-line mixin
+@mixin float-left () {
+    float: left;
+}
+```
+
+Here's usage examples illustrating formatting specifics:
+
+```scss
+.foo {
+    @include cover(fixed);
+    
+    z-index: $z-index-modal;
+}
+
+.bar {
+    @include cover();
+    @include trunc();
+    
+    color: $color-text-light;
+}
+
+.tar {
+    color: $link-color;
+    
+    &:hover {
+        @include link-hover();
+        
+        color: $link-color-hover;
+    }
+}
+```
 
 
 ### Extends
