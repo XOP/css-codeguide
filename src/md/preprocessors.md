@@ -210,6 +210,27 @@ Here's usage examples illustrating formatting specifics:
 }
 ```
 
+Stick to the rules: 
+
+- Define includes on top of the declaration list
+- 1 blank line between includes and other code
+- Same is valid for the nested elements
+
+:zap: There can be an exception to the common practice! Consider the mixin, containing `media-query` rule - in most cases you won't want it to be on top of the ruleset. To separate them from the others, you might want to introduce special namespace, like `media-[mixin-name]`. 
+But usually they just stand out due to their syntax:
+ 
+ ```scss
+ .foo {
+    @include cover();
+    
+    padding: 2rem;
+    
+    @include media-respond-to($breakpoints-desktop) {
+        padding: 4rem;
+    }
+ }
+ ```
+
 
 ### Extends
 
