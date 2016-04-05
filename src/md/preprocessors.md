@@ -150,7 +150,7 @@ Mixins (paired with includes) are pretty useful and often save the day. To maint
 - Use them wisely: restrain amount of available helpers to a minimum
 - Avoid one-line mixins
 
-Here's the good common example:
+**Good** example:
 
 ```scss
 @mixin cover ($position: absolute) {
@@ -234,9 +234,22 @@ But usually they just stand out due to their syntax:
 
 ### Extends
 
-> Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
-> Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
-For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+As it was noticed, **mixins** are preferred over **extends**.
+
+Why is that?
+
+_Basically_, for saving yourselves from debugging convoluted code. Extends backed by nesting often lead to something excessively unwelcome.
+
+So if there is no _really hard_ need, avoid using extends.
+
+:bulb: What's more? In short, it is all about the strings repeatability and compression algorithms. Fact is, mixins provide a lot of repeating code blocks here and there, which altogether result in bigger size of uncompressed CSS file compared with the same file, generated with the help of extends. But results of the gzip-compressed files are the opposite, because of gzip specifics.
+[Here is great article](http://csswizardry.com/2016/02/mixins-better-for-performance/) covering other valuable points.
+
+Here is the list of articles totally worth reading before touching extends:
+
+- [When to use @extend; when to use a mixin](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+- [Sass Mixins vs Extends: The Data](https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/)
+- [Why You Should Avoid Sass @extend](http://www.sitepoint.com/avoid-sass-extend/)
 
 
 ### Nesting
