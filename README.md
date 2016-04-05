@@ -1030,6 +1030,7 @@ This example is exaggerated on purpose.
 The point is - to prevent visual pollution some code-guide conventions required.
 
 Here's the proposition:
+
 1. _Everywhere but inside_ of curly braces (consider "rule scope") use "block" comments. Practical examples can be found [earlier in this chapter](#structural-comments).
 2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, & - selection etc.
 
@@ -1330,7 +1331,7 @@ As it was [mentioned](#about), this documentation is written with regards of [SA
 
 Nowadays it's hard to imagine writing and maintaining CSS without preprocessor engaged. It's a powerful tool for everyday frontend development. However, power is also responsibility, so it is important to sustain balance of productivity and language intricacy. 
 
-Guide recommendations is to limit usage of preprocessor features to following (in order of relevance):  
+Guide recommendations is to limit usage of preprocessor features to the following (in order of relevance):  
 
 - Variables
 - Nesting (\& - specific syntax)
@@ -1342,7 +1343,7 @@ Guide recommendations is to limit usage of preprocessor features to following (i
 
 ### Common formatting rules
 
-Following SCSS syntax, preprocessor formatting is identical to [CSS syntax](#basic-formatting) with some complements, which are above-mentioned _variables_ and _nesting_.
+Following SCSS syntax, preprocessor formatting is mostly identical to the [CSS syntax](#basic-formatting).
 
 Here is the basic example of preprocessor syntax ([structural comments](#structural-comments) are dropped for brevity):
 
@@ -1409,11 +1410,11 @@ Here is somewhat complex version of this example:
 }
 ```
 
-A lot of interesting happening here:
+Compared to the CSS formatting, there are some differences, or better say, complements:
 
 - variables' usage
 - mixins' usage
-- sass functions usage
+- sass functions' usage
 - nesting specifics
 
 We'll go through all these points in the following sections.
@@ -1421,7 +1422,44 @@ We'll go through all these points in the following sections.
 
 ### Variables naming
 
-todo
+:bulb: Depending on the preprocessor, variable name might need to begin with the key symbol, like `$` or `@`. In [Stylus](http://stylus-lang.com/docs/variables.html), however, this is optional. Due to the SASS syntax let's stick with the `$`-based naming.
+
+It makes more sense for variables naming to inherit from [classnames naming](#naming-principles), following the same methodology pattern. Here is the basic example:
+
+```scss
+$color-light: #666;
+
+$font-size-s: .6rem;
+
+$offset-xxl: 4rem;
+```
+
+The naming pattern is:
+```
+[$]-[property-name]-[type] 
+```
+
+It can be extended further according to the project needs:
+```scss
+$color-main-dark: #3a1101;
+```
+
+or
+
+```scss
+$bg-color-secondary-75: #ea02dd;
+```
+
+...following the pattern:
+```
+[$]-[property-name]-[type]-[grade]
+```
+
+The latter might be more applicable to colors, since they are tricky to handle and usually require diverse approach.
+
+Variables can be used to define another variables! This may be useful for creating offset- or typographic- system. A piece of a good advice will be - keep at simple, avoid complicated calculations.
+
+One of the best practices of using variables for defining variables will be (no big surprise!) creating color scheme.
 
 
 ### Variables maintenance
@@ -1431,16 +1469,114 @@ todo
 
 ### Mixins
 
-todo
+Mixins (paired with includes) are pretty useful and often save the day. To maintain your stylesheets _sane and clear_ keep close to this set of rules:
 
-When you use mixins - write them first in a ruleset.
+- Mixin should do _one thing_ and do it good
+- Avoid large set of parameters (up to 3 is optimum)
+- Provide defaults for the variables
+- Use them wisely: restrain amount of available helpers to a minimum
+- Avoid one-line mixins
+
+**Good** example:
+
+```scss
+@mixin cover ($position: absolute) {
+    position: $position;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    }
+```
+
+**Not good** examples:
+
+```scss
+// many variables to handle
+@mixin common-font ($font-family, $font-size, $line-height, $font-style) {
+    font: $font-style #{$font-size}/#{$line-height} $font-family, sans-serif;
+}
+
+// no default value
+// name does not match the function
+@mixin color ($color) {
+    color: $color;
+    background-color: black;
+}
+
+// single-line mixin
+@mixin float-left () {
+    float: left;
+}
+```
+
+Here's usage examples illustrating formatting specifics:
+
+```scss
+.foo {
+    @include cover(fixed);
+    
+    z-index: $z-index-modal;
+}
+
+.bar {
+    @include cover();
+    @include trunc();
+    
+    color: $color-text-light;
+}
+
+.tar {
+    color: $link-color;
+    
+    &:hover {
+        @include link-hover();
+        
+        color: $link-color-hover;
+    }
+}
+```
+
+Stick to the rules: 
+
+- Define includes on top of the declaration list
+- 1 blank line between includes and other code
+- Same is valid for the nested elements
+
+:zap: There can be an exception to the common practice! Consider the mixin, containing `media-query` rule - in most cases you won't want it to be on top of the ruleset. To separate them from the others, you might want to introduce special namespace, like `media-[mixin-name]`. 
+But usually they just stand out due to their syntax:
+ 
+ ```scss
+ .foo {
+    @include cover();
+    
+    padding: 2rem;
+    
+    @include media-respond-to($breakpoints-desktop) {
+        padding: 4rem;
+    }
+ }
+ ```
 
 
 ### Extends
 
-> Only use extends when the rulesets that you are trying to DRY out are inherently and thematically related.
-> Do not force relationships that do not exist: to do so will create unusual groupings in your project, as well as negatively impacting the source order of your code.
-For more information please check out [this article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+As it was noticed, **mixins** are preferred over **extends**.
+
+Why is that?
+
+_Basically_, for saving yourselves from debugging convoluted code. Extends backed by nesting often lead to something excessively unwelcome.
+
+So if there is no _really hard_ need, avoid using extends.
+
+:bulb: What's more? In short, it is all about the strings repeatability and compression algorithms. Fact is, mixins provide a lot of repeating code blocks here and there, which altogether result in bigger size of uncompressed CSS file compared with the same file, generated with the help of extends. But results of the gzip-compressed files are the opposite, because of gzip specifics.
+[Here is great article](http://csswizardry.com/2016/02/mixins-better-for-performance/) covering other valuable points.
+
+Here is the list of articles totally worth reading before touching extends:
+
+- [When to use @extend; when to use a mixin](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/)
+- [Sass Mixins vs Extends: The Data](https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/)
+- [Why You Should Avoid Sass @extend](http://www.sitepoint.com/avoid-sass-extend/)
 
 
 ### Nesting
