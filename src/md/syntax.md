@@ -119,80 +119,78 @@ Preprocessor-related:
 - avoid variable mutations
 
 
-### Multiple selectors
+### Indentation
 
-Here you can find the way how to organize selectors in real life. Typically we separate different types of selectors:
-* pseudo elements and states
-* child selectors
-* modificators
-* siblings/other entity
+Typically indentation used in stylesheets to illustrate the cascade, or how HTML is structured.
 
-There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js).
-See example below to see how all of selectors live together.
-
+Something like this:
 ```css
-/* Elem
--------------------------------------------------- */
+.menu {
+    margin: 0;
+}
 
-.elem {
-	display: block;
-	}
-	.elem:hover {
-		display: none;
-		}
-
-	.elem.__special {
-		height: 180px;
-		}
-
-    .elem_child {
-	    background: red;
-	    }
-
-.elem.__n1 { color: red; }
-.elem.__n2 { color: green; }
-.elem.__n3 { color: yellow; }
-
-.elem-elem {
-	text-align: center;
-	}
-
-	.elem-elem_child {
-		text-align: left;
-		}
-        .elem-elem_child:first-child {
-	        font-size: 10px;
-	        }
-		.elem-elem_child:before,
-		.elem-elem_child:after {
-			content: "";
-			display: block;
-			}
-			.elem-elem_child:before:hover {
-				opacity: .5;
-				}
-		.ie8 .elem-elem_child {
-			font-size: 11px;
-			}
-
-.elem-elem-foo,
-.elem-elem-goo,
-.elem-elem-bar {
-	text-align: left;
-	font-weight: bold;
-	}
-
-.elem-elem-bar {
-	color: red;
-	}
-
-.elem-elem-goo {
-	position: static;
-	}
-
-/* /Elem
--------------------------------------------------- */
+    .item {
+        margin: 10px 0;
+        padding: 10px 20px;
+        
+        background: #ddd;
+    }
+    
+        .item a {
+            text-decoration: none;
+        }
+        
+            .item a:hover {
+                text-decoration: underline;
+            }
 ```
+
+This might work for a micro-stylesheet, but will fail in anything bigger, and here's why:
+
+- indentation system should stick to HTML structure, otherwise it will only be confusing, which makes maintaining a tedious task 
+- reading comfort decreases with every other indented block, so everything after 3 indent levels considered hard to read
+- imagine appearing of wrapper for `menu` element, and remember to indent the whole structure in order to match the principles
+- hard times understanding whether it is the direct descendant of the element or a cascade taking place
+- and so on...
+
+Generally, relying on the current guide principles, this recommendations will be out of scope. [Component approach](), [BEM naming principles]() and even [CSSG]() make indentation totally useless.
+
+Revised version of the same code sample could look like (structural comments dropped for brevity):
+```css
+/* 
+cssg
+
+menu
+    menu__item +
+
+        item
+            a . item__link
+*/
+
+.menu {
+    margin: 0;
+}
+
+.menu__item {
+    margin: 10px 0;
+}
+
+.item {
+    padding: 10px 20px;
+            
+    background: #ddd;
+}
+
+.item__link {
+    text-decoration: none;
+}
+
+.item__link:hover {
+    text-decoration: underline;
+}
+```
+
+Consider using preprocessor, isolating code in separate files and you'll never want to use traditional indentation again.
 
 
 ### @-rules
