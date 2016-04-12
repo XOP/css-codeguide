@@ -192,6 +192,36 @@ menu
 
 Consider using preprocessor, isolating code in separate files and you'll never want to use traditional indentation again.
 
+:bulb: if you are using vanilla CSS, the following tip might be helpful:
+Use indentation only for pseudo-elements, pseudo-classes and in context- (browser-) specific cases.
+
+Notice also, that there is no empty line between main selector and descendants.
+ 
+```css
+.item {
+    padding: 10px 20px;
+            
+    background: #ddd;
+}
+
+.item__link {
+    text-decoration: none;
+}
+    .item__link:before {
+        content: "link: ";
+    }
+    .item__link:hover {
+        text-decoration: underline;
+    }
+        .item__link:hover:before {
+            color: transparent;
+        }
+        
+.item__image {
+    padding: 10px;
+}
+```
+
 
 ### @-rules
 
