@@ -43,6 +43,8 @@ This can be simply illustrated with the following code:
 
 ### Grouping of properties
 
+TODO
+
 Excessive example of writing CSS rules in order.
 The point here is visual and logic separation of rules.
 One of the way how to organize declarations:
@@ -225,30 +227,41 @@ Notice also, that there is no empty line between main selector and descendants.
 
 ### @-rules
 
-todo
+There is nothing extraordinary about syntax here. Same indentation, formatting etc. with only one extra indentation level.
 
-
-### Exceptions
-
-Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
-
+Typical example:
 ```css
-.mb-x {margin-bottom: 4px;}
-.mb-2x {margin-bottom: 8px;}
-.mb-3x {margin-bottom: 12px;}
-.mb-4x {margin-bottom: 16px;}
+.item {
+    flex: 1 0 100%;
+}
 
-a.white:hover,
-.white_hover:hover {color: #eee;}
-
-.card__xxs,
-.card__xs,
-.card__s,
-.card__m,
-.card__l,
-.card__xl,
-.card__xxl
-	{
-	background-repeat: no-repeat;
-	}
+@media screen and (min-width: 40em) {
+    .item {
+        flex: 1 1 auto;
+    }    
+}
 ```
+
+Or:
+```css
+.foo {
+    border: 1px solid black;
+    padding: 1px;
+}
+
+@supports (box-shadow: 0 0 2px black inset) {
+    .foo {
+        box-shadow: 0 0 2px black inset;
+        
+        /* override the rule above the @supports rule */
+        border: none;
+        padding: 2px;
+    }
+}
+```
+
+Regarding `@media`-rules there are two simple practices of writing:
+1. Specific rules for each selector (as in the first example)
+2. Common block for all selectors in the end of file or logical section
+
+Guidance here is simple as well: use the first approach until second one is _required_. Usually the latter is less convenient and more error-prone.
