@@ -61,9 +61,8 @@ Let's get started!
 	* [Grouping of properties](#grouping-of-properties)
 	* [Vendor prefixes](#vendor-prefixes)
 	* [Best practices](#best-practices)
-	* [Multiple selectors](#multiple-selectors)
+	* [Indentation](#indentation)
 	* [@-rules](#@-rules)
-	* [Exceptions](#exceptions)
 * [Syntax using preprocessors](#syntax-using-preprocessors)
 	* [Common formatting rules](#common-formatting-rules)
 	* [Variables naming](#variables-naming)
@@ -1142,6 +1141,8 @@ This can be simply illustrated with the following code:
 
 ### Grouping of properties
 
+TODO
+
 Excessive example of writing CSS rules in order.
 The point here is visual and logic separation of rules.
 One of the way how to organize declarations:
@@ -1218,111 +1219,150 @@ Preprocessor-related:
 - avoid variable mutations
 
 
-### Multiple selectors
+### Indentation
 
-Here you can find the way how to organize selectors in real life. Typically we separate different types of selectors:
-* pseudo elements and states
-* child selectors
-* modificators
-* siblings/other entity
+Typically indentation used in stylesheets to illustrate the cascade, or how HTML is structured.
 
-There are some node modules to make it easier, like [CSScomb](https://github.com/csscomb/csscomb.js).
-See example below to see how all of selectors live together.
-
+Something like this:
 ```css
-/* Elem
--------------------------------------------------- */
+.menu {
+    margin: 0;
+}
 
-.elem {
-	display: block;
-	}
-	.elem:hover {
-		display: none;
-		}
+    .item {
+        margin: 10px 0;
+        padding: 10px 20px;
+        
+        background: #ddd;
+    }
+    
+        .item a {
+            text-decoration: none;
+        }
+        
+            .item a:hover {
+                text-decoration: underline;
+            }
+```
 
-	.elem.__special {
-		height: 180px;
-		}
+This might work for a micro-stylesheet, but will fail in anything bigger, and here's why:
 
-    .elem_child {
-	    background: red;
-	    }
+- indentation system should stick to HTML structure, otherwise it will only be confusing, which makes maintaining a tedious task 
+- reading comfort decreases with every other indented block, so everything after 3 indent levels considered hard to read
+- imagine appearing of wrapper for `menu` element, and remember to indent the whole structure in order to match the principles
+- hard times understanding whether it is the direct descendant of the element or a cascade taking place
+- and so on...
 
-.elem.__n1 { color: red; }
-.elem.__n2 { color: green; }
-.elem.__n3 { color: yellow; }
+Generally, relying on the current guide principles, this recommendations will be out of scope. [Component approach](), [BEM naming principles]() and even [CSSG]() make indentation totally useless.
 
-.elem-elem {
-	text-align: center;
-	}
+Revised version of the same code sample could look like (structural comments dropped for brevity):
+```css
+/* 
+cssg
 
-	.elem-elem_child {
-		text-align: left;
-		}
-        .elem-elem_child:first-child {
-	        font-size: 10px;
-	        }
-		.elem-elem_child:before,
-		.elem-elem_child:after {
-			content: "";
-			display: block;
-			}
-			.elem-elem_child:before:hover {
-				opacity: .5;
-				}
-		.ie8 .elem-elem_child {
-			font-size: 11px;
-			}
+menu
+    menu__item +
 
-.elem-elem-foo,
-.elem-elem-goo,
-.elem-elem-bar {
-	text-align: left;
-	font-weight: bold;
-	}
+        item
+            a . item__link
+*/
 
-.elem-elem-bar {
-	color: red;
-	}
+.menu {
+    margin: 0;
+}
 
-.elem-elem-goo {
-	position: static;
-	}
+.menu__item {
+    margin: 10px 0;
+}
 
-/* /Elem
--------------------------------------------------- */
+.item {
+    padding: 10px 20px;
+            
+    background: #ddd;
+}
+
+.item__link {
+    text-decoration: none;
+}
+
+.item__link:hover {
+    text-decoration: underline;
+}
+```
+
+Consider using preprocessor, isolating code in separate files and you'll never want to use traditional indentation again.
+
+:bulb: if you are using vanilla CSS, the following tip might be helpful:
+Use indentation only for pseudo-elements, pseudo-classes and in context- (browser-) specific cases.
+
+Notice also, that there is no empty line between main selector and descendants.
+ 
+```css
+.item {
+    padding: 10px 20px;
+            
+    background: #ddd;
+}
+
+.item__link {
+    text-decoration: none;
+}
+    .item__link:before {
+        content: "link: ";
+    }
+    .item__link:hover {
+        text-decoration: underline;
+    }
+        .item__link:hover:before {
+            color: transparent;
+        }
+        
+.item__image {
+    padding: 10px;
+}
 ```
 
 
 ### @-rules
 
-todo
+There is nothing extraordinary about syntax here. Same indentation, formatting etc. with only one extra indentation level.
 
-
-### Exceptions
-
-Reason for exceptional code-styling should be transparency and visual grace, not any other controversial idea.
-
+Typical example:
 ```css
-.mb-x {margin-bottom: 4px;}
-.mb-2x {margin-bottom: 8px;}
-.mb-3x {margin-bottom: 12px;}
-.mb-4x {margin-bottom: 16px;}
+.item {
+    flex: 1 0 100%;
+}
 
-a.white:hover,
-.white_hover:hover {color: #eee;}
-
-.card__xxs,
-.card__xs,
-.card__s,
-.card__m,
-.card__l,
-.card__xl,
-.card__xxl
-	{
-	background-repeat: no-repeat;
-	}
+@media screen and (min-width: 40em) {
+    .item {
+        flex: 1 1 auto;
+    }    
+}
 ```
+
+Or:
+```css
+.foo {
+    border: 1px solid black;
+    padding: 1px;
+}
+
+@supports (box-shadow: 0 0 2px black inset) {
+    .foo {
+        box-shadow: 0 0 2px black inset;
+        
+        /* override the rule above the @supports rule */
+        border: none;
+        padding: 2px;
+    }
+}
+```
+
+Regarding `@media`-rules there are two simple practices of writing:
+1. Specific rules for each selector (as in the first example)
+2. Common block for all selectors in the end of file or logical section
+
+Guidance here is simple as well: use the first approach until second one is _required_. Usually the latter is less convenient and more error-prone.
 
 
 ## Syntax using preprocessors
