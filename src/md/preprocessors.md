@@ -139,6 +139,26 @@ One of the best practices of using variables for defining variables will be (no 
 
 todo
 
+:bulb: Some complicated calculations might require local variables usage. In order not to mess with global variable namespace better idea would be to encapsulate them: 
+
+```scss
+.textarea {
+    $textareaSumHeight: 3 * $font-size-n * $line-height-regular + (2 * $offset-s);
+    $textareaSumBorderWidth: 2 * $form-border-width;
+    
+    @include form-element();
+    
+    height: calc(#{$textareaSumHeight} - #{$textareaSumBorderWidth});
+    padding: $offset-s;
+    
+    width: 100%;
+}
+```
+
+Please mind the order of local variables. They should be defined at the very top of the declarations list.
+
+Naming is also different (camelCase in this, hm, _case_, but can be any other). The main intention is to differ local vars from the globals. This also can be achieved with the prefixes.
+
 
 ### Mixins
 
