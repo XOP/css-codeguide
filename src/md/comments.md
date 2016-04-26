@@ -6,15 +6,15 @@ In total, all code, that potentially might raise questions later, should be comm
 Comments have to be short, capacious and up-to-date. Avoid excessive (unnecessary) commenting.
 
 There are generally _two_ types of comments:  
-- Structural comments (were briefly introduced in [previous chapter](#code-organization-within-a-file))
-- All other comments will be covered right away!
+- Structural comments - were briefly introduced in [previous chapter](#code-organization-within-a-file)
+- All other comments - will be covered right away!
 
 
 ### Structural comments
 
 :page_with_curl: **[Code follow-up](example/_component-1.scss)**
 
-These comments help to keep your CSS organized, consistent and way more readable.
+These comments help to keep your CSS (modules) organized, consistent and way more readable.
 Consider each inner level a deeper nested element or modifier - this metaphor helps to get the image.
 
 **Level 1** is typically a component / file title.
@@ -29,8 +29,10 @@ Consider each inner level a deeper nested element or modifier - this metaphor he
 ---------------------------------------------------------------------------------- */
 ```
 
-At the moment there might be questions - where _exactly_ to place the code?  
-Is the block padding a normal thing?  
+At the moment there might be questions:
+
+- where _exactly_ to place the code?
+- is the block padding a normal thing?  
 
 As it comes to practical side - this is the matter of choice, habit and team preferences.  
 This may work for you...
@@ -101,33 +103,42 @@ Common rules for structural comments:
 To improve readability use 2 whitespaces between level 1 and level 2 blocks. Use 1 whitespace between all others.  
 Again, it's only a recommendation. Stick with what works best for you.
 
+Here is an example:
+
 ```css
 /* Module
 ---------------------------------------------------------------------------------- */
+
+/* Module - Core
+-------------------------------------------------- */
 
 .module {
 
 }
 
+/* /Module - Core
+-------------------------------------------------- */
+
+
 /* Module - Part 1
 -------------------------------------------------- */
 
-/* Core */
+/* Base */
 
-.part-1 {
-
-}
-
-/* /Core */
-
-
-/* Modification */
-
-.part-1--modifier {
+.module__part-1 {
 
 }
 
-/* /Modification */
+/* /Base */
+
+
+/* Modifications */
+
+.module__part-1--modifier {
+
+}
+
+/* /Modifications */
 
 /* /Module - Part 1
 -------------------------------------------------- */
@@ -136,7 +147,7 @@ Again, it's only a recommendation. Stick with what works best for you.
 /* Module - Part 2
 -------------------------------------------------- */
 
-.part-2 {
+.module__part-2 {
 
 }
 
@@ -149,7 +160,7 @@ Again, it's only a recommendation. Stick with what works best for you.
 
 :bulb:  
 
-It's not convenient to type these slashes and dashes by hand or copy paste the pieces of code all the time.  
+It's not convenient to type these slashes and dashes by hand or copy-paste the pieces of code all the time.  
 There's a bunch of tools to bring fun to the boredom.
 
 For instance, there are snippets from [IDE cross-project live templates repo](https://github.com/XOP/live-templates). Based on [Live Templates](https://www.jetbrains.com/idea/help/live-templates.html) they are compliant with most of [Jetbrains](https://www.jetbrains.com/) products.
@@ -184,9 +195,9 @@ There's also a snippet for that in [live templates repo](https://github.com/XOP/
 
 ### CSSG
 
-The main idea behind [CSSG](http://cssg.rocks) project is bringing extra transparency to the common CSS codebase.
+[CSSG](http://cssg.rocks) stands for CSS-O-Gram, meta-language for documenting markup structure with CSS comments.
 
-Simply put, it's a meta-language that uses CSS comments for html (_-module_) documenting.
+The main idea behind this conception is to bring extra transparency to the common CSS codebase.
 
 Here's an example:
 
@@ -194,7 +205,7 @@ Here's an example:
 /*
 cssg
 
-	media                   --special | --custom
+	media                       --special | --custom
 	    media__header
 	        ...
 	        
@@ -247,7 +258,7 @@ Consider the following:
 */
 ```
 
-Of course these things colud be easily combined:
+Of course these things could be easily combined:
 ```css
 /*
     TODO: stewie.griffin@acmecorp.com - cleanup with the feature "PhotoMarks" - 21.09.2015
@@ -262,12 +273,14 @@ One extra healthy point here is to limit the number of **"todo"** expressions du
 
 So far it should be pretty clear how to create structure in CSS file, leave author notes and prepare ground for the code landing.  
 
-Since it appears, your main concern with regards to styleguide, will be code maintainability. Respect some basic rules and you will be safe:
+Since code appears, your main concern with regards to styleguide, will be code maintainability. Respect some basic rules and you will be safe:
+
 - leave comments to improve readability
 - avoid unnecessary comments that harm readability
 - too many 'TODO'-s - it's time to refactor the whole thing
 
 Also, there is a couple of best practices, that worth mentioning:
+
 - always comment magic numbers and tricky approaches
 - separate variables' and values' concerns
 
@@ -347,9 +360,9 @@ The point is - to prevent visual pollution some code-guide conventions required.
 Here's the proposition:
 
 1. _Everywhere but inside_ of curly braces (consider "rule scope") use "block" comments. Practical examples can be found [earlier in this chapter](#structural-comments).
-2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, & - selection etc.
+2. On the contrary, use "inline" comments only _inside_ of curly braces. This will come more and more handy with intensive using of preprocessor features - nesting, "&" - selection etc.
 
-With these in mind, let's "fix" the previous example:
+With this in mind, let's "fix" the previous example:
 
 ```scss
 /* Foo
@@ -398,8 +411,7 @@ Feel free to come up with your own list, here's the nice starting point:
 - `margin (with negative value)`
 - `overflow: hidden`
 - `translate3d(0)` or `-webkit-backface-visibility`
-
-...
+- ...
 
 
 ### To recap
