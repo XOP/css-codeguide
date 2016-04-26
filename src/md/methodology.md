@@ -284,7 +284,7 @@ Pattern B:
 }
 ```
 
-General recommendation is to use Pattern A over Pattern B. However, in some situations (and this one in particular) Pattern A is more beneficial, since it's easier to maintain the code and control states. 
+General recommendation is to use Pattern A over Pattern B. However, in some situations (and this one in particular) Pattern B is more beneficial, since it's easier to maintain the code and control states. 
 
 
 ### Utilities
