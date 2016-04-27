@@ -5,7 +5,7 @@
 todo: code follow-up
 
 Let's define the very basics for formatting.  
-Most of these rules are supported by various IDEs' linters:
+Most of these rules are supported by linters in various IDEs:
 
 - 4 spaces for indentation step
 - new line for each declaration ('block'-notation)
@@ -43,17 +43,35 @@ This can be simply illustrated with the following code:
 
 ### Grouping of properties
 
-TODO
+Grouping is one extra step on the organization ladder.
 
-Excessive example of writing CSS rules in order.
-The point here is visual and logic separation of rules.
-One of the way how to organize declarations:
+There are at least 3 possible ways to handle declarations in the rule scope:
 
-1. Positioning selectors
-2. Box model/size
-3. Borders/backgrounds
-4. All other stuff
-5. Animations
+1. No particular order (that's not helping)
+2. Alphabetical order
+3. Grouping by some attribute
+
+**Alphabetical order** is the "better than nothing" option. It is mostly useful for developers who seldom touch CSS. But for the long run there is a room for improvement.
+
+Grouping of properties allow faster allocating of certain properties. Simply put, you know that "position" should be on top along with other position-related properties, i.e. "top", "left" etc. So you look for it in certain places instead of going through the list with no particular understanding.
+
+Properties can be divided into following groups or categories:
+
+1. Position
+2. Display
+3. Flex
+4. Box model
+5. Background
+6. Color
+7. Typography
+8. Visibility
+9. Transform
+10. Animation
+11. Anything else
+
+Of course there can be different exceptions, so feel free to extend the list basing on this starting point.
+
+...
 
 ```css
 .class {
