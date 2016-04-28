@@ -279,6 +279,7 @@ Or:
 ```
 
 Regarding `@media`-rules there are two simple practices of writing:
+
 1. Specific rules for each selector (as in the first example)
 2. Common block for all selectors in the end of file or logical section
 
