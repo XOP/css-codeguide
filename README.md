@@ -20,8 +20,8 @@ Basically this documentation is about how to work in team with 250+ style files 
 Please be aware, that CSS fundamentals, selector performance or other common topics are not the part of this guide.
 On the other hand there will be reviewed different aspects of CSS described with practical examples, recommendations and best practicies.
 
-> All along the text there will be links to examples folder.  
-> In most cases it is invaluable for understanding the picture in total,  
+> All along the text there will be links to examples folder.
+> In most cases it is invaluable for understanding the picture in total,
 > so check it out before further reading and keep them opened just in case.
 
 Let's get started!
@@ -70,6 +70,7 @@ Let's get started!
 	* [Mixins](#mixins)
 	* [Extends](#extends)
 	* [Nesting](#nesting)
+* [What's next?](#what's-next?)
 
 <!--mdMenu-->
 
@@ -1087,15 +1088,107 @@ This is the scope of the [following chapter](#syntax--formatting).
 ### Mandatory commenting
 
 Some CSS rules _deserve_ to be commented. This practice has been proved by time.
-There is pretty brief list of such rules, which sure is not dogmatic.
+There is pretty brief list of such rules, which sure is not dogmatic.  
+Each uncommented property is a time bomb, and the countdown exponentially speeds up with the project size.
 
-Feel free to come up with your own list, here's the nice starting point:
+Take a look at the **recommended list** and feel free to augment it with the problematic properties of your choice.
 
-- `z-index`
-- `margin (with negative value)`
-- `overflow: hidden`
-- `translate3d(0)` or `-webkit-backface-visibility`
-- ...
+
+**`position`**  
+This one seems pretty harmless right up to the moment of debugging nested containers case and having trouble putting some element to the uppper level.  
+Whilst `position: absolute / fixed / static` seems to be pretty self-explanatory, `position: relative` needs most attention.
+
+Usually it is sufficient to use comment like this:
+```scss
+.foo {
+    position: relative; // context for .bar
+} 
+ ```
+
+
+**`z-index`**
+It might be a good idea to keep track of all z-index usages with _Z-index map_, that can be simply a [variables](#variables-maintenance) set:
+```scss
+$z-index-base: 0;
+$z-index-dropdown: 500;
+$z-index-modal: 1000;
+$z-index-notification: 2000;
+```
+
+... or the map:
+```scss
+$z-index: (
+    base: 0,
+    dropdown: 500,
+    modal: 1000,
+    notification: 2000
+);
+```
+
+Thus when met in code - they won't require extra comments.  
+However, this won't apply for the local context. Consider:
+```scss
+.foo {
+    position: relative; // context for .bar
+}
+
+.boo {
+    // ...
+}
+
+.bar {
+    position: absolute;
+    z-index: 1; // always above .boo
+}
+```
+
+
+**`margin (with negative value)`**
+Using negative values for margins implies something hacky that can't be achieved with normal simple methods. It requires as well a lot of attention and testing. It is better be documented as well.
+
+```scss
+.foo {
+    padding: $offset-n;
+    margin: -$offset-n; // compensating paddings
+}
+```
+
+
+**`overflow: hidden`**
+Overflow is a "no-way-back" for some children elements. That's why in most cases it stands as the last hope for proper sollution. But generally it is not clear whether it's cropping the background or something different.
+
+```scss
+.bar {
+    // ...
+
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.boo {
+    // ...
+
+    height: $boo-height;
+
+    overflow: hidden; // assuring the correct height
+}
+```
+
+
+**`translate3d(0)`** or **`-webkit-backface-visibility`**
+Generally it is recommended to move specific fixes as such to the preprocessor mixin. This will take care of all misunderstanding. If this is not possible, use comment to distinguish hacks from regular intentions.
+
+```scss
+.foo {
+    transform: translate3d(0); // fixes Chrome glitch ...
+}
+
+// or (preferred)
+
+.boo {
+    @include gpu-fix();
+}
+```
 
 
 ### To recap
@@ -1104,7 +1197,7 @@ Follow a common rule:
 
 > _Do not_ rely on your memory or memory of your colleagues
 
-Just comment suspicious values.
+Just comment suspicious values.  
 Thank yourself later.
 
 
@@ -1115,7 +1208,7 @@ Thank yourself later.
 todo: code follow-up
 
 Let's define the very basics for formatting.  
-Most of these rules are supported by various IDEs' linters:
+Most of these rules are supported by linters in various IDEs:
 
 - 4 spaces for indentation step
 - new line for each declaration ('block'-notation)
@@ -1153,17 +1246,35 @@ This can be simply illustrated with the following code:
 
 ### Grouping of properties
 
-TODO
+Grouping is one extra step on the organization ladder.
 
-Excessive example of writing CSS rules in order.
-The point here is visual and logic separation of rules.
-One of the way how to organize declarations:
+There are at least 3 possible ways to handle declarations in the rule scope:
 
-1. Positioning selectors
-2. Box model/size
-3. Borders/backgrounds
-4. All other stuff
-5. Animations
+1. No particular order (that's not helping)
+2. Alphabetical order
+3. Grouping by some attribute
+
+**Alphabetical order** is the "better than nothing" option. It is mostly useful for developers who seldom touch CSS. But for the long run there is a room for improvement.
+
+Grouping of properties allow faster allocating of certain properties. Simply put, you know that "position" should be on top along with other position-related properties, i.e. "top", "left" etc. So you look for it in certain places instead of going through the list with no particular understanding.
+
+Properties can be divided into following groups or categories:
+
+1. Position
+2. Display
+3. Flex
+4. Box model
+5. Background
+6. Color
+7. Typography
+8. Visibility
+9. Transform
+10. Animation
+11. Anything else
+
+Of course there can be different exceptions, so feel free to extend the list basing on this starting point.
+
+...
 
 ```css
 .class {
@@ -1371,6 +1482,7 @@ Or:
 ```
 
 Regarding `@media`-rules there are two simple practices of writing:
+
 1. Specific rules for each selector (as in the first example)
 2. Common block for all selectors in the end of file or logical section
 
@@ -1779,6 +1891,25 @@ Do not use structural comments inside nesting. If you want to do that - check ou
 ```
 
 
+
+
+## What's next?
+
+Congrats, you did it, great job!
+
+I hope you did some notes along the reading or even implemented some best-practices described here. If not - here's a nice starting list of what you can start or proceed with:
+
+- Analyze your (your team) needs. Through the flaws and error-prone areas in your code get the list of what has to be improved in the first place.
+- Remember your product needs and environment specifics! You most probably will not need _all_ techniques and features from this document.
+- Start with module approach. Break your code into smaller chunks until it feels right and comfortable.
+- Consider methodology (BEM or BEM-specific of your choice) your companion on this not-so-light path.
+- Choose the preprocessor. SCSS is the main recommendation.
+- Establish a set of mixins that your modules can share.
+- Incorporate tools for linting your CSS. Generally it takes some time to make it look fit for the first time. But later on it goes smoothly!
+
+And the last, but simply the **most important thing**, that defines the success:
+
+> Common code should look like it has been written by one person.
 
 
 -----

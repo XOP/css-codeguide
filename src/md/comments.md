@@ -403,15 +403,107 @@ This is the scope of the [following chapter](#syntax--formatting).
 ### Mandatory commenting
 
 Some CSS rules _deserve_ to be commented. This practice has been proved by time.
-There is pretty brief list of such rules, which sure is not dogmatic.
+There is pretty brief list of such rules, which sure is not dogmatic.  
+Each uncommented property is a time bomb, and the countdown exponentially speeds up with the project size.
 
-Feel free to come up with your own list, here's the nice starting point:
+Take a look at the **recommended list** and feel free to augment it with the problematic properties of your choice.
 
-- `z-index`
-- `margin (with negative value)`
-- `overflow: hidden`
-- `translate3d(0)` or `-webkit-backface-visibility`
-- ...
+
+**`position`**  
+This one seems pretty harmless right up to the moment of debugging nested containers case and having trouble putting some element to the uppper level.  
+Whilst `position: absolute / fixed / static` seems to be pretty self-explanatory, `position: relative` needs most attention.
+
+Usually it is sufficient to use comment like this:
+```scss
+.foo {
+    position: relative; // context for .bar
+} 
+ ```
+
+
+**`z-index`**
+It might be a good idea to keep track of all z-index usages with _Z-index map_, that can be simply a [variables](#variables-maintenance) set:
+```scss
+$z-index-base: 0;
+$z-index-dropdown: 500;
+$z-index-modal: 1000;
+$z-index-notification: 2000;
+```
+
+... or the map:
+```scss
+$z-index: (
+    base: 0,
+    dropdown: 500,
+    modal: 1000,
+    notification: 2000
+);
+```
+
+Thus when met in code - they won't require extra comments.  
+However, this won't apply for the local context. Consider:
+```scss
+.foo {
+    position: relative; // context for .bar
+}
+
+.boo {
+    // ...
+}
+
+.bar {
+    position: absolute;
+    z-index: 1; // always above .boo
+}
+```
+
+
+**`margin (with negative value)`**
+Using negative values for margins implies something hacky that can't be achieved with normal simple methods. It requires as well a lot of attention and testing. It is better be documented as well.
+
+```scss
+.foo {
+    padding: $offset-n;
+    margin: -$offset-n; // compensating paddings
+}
+```
+
+
+**`overflow: hidden`**
+Overflow is a "no-way-back" for some children elements. That's why in most cases it stands as the last hope for proper sollution. But generally it is not clear whether it's cropping the background or something different.
+
+```scss
+.bar {
+    // ...
+
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.boo {
+    // ...
+
+    height: $boo-height;
+
+    overflow: hidden; // assuring the correct height
+}
+```
+
+
+**`translate3d(0)`** or **`-webkit-backface-visibility`**
+Generally it is recommended to move specific fixes as such to the preprocessor mixin. This will take care of all misunderstanding. If this is not possible, use comment to distinguish hacks from regular intentions.
+
+```scss
+.foo {
+    transform: translate3d(0); // fixes Chrome glitch ...
+}
+
+// or (preferred)
+
+.boo {
+    @include gpu-fix();
+}
+```
 
 
 ### To recap
@@ -420,5 +512,5 @@ Follow a common rule:
 
 > _Do not_ rely on your memory or memory of your colleagues
 
-Just comment suspicious values.
+Just comment suspicious values.  
 Thank yourself later.
