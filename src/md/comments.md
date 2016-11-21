@@ -421,7 +421,7 @@ Usually it is sufficient to use comment like this:
  ```
 
 
-**`z-index`**
+**`z-index`**  
 It might be a good idea to keep track of all z-index usages with _Z-index map_, that can be simply a [variables](#variables-maintenance) set:
 ```scss
 $z-index-base: 0;
@@ -458,7 +458,7 @@ However, this won't apply for the local context. Consider:
 ```
 
 
-**`margin (with negative value)`**
+**`margin (with negative value)`**  
 Using negative values for margins implies something hacky that can't be achieved with normal simple methods. It requires as well a lot of attention and testing. It is better be documented as well.
 
 ```scss
@@ -469,7 +469,7 @@ Using negative values for margins implies something hacky that can't be achieved
 ```
 
 
-**`overflow: hidden`**
+**`overflow: hidden`**  
 Overflow is a "no-way-back" for some children elements. That's why in most cases it stands as the last hope for proper sollution. But generally it is not clear whether it's cropping the background or something different.
 
 ```scss
@@ -490,7 +490,7 @@ Overflow is a "no-way-back" for some children elements. That's why in most cases
 ```
 
 
-**`translate3d(0)`** or **`-webkit-backface-visibility`**
+**`translate3d(0)`** or **`-webkit-backface-visibility`**  
 Generally it is recommended to move specific fixes as such to the preprocessor mixin. This will take care of all misunderstanding. If this is not possible, use comment to distinguish hacks from regular intentions.
 
 ```scss
